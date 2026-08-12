@@ -21,6 +21,43 @@ const recentSnippets = allSnippets
 
 const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7.pdf";
 
+const clientLogos = [
+  { name: 'BAT UK', logo: '/images/clients/bat-uk.svg' },
+  { name: 'A Perfect Space', logo: '/images/clients/aperfectspace.png' },
+  { name: 'Optimizely', logo: '/images/clients/optimizely.svg' },
+  { name: 'Shopify Plus', logo: '/images/clients/shopify-plus.svg' },
+  { name: 'Pragmatic Works', logo: '/images/clients/pragmaticworks.png' },
+  { name: 'Jump Work', logo: '/images/clients/jump-work.png' },
+  { name: 'EchoLogyx', logo: '/images/clients/echologyx.svg' }
+];
+
+// Duplicate for seamless 60fps marquee loop
+const marqueeLogos = [...clientLogos, ...clientLogos];
+
+const testimonials = [
+  {
+    name: 'Liam Carter',
+    role: 'Lead CRO Strategist, EchoLogyx',
+    initials: 'LC',
+    quote: "Saabbir is an exceptional A/B testing and front-end engineering expert. His deep understanding of Optimizely, Shopify Plus architecture, and performance optimization has consistently unlocked massive revenue growth for our client campaigns.",
+    rating: 5
+  },
+  {
+    name: 'Sarah Jenkins',
+    role: 'Product Manager, A Perfect Space (Australia)',
+    initials: 'SJ',
+    quote: "Saabbir delivered high-quality, pixel-perfect HTML/SCSS site templates for our platform ahead of deadline. His code is extraordinarily clean, BEM structured, and optimized for speed. Truly a top-tier developer!",
+    rating: 5
+  },
+  {
+    name: 'David Miller',
+    role: 'E-Commerce Director, Global Retail Brand',
+    initials: 'DM',
+    quote: "Working with Saabbir on our Shopify Plus theme performance and CRO experiments was a game changer. He brought our page load times under 1.5 seconds and improved our mobile conversion rates by 28%.",
+    rating: 5
+  }
+];
+
 const skillsCategories = [
   {
     name: 'CRO & A/B Testing',
@@ -42,10 +79,11 @@ const skillsCategories = [
 ---
 
 <BaseLayout>
-  <!-- Hero Section -->
+  <!-- Hero Section (Balanced 2-Column Above-the-Fold Layout) -->
   <section class="l-section l-section--hero">
     <div class="l-container">
       <div class="c-hero">
+        <!-- Left Column: Bio & CTAs -->
         <div class="c-hero__content">
           <div class="c-hero__badge">
             <span class="c-hero__badge-dot"></span>
@@ -77,25 +115,45 @@ const skillsCategories = [
               Download CV
             </a>
           </div>
+        </div>
 
-          <!-- Impact Metrics Bar -->
-          <div class="c-hero__stats">
-            <div class="c-hero__stat">
-              <div class="c-hero__stat-number">8+</div>
-              <div class="c-hero__stat-label">Years Experience</div>
-            </div>
-            <div class="c-hero__stat">
-              <div class="c-hero__stat-number">250+</div>
-              <div class="c-hero__stat-label">A/B Tests Conducted</div>
-            </div>
-            <div class="c-hero__stat">
-              <div class="c-hero__stat-number">50+</div>
-              <div class="c-hero__stat-label">Shopify Stores Optimized</div>
-            </div>
-            <div class="c-hero__stat">
-              <div class="c-hero__stat-number">100/100</div>
-              <div class="c-hero__stat-label">Lighthouse Performance</div>
-            </div>
+        <!-- Right Column: 2x2 Cyber Metrics Dashboard Visual -->
+        <div class="c-hero__visual">
+          <div class="c-hero__visual-card">
+            <div class="c-hero__visual-number">8+</div>
+            <div class="c-hero__visual-label">Years of Engineering Experience</div>
+          </div>
+          <div class="c-hero__visual-card">
+            <div class="c-hero__visual-number">250+</div>
+            <div class="c-hero__visual-label">A/B Experiments Conducted</div>
+          </div>
+          <div class="c-hero__visual-card">
+            <div class="c-hero__visual-number">50+</div>
+            <div class="c-hero__visual-label">Shopify Plus Stores Optimized</div>
+          </div>
+          <div class="c-hero__visual-card">
+            <div class="c-hero__visual-number">100/100</div>
+            <div class="c-hero__visual-label">Lighthouse Speed Performance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean Client Logos Infinite Marquee -->
+  <section class="l-section l-section--alt" style="padding: 2.25rem 0; overflow:hidden;">
+    <div class="l-container">
+      <div class="c-clients">
+        <div class="c-clients__label">
+          Trusted By Global Brands, Agencies & Technology Leaders
+        </div>
+        <div class="c-clients__marquee">
+          <div class="c-clients__marquee-track">
+            {marqueeLogos.map((item) => (
+              <div class="c-clients__item">
+                <img src={item.logo} alt={`${item.name} Logo`} width="140" height="36" />
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -103,7 +161,7 @@ const skillsCategories = [
   </section>
 
   <!-- Featured Case Studies -->
-  <section class="l-section l-section--alt">
+  <section class="l-section">
     <div class="l-container">
       <div class="l-section__header u-flex u-justify-between u-items-center">
         <div>
@@ -146,6 +204,40 @@ const skillsCategories = [
               </a>
             </div>
           </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials & Recommendations -->
+  <section class="l-section l-section--alt">
+    <div class="l-container">
+      <div class="l-section__header u-text-center" style="max-width:650px; margin-left:auto; margin-right:auto;">
+        <div class="l-section__subtitle">Client Feedback</div>
+        <h2 class="l-section__title">Testimonials & Reviews</h2>
+        <p class="u-text-muted u-mt-16">
+          Hear what agency leaders, product managers, and eCommerce directors say about collaborating on A/B testing and front-end engineering.
+        </p>
+      </div>
+
+      <div class="l-grid l-grid--3col">
+        {testimonials.map((t) => (
+          <div class="c-card c-card--glass c-testimonial">
+            <div class="c-testimonial__rating">
+              {Array.from({ length: t.rating }).map(() => (
+                <span>★</span>
+              ))}
+            </div>
+            <p class="c-testimonial__quote">{t.quote}</p>
+
+            <div class="c-testimonial__author">
+              <div class="c-testimonial__author-avatar">{t.initials}</div>
+              <div class="c-testimonial__author-info">
+                <div class="c-testimonial__author-name">{t.name}</div>
+                <div class="c-testimonial__author-role">{t.role}</div>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>

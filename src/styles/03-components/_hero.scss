@@ -1,28 +1,49 @@
 @use '../01-config/tokens' as *;
 
-.c-hero {
-  padding: 4rem 0 3rem;
+.l-section--hero {
+  padding: 3rem 0;
+  box-sizing: border-box;
 
-  @media (min-width: 768px) {
-    padding: 6rem 0 4rem;
+  @media (min-width: 1024px) {
+    min-height: calc(100dvh - 4.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.5rem 0;
+  }
+}
+
+.c-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
   }
 
   &__content {
-    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__badge {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 0.95rem;
     border-radius: $radius-full;
     background: rgba(0, 229, 153, 0.1);
     border: 1px solid rgba(0, 229, 153, 0.25);
     color: var(--color-accent);
     font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+    align-self: flex-start;
 
     &-dot {
       width: 8px;
@@ -35,10 +56,11 @@
   }
 
   &__title {
-    font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+    font-size: clamp(2.4rem, 4.2vw, 3.85rem);
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    line-height: 1.12;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
 
     &-highlight {
       background: linear-gradient(135deg, var(--color-accent), var(--color-accent-cyan));
@@ -48,11 +70,11 @@
   }
 
   &__bio {
-    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
     color: var(--color-text-muted);
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    max-width: 750px;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 680px;
 
     strong {
       color: var(--color-text-main);
@@ -64,31 +86,66 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 3.5rem;
   }
 
-  &__stats {
+  /* Right Column: 2x2 Cyber Metrics Dashboard Visual */
+  &__visual {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1.5rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--color-border-subtle);
-  }
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    width: 100%;
 
-  &__stat {
+    &-card {
+      background: var(--color-surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--color-border-glass);
+      border-radius: $radius-lg;
+      padding: 1.75rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: all $transition-base;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+        opacity: 0;
+        transition: opacity $transition-base;
+      }
+
+      &:hover {
+        border-color: var(--color-accent);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-neon-glow);
+
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+
     &-number {
       font-family: $font-family-heading;
-      font-size: 2.25rem;
+      font-size: clamp(2rem, 3.2vw, 2.75rem);
       font-weight: 800;
       color: var(--color-accent);
       line-height: 1;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
     }
 
     &-label {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--color-text-muted);
-      font-weight: 500;
+      font-weight: 600;
+      line-height: 1.3;
     }
   }
 }

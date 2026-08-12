@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 40" fill="none">
+  <path d="M22 6s-2 0-3.5 3c-1.5 3-4.5 9-4.5 9l-2-7-6 1.5L4 30l16 4 12-3L22 6z" fill="#95bf47"/>
+  <path d="M20 12c-1.5 0-3 1.5-3 3 0 3.5 5 4.5 5 7.5 0 2-1.5 3.5-3.5 3.5-2 0-3.5-1-4.5-2.5l-2 3c1.5 2 3.5 3 6.5 3 4 0 7-2.5 7-6.5 0-4-5-5-5-8 0-1 1-2 2-2 1.5 0 2.5.5 3.5 1.5l2-3c-1.5-1.5-3.5-2.5-5.5-2.5z" fill="#ffffff"/>
+  <text x="40" y="26" font-family="Outfit, System-UI, sans-serif" font-weight="800" font-size="18" fill="#ffffff">Shopify <tspan fill="#95bf47">Plus</tspan></text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 40" fill="none">
+  <path d="M10 20L22 8l12 12-12 12L10 20z" fill="#00d2ff"/>
+  <path d="M18 20l4-4 4 4-4 4-4-4z" fill="#0a0f1d"/>
+  <text x="42" y="26" font-family="Outfit, System-UI, sans-serif" font-weight="800" font-size="19" fill="#ffffff">Optimizely</text>
+</svg>
