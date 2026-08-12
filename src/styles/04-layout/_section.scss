@@ -1,25 +1,34 @@
 @use '../01-config/tokens' as *;
 
 .l-section {
-  padding: 4rem 0;
+  padding: 4.5rem 0;
+  position: relative;
 
   @media (min-width: 768px) {
-    padding: 6rem 0;
+    padding: 6.5rem 0;
   }
 
   &--alt {
     background: var(--color-bg-surface-alt);
+    border-top: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border-subtle);
   }
 
   &--hero {
-    padding-top: 3rem;
+    padding-top: 3.5rem;
+    padding-bottom: 4.5rem;
+
+    @media (min-width: 768px) {
+      padding-top: 5rem;
+      padding-bottom: 6.5rem;
+    }
   }
 
   &__header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
 
     @media (min-width: 768px) {
-      margin-bottom: 3.5rem;
+      margin-bottom: 4.25rem;
     }
   }
 
@@ -27,13 +36,18 @@
     font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--color-accent);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    display: inline-block;
   }
 
   &__title {
-    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
     font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text-main);
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
   }
 }
