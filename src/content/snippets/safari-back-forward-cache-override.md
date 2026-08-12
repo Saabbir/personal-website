@@ -1,20 +1,13 @@
 ---
 title: Safari back-forward-cache override
-description:
-#featuredImg: async.webp
+description: Prevent Safari from serving stale cached pages on back/forward browser navigation.
 createdAt: 05/03/2024
 tags:
   - javascript
   - safari
 ---
 
-<div class="c-code-wrapper">
-  <div class="c-code-wrapper__header">
-    <div class="c-code-wrapper__title">Safari back-forward-cache override</div>
-    <div class="c-code-wrapper__copy">Copy</div>
-  </div>
-
-```js [js]
+```js
 // Safari back-forward-cache override
 (function () {
   window.onpageshow = function (event) {
@@ -25,8 +18,6 @@ tags:
   };
 })();
 ```
-
-</div>
 
 ## Further reading
 

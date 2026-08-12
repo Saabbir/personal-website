@@ -150,7 +150,7 @@
     }
   }
 
-  // Code Blocks
+  // Inline Code
   code {
     background: rgba(0, 229, 153, 0.1);
     color: var(--color-accent);
@@ -159,7 +159,87 @@
     font-size: 0.88em;
   }
 
-  pre {
+  // Standalone Code Block Container & Header
+  .c-code-block {
+    margin: 2rem 0;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    border: 1px solid var(--color-border-glass);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+
+    .c-code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1rem;
+      background: #0f1423;
+      border-bottom: 1px solid var(--color-border-glass);
+      user-select: none;
+
+      &__lang {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-accent);
+      }
+
+      &__dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        box-shadow: 0 0 8px var(--color-accent);
+      }
+
+      &__copy {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.3rem 0.65rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: $radius-sm;
+        color: var(--color-text-muted);
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+          background: rgba(0, 229, 153, 0.15);
+          border-color: var(--color-accent);
+          color: var(--color-accent);
+        }
+
+        &--copied {
+          background: rgba(0, 229, 153, 0.2);
+          border-color: var(--color-accent);
+          color: var(--color-accent);
+        }
+      }
+    }
+
+    pre {
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 1.25rem 1.5rem !important;
+      background: #060913 !important;
+
+      code {
+        background: transparent;
+        color: #e2e8f0;
+        padding: 0;
+      }
+    }
+  }
+
+  // Fallback for raw pre without c-code-block wrapper
+  > pre {
     position: relative;
     padding: 1.5rem;
     margin: 2rem 0;

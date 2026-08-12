@@ -1,22 +1,14 @@
 ---
 title: Get all non native window variables
-description:
-#featuredImg: async.webp
+description: Extract all custom user-defined window properties in browser environment.
 createdAt: 05/03/2024
 tags:
   - javascript
   - window
 ---
 
-<div class="c-code-wrapper">
-  <div class="c-code-wrapper__header">
-    <div class="c-code-wrapper__title">Get all non native window variables</div>
-    <div class="c-code-wrapper__copy">Copy</div>
-  </div>
-
-```js [js]
+```js
 // Get all non native window variables
-
 (function showAllNonNativeWindowProperties() {
   const iframe = document.createElement("iframe");
   iframe.style.display = "none";
@@ -35,8 +27,6 @@ tags:
   document.body.removeChild(iframe);
 })();
 ```
-
-</div>
 
 ## Further reading
 

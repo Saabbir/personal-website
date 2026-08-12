@@ -1,19 +1,13 @@
 ---
 title: Detect Horizontal Swipe
-description: Detect horizontal (left/right) swipe on mobile.
-#featuredImg: async.webp
+description: Detect horizontal (left/right) swipe gesture on mobile touch devices with JavaScript.
 createdAt: 01/01/2021
 tags:
   - javascript
+  - mobile
 ---
 
-<div class="c-code-wrapper">
-  <div class="c-code-wrapper__header">
-    <div class="c-code-wrapper__title">Detect horizontal swipe</div>
-    <div class="c-code-wrapper__copy">Copy</div>
-  </div>
-
-```js [js]
+```js
 // Detect horizontal swipe
 !(function detectHorizontalSwipe() {
   let touchstartX = 0;
@@ -36,8 +30,6 @@ tags:
   });
 })();
 ```
-
-</div>
 
 ## Further reading
 

@@ -1,0 +1,93 @@
+---
+---
+
+<script is:inline>
+  function enhanceCodeBlocks() {
+    const codePres = document.querySelectorAll('.c-prose pre');
+
+    codePres.forEach((pre) => {
+      if (pre.parentNode && pre.parentNode.classList && pre.parentNode.classList.contains('c-code-block')) {
+        return;
+      }
+
+      // Determine language name
+      let lang = 'code';
+      const langClass = Array.from(pre.classList).find((c) => c.startsWith('language-') || c.startsWith('lang-'));
+      if (langClass) {
+        lang = langClass.replace(/^(language-|lang-)/, '');
+      } else if (pre.getAttribute('data-language')) {
+        lang = pre.getAttribute('data-language');
+      } else {
+        const codeElem = pre.querySelector('code');
+        if (codeElem) {
+          const codeLangClass = Array.from(codeElem.classList).find((c) => c.startsWith('language-') || c.startsWith('lang-'));
+          if (codeLangClass) {
+            lang = codeLangClass.replace(/^(language-|lang-)/, '');
+          }
+        }
+      }
+
+      // Format language display text
+      let displayLang = lang.toUpperCase();
+      if (lang.toLowerCase() === 'js') displayLang = 'JAVASCRIPT';
+      if (lang.toLowerCase() === 'ts') displayLang = 'TYPESCRIPT';
+      if (lang.toLowerCase() === 'css') displayLang = 'CSS';
+      if (lang.toLowerCase() === 'html') displayLang = 'HTML';
+      if (lang.toLowerCase() === 'bash' || lang.toLowerCase() === 'sh') displayLang = 'BASH';
+
+      // Create wrapper & header bar
+      const wrapper = document.createElement('div');
+      wrapper.className = 'c-code-block';
+
+      const header = document.createElement('div');
+      header.className = 'c-code-header';
+      header.innerHTML = `
+        <div class="c-code-header__lang">
+          <span class="c-code-header__dot"></span>
+          <span>${displayLang}</span>
+        </div>
+        <button class="c-code-header__copy" type="button" aria-label="Copy code to clipboard">
+          <svg class="c-code-header__icon-copy" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <svg class="c-code-header__icon-check" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e599" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span class="c-code-header__copy-text">Copy</span>
+        </button>
+      `;
+
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(header);
+      wrapper.appendChild(pre);
+
+      // Copy logic
+      const copyBtn = header.querySelector('.c-code-header__copy');
+      const iconCopy = header.querySelector('.c-code-header__icon-copy');
+      const iconCheck = header.querySelector('.c-code-header__icon-check');
+      const copyText = header.querySelector('.c-code-header__copy-text');
+
+      copyBtn.addEventListener('click', async () => {
+        const codeText = pre.querySelector('code')?.innerText || pre.innerText;
+        try {
+          await navigator.clipboard.writeText(codeText.trim());
+          iconCopy.style.display = 'none';
+          iconCheck.style.display = 'inline-block';
+          copyText.innerText = 'Copied!';
+          copyBtn.classList.add('c-code-header__copy--copied');
+
+          setTimeout(() => {
+            iconCopy.style.display = 'inline-block';
+            iconCheck.style.display = 'none';
+            copyText.innerText = 'Copy';
+            copyBtn.classList.remove('c-code-header__copy--copied');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy code:', err);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhanceCodeBlocks);
+  } else {
+    enhanceCodeBlocks();
+  }
+</script>
