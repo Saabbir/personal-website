@@ -1,0 +1,271 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles');
+const recentArticles = allArticles
+  .filter(a => a.data.publish !== false)
+  .sort((a, b) => new Date(b.data.createdAt || '').getTime() - new Date(a.data.createdAt || '').getTime())
+  .slice(0, 3);
+
+const allWork = await getCollection('work');
+const featuredWork = allWork
+  .filter(w => w.data.publish !== false)
+  .slice(0, 4);
+
+const allSnippets = await getCollection('snippets');
+const recentSnippets = allSnippets
+  .filter(s => s.data.publish !== false)
+  .slice(0, 3);
+
+const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7.pdf";
+
+const skillsCategories = [
+  {
+    name: 'CRO & A/B Testing',
+    skills: ['Optimizely Certified', 'VWO', 'WebTrends Optimize', 'Google Analytics 4', 'Hotjar', 'Experiment Design']
+  },
+  {
+    name: 'Shopify Plus & eCommerce',
+    skills: ['Shopify Plus Architecture', 'Liquid', 'Shopify CLI', 'Storefront API', 'Headless Commerce', 'Checkout Customization']
+  },
+  {
+    name: 'Frontend Architecture',
+    skills: ['Vue.js / Nuxt 3', 'Astro', 'React', 'JavaScript (ESNext)', 'TypeScript', 'SCSS / Modern CSS']
+  },
+  {
+    name: 'Performance & Engineering',
+    skills: ['Core Web Vitals (LCP, INP, CLS)', 'Lighthouse 100/100', 'Git / GitHub Actions', 'Vite', 'REST & GraphQL APIs']
+  }
+];
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="l-section l-section--hero">
+    <div class="l-container">
+      <div class="c-hero">
+        <div class="c-hero__content">
+          <div class="c-hero__badge">
+            <span class="c-hero__badge-dot"></span>
+            Available for Consultancy & Strategic Projects
+          </div>
+
+          <h1 class="c-hero__title">
+            CRO-driven Shopify Plus Developer & <span class="c-hero__title-highlight">A/B Testing Expert</span>.
+          </h1>
+
+          <p class="c-hero__bio">
+            Hi, I'm <strong>Saabbir Hossain</strong> — Sr. Software Engineer at <strong>EchoLogyx Ltd</strong> with 8+ years of global experience helping ecommerce brands grow through experimentation, performance engineering, and scalable architecture.
+          </p>
+
+          <div class="c-hero__actions">
+            <a href="/contact" class="c-btn c-btn--primary c-btn--lg">
+              Get in Touch
+            </a>
+            <a href="/work" class="c-btn c-btn--secondary c-btn--lg">
+              Explore Portfolio
+            </a>
+            <a
+              href={resumeUrl}
+              download="Saabbir_Hossain_Resume.pdf"
+              class="c-btn c-btn--ghost"
+              aria-label="Download CV (PDF)"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Download CV
+            </a>
+          </div>
+
+          <!-- Impact Metrics Bar -->
+          <div class="c-hero__stats">
+            <div class="c-hero__stat">
+              <div class="c-hero__stat-number">8+</div>
+              <div class="c-hero__stat-label">Years Experience</div>
+            </div>
+            <div class="c-hero__stat">
+              <div class="c-hero__stat-number">250+</div>
+              <div class="c-hero__stat-label">A/B Tests Conducted</div>
+            </div>
+            <div class="c-hero__stat">
+              <div class="c-hero__stat-number">50+</div>
+              <div class="c-hero__stat-label">Shopify Stores Optimized</div>
+            </div>
+            <div class="c-hero__stat">
+              <div class="c-hero__stat-number">100/100</div>
+              <div class="c-hero__stat-label">Lighthouse Performance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Case Studies -->
+  <section class="l-section l-section--alt">
+    <div class="l-container">
+      <div class="l-section__header u-flex u-justify-between u-items-center">
+        <div>
+          <div class="l-section__subtitle">Selected Work</div>
+          <h2 class="l-section__title">Case Studies & Projects</h2>
+        </div>
+        <a href="/work" class="c-btn c-btn--ghost">View All Work →</a>
+      </div>
+
+      <div class="l-grid l-grid--2col">
+        {featuredWork.map((item) => (
+          <article class="c-card c-card--glass c-card--hoverable">
+            <div class="c-card__header">
+              <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
+              {item.data.createdAt && <span style="font-size:0.85rem; color:var(--color-text-dim);">{item.data.createdAt}</span>}
+            </div>
+
+            <h3 class="c-card__title">
+              <a href={`/work/${item.slug}`}>{item.data.title}</a>
+            </h3>
+
+            {item.data.highlight && (
+              <p style="font-size:0.9rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.5rem;">
+                {item.data.highlight}
+              </p>
+            )}
+
+            <div class="c-card__body">
+              {item.data.description}
+            </div>
+
+            <div class="c-card__footer">
+              <div class="c-card__tags">
+                {item.data.tools?.slice(0, 4).map((tool) => (
+                  <span class="c-tag">{tool}</span>
+                ))}
+              </div>
+              <a href={`/work/${item.slug}`} class="c-btn c-btn--ghost c-btn--sm">
+                View Details →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Tech Taxonomy Matrix -->
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header u-text-center" style="max-width:650px; margin-left:auto; margin-right:auto;">
+        <div class="l-section__subtitle">Core Competencies</div>
+        <h2 class="l-section__title">Skills & Technologies</h2>
+        <p class="u-text-muted u-mt-16">
+          Specializing in conversion rate optimization, Optimizely experiment design, and high-performance frontend architecture for global eCommerce brands.
+        </p>
+      </div>
+
+      <div class="l-grid l-grid--2col">
+        {skillsCategories.map((cat) => (
+          <div class="c-card c-card--glass">
+            <h3 style="font-size:1.25rem; font-weight:700; color:var(--color-accent); margin-bottom:1rem;">
+              {cat.name}
+            </h3>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+              {cat.skills.map((skill) => (
+                <span class="c-tag c-tag--lg">{skill}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Blog Articles -->
+  <section class="l-section l-section--alt">
+    <div class="l-container">
+      <div class="l-section__header u-flex u-justify-between u-items-center">
+        <div>
+          <div class="l-section__subtitle">Knowledge Sharing</div>
+          <h2 class="l-section__title">Latest Articles</h2>
+        </div>
+        <a href="/blog" class="c-btn c-btn--ghost">View All Posts →</a>
+      </div>
+
+      <div class="l-grid l-grid--3col">
+        {recentArticles.map((article) => (
+          <article class="c-card c-card--glass c-card--hoverable">
+            <div class="c-card__meta">
+              {article.data.createdAt && <span>{article.data.createdAt}</span>}
+              <span>•</span>
+              <span style="color:var(--color-accent); font-weight:600;">Blog</span>
+            </div>
+
+            <h3 class="c-card__title">
+              <a href={`/blog/${article.slug}`}>{article.data.title}</a>
+            </h3>
+
+            <div class="c-card__body">
+              {article.data.description}
+            </div>
+
+            <div class="c-card__footer">
+              <div class="c-card__tags">
+                {article.data.tags?.slice(0, 3).map((tag) => (
+                  <span class="c-tag">#{tag}</span>
+                ))}
+              </div>
+              <a href={`/blog/${article.slug}`} class="c-btn c-btn--ghost c-btn--sm">
+                Read →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Developer Snippets Preview -->
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header u-flex u-justify-between u-items-center">
+        <div>
+          <div class="l-section__subtitle">Frontend Tips</div>
+          <h2 class="l-section__title">Code Snippets</h2>
+        </div>
+        <a href="/snippets" class="c-btn c-btn--ghost">All Snippets →</a>
+      </div>
+
+      <div class="l-grid l-grid--3col">
+        {recentSnippets.map((snippet) => (
+          <article class="c-card c-card--glass c-card--hoverable">
+            <h3 class="c-card__title">
+              <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
+            </h3>
+            <p class="c-card__body">{snippet.data.description}</p>
+            <div class="c-card__footer">
+              <a href={`/snippets/${snippet.slug}`} class="c-btn c-btn--ghost c-btn--sm">
+                View Snippet →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA Section -->
+  <section class="l-section l-section--alt">
+    <div class="l-container l-container--narrow">
+      <div class="u-text-center u-mb-32">
+        <div class="l-section__subtitle">Get In Touch</div>
+        <h2 class="l-section__title">Let's Work Together</h2>
+        <p class="u-text-muted u-mt-16">
+          Have an eCommerce project, Shopify Plus optimization, or A/B testing campaign in mind? Send me a message directly below.
+        </p>
+      </div>
+
+      <div class="c-card c-card--glass">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,17 @@
+{
+  "name": "Saabbir Hossain — Portfolio & Blog",
+  "short_name": "Saabbir",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f1d",
+  "theme_color": "#0a0f1d",
+  "description": "CRO-driven Shopify Plus Developer and Optimizely Certified A/B Testing Expert.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+@use '../01-config/tokens' as *;
+
+.c-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-glass);
+  border-radius: $radius-lg;
+  padding: 1.5rem;
+  transition: all $transition-smooth;
+  position: relative;
+  overflow: hidden;
+
+  &--glass {
+    background: var(--color-surface-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  &--hoverable {
+    &:hover {
+      transform: translateY(-6px);
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-neon-glow);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-main);
+
+    a {
+      text-decoration: none;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  &__body {
+    flex: 1;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+}

@@ -1,0 +1,53 @@
+// Design Tokens - Saabbir Portfolio & Blog Design System
+
+// Color Palette - Dark Obsidian & Neon Emerald
+$color-obsidian-950: #040711;
+$color-obsidian-900: #0a0f1d;
+$color-obsidian-800: #12192c;
+$color-obsidian-700: #1e293b;
+$color-obsidian-600: #334155;
+
+$color-neon-emerald: #00e599;
+$color-neon-emerald-hover: #00c58e;
+$color-neon-emerald-dark: #059669;
+$color-neon-cyan: #00d2ff;
+$color-neon-purple: #a855f7;
+
+// Light Mode Neutral Palette
+$color-light-bg: #f8fafc;
+$color-light-surface: #ffffff;
+$color-light-surface-alt: #f1f5f9;
+$color-light-border: #e2e8f0;
+$color-light-text: #0f172a;
+$color-light-muted: #64748b;
+
+// Typography Tokens
+$font-family-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+$font-family-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+$font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
+
+// Spacing Tokens
+$space-xs: 0.25rem; // 4px
+$space-sm: 0.5rem;  // 8px
+$space-md: 1rem;    // 16px
+$space-lg: 1.5rem;  // 24px
+$space-xl: 2rem;    // 32px
+$space-2xl: 3rem;   // 48px
+$space-3xl: 4.5rem; // 72px
+
+// Border Radius
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-full: 9999px;
+
+// Shadows & Glows
+$glow-neon: 0 0 25px rgba(0, 229, 153, 0.25);
+$glow-neon-sm: 0 0 12px rgba(0, 229, 153, 0.2);
+$shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.37);
+$shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.25);
+
+// Transitions
+$transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);

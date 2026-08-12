@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export function slugifyTag(tag: string) {
+  return tag
+    .toLowerCase()
+    .trim()
+    .replace(/\//g, '-')
+    .replace(/\s+/g, '-');
+}
+
+export async function getStaticPaths() {
+  const allArticles = await getCollection('articles');
+  const publishedArticles = allArticles.filter((a) => a.data.publish !== false);
+
+  const tagMap = new Map<string, { originalTag: string; articles: typeof publishedArticles }>();
+
+  publishedArticles.forEach((article) => {
+    (article.data.tags || []).forEach((t) => {
+      const slug = slugifyTag(t);
+      if (!tagMap.has(slug)) {
+        tagMap.set(slug, { originalTag: t, articles: [] });
+      }
+      tagMap.get(slug)!.articles.push(article);
+    });
+  });
+
+  return Array.from(tagMap.entries()).map(([slug, { originalTag, articles }]) => ({
+    params: { tag: slug },
+    props: { tag: originalTag, articles },
+  }));
+}
+
+const { tag, articles } = Astro.props;
+---
+
+<BaseLayout title={`Articles tagged with #${tag}`} description={`Browse all blog articles tagged with #${tag} by Saabbir Hossain.`}>
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header u-text-center">
+        <div class="l-section__subtitle">Tag Archive</div>
+        <h1 class="l-section__title">#{tag}</h1>
+        <p class="u-text-muted u-mt-16">
+          Showing {articles.length} article{articles.length > 1 ? 's' : ''} tagged with #{tag}.
+        </p>
+        <div class="u-mt-16">
+          <a href="/blog" class="c-btn c-btn--ghost">← Back to All Articles</a>
+        </div>
+      </div>
+
+      <div class="l-grid l-grid--3col">
+        {articles.map((article) => (
+          <article class="c-card c-card--glass c-card--hoverable">
+            <div class="c-card__meta">
+              {article.data.createdAt && <span>{article.data.createdAt}</span>}
+            </div>
+
+            <h2 class="c-card__title">
+              <a href={`/blog/${article.slug}`}>{article.data.title}</a>
+            </h2>
+
+            <div class="c-card__body">
+              {article.data.description}
+            </div>
+
+            <div class="c-card__footer">
+              <div class="c-card__tags">
+                {article.data.tags?.map((t) => (
+                  <a href={`/blog/tag/${slugifyTag(t)}`} class={`c-tag ${t === tag ? 'c-tag--active' : ''}`}>
+                    #{t}
+                  </a>
+                ))}
+              </div>
+              <a href={`/blog/${article.slug}`} class="c-btn c-btn--ghost c-btn--sm">
+                Read →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

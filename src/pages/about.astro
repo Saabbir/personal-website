@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const timelineEvents = [
+  {
+    period: '2020 — Present',
+    title: 'Sr. Software Engineer',
+    company: 'EchoLogyx Ltd',
+    description: 'Leading conversion rate optimization (CRO) development, Optimizely A/B testing implementations, and performance engineering for enterprise eCommerce clients globally.'
+  },
+  {
+    period: '2018 — 2020',
+    title: 'Shopify Plus & Frontend Developer',
+    company: 'EchoLogyx Ltd / Independent Consulting',
+    description: 'Developed custom Liquid themes, Shopify checkout extensions, interactive client portals, and responsive site templates.'
+  },
+  {
+    period: '2016 — 2018',
+    title: 'Frontend Developer',
+    company: 'Freelance & Agency Projects',
+    description: 'Built pixel-perfect responsive HTML5/SCSS site templates, automated build pipelines with Gulp, and integrated DOM utilities in Vanilla JavaScript.'
+  }
+];
+
+const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7.pdf";
+---
+
+<BaseLayout title="About Saabbir Hossain" description="About Saabbir Hossain — Sr. Software Engineer, Shopify Plus and A/B testing expert based in Bangladesh.">
+  <section class="l-section">
+    <div class="l-container l-container--narrow">
+      <div class="u-mb-32">
+        <div class="l-section__subtitle">About Me</div>
+        <h1 class="u-mb-24" style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;">
+          Hi, I'm Saabbir Hossain.
+        </h1>
+
+        <div class="c-prose">
+          <p>
+            A <strong>CRO-driven Shopify Plus developer</strong> and <strong>Optimizely Certified A/B Testing expert</strong>, working globally from Bangladesh as a <strong>Sr. Software Engineer</strong> at EchoLogyx Ltd.
+          </p>
+
+          <p>
+            Over the past <strong>8 years</strong>, I’ve helped ecommerce brands grow through <strong>experimentation</strong>, <strong>performance engineering</strong>, and <strong>scalable Shopify architecture</strong>.
+          </p>
+
+          <p>
+            Digital marketing and development are my core interests, but I often find myself designing interactive client solutions, building custom developer tools, and optimizing core web vitals for Lighthouse 100/100 scores.
+          </p>
+        </div>
+
+        <div class="u-mt-32" style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="/contact" class="c-btn c-btn--primary c-btn--lg">Get in Touch</a>
+          <a href={resumeUrl} download="Saabbir_Hossain_Resume.pdf" class="c-btn c-btn--secondary c-btn--lg">
+            Download CV (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Location & Photo Showcase -->
+    <div class="l-container">
+      <figure style="margin: 3rem 0;">
+        <div class="c-card c-card--glass" style="padding:0.75rem; overflow:hidden;">
+          <img
+            src="/images/remarki-fall.jpg"
+            alt="Saabbir Hossain on Remarki Fall, Thanchi, Bandarban"
+            width="1200"
+            height="901"
+            style="border-radius:12px; width:100%; height:auto; object-fit:cover;"
+          />
+        </div>
+        <figcaption style="font-size:0.9rem; color:var(--color-text-dim); text-align:center; margin-top:1rem;">
+          At Remarki Fall, Thanchi, Bandarban.
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- Experience Timeline -->
+    <div class="l-container l-container--narrow u-mt-32">
+      <div class="l-section__header u-text-center">
+        <div class="l-section__subtitle">Career Progression</div>
+        <h2 class="l-section__title">Work Experience</h2>
+      </div>
+
+      <div class="c-timeline">
+        {timelineEvents.map((item) => (
+          <div class="c-timeline__item">
+            <div class="c-timeline__point"></div>
+            <div class="c-timeline__meta">{item.period}</div>
+            <h3 class="c-timeline__title">{item.title}</h3>
+            <div class="c-timeline__subtitle">{item.company}</div>
+            <p class="c-timeline__desc">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="l-section l-section--alt">
+    <div class="l-container l-container--narrow">
+      <div class="u-text-center u-mb-32">
+        <div class="l-section__subtitle">Contact</div>
+        <h2 class="l-section__title">Send a Message</h2>
+      </div>
+
+      <div class="c-card c-card--glass">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

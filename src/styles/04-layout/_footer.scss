@@ -1,0 +1,31 @@
+@use '../01-config/tokens' as *;
+
+.l-footer {
+  margin-top: auto;
+  background: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border-glass);
+  padding: 4rem 0 2rem;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+  }
+}

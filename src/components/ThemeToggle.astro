@@ -1,0 +1,67 @@
+---
+---
+<button
+  id="theme-toggle"
+  class="c-btn c-btn--ghost c-btn--sm"
+  aria-label="Toggle light/dark theme"
+  type="button"
+>
+  <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2"></path>
+    <path d="M12 20v2"></path>
+    <path d="m4.93 4.93 1.41 1.41"></path>
+    <path d="m17.66 17.66 1.41 1.41"></path>
+    <path d="M2 12h2"></path>
+    <path d="M20 12h2"></path>
+    <path d="m6.34 17.66-1.41 1.41"></path>
+    <path d="m19.07 4.93-1.41 1.41"></path>
+  </svg>
+  <svg class="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+  </svg>
+</button>
+
+<style lang="scss">
+  .theme-icon-dark { display: none; }
+  .theme-icon-light { display: block; }
+
+  :global([data-theme="dark"]) {
+    .theme-icon-dark { display: block; }
+    .theme-icon-light { display: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const getPreferredTheme = () => {
+      const stored = localStorage.getItem('theme');
+      if (stored) return stored;
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    };
+
+    const setTheme = (theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    };
+
+    // Initialize
+    setTheme(getPreferredTheme());
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+    }
+
+    // Listen for OS theme changes
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'light' : 'dark');
+      }
+    });
+  })();
+</script>

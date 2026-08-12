@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allWork = await getCollection('work');
+const publishedWork = allWork.filter((w) => w.data.publish !== false);
+---
+
+<BaseLayout title="Work & Case Studies" description="Explore Shopify Plus, A/B Testing, and CRO case studies by Saabbir Hossain.">
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header u-text-center" style="max-width:700px; margin-left:auto; margin-right:auto;">
+        <div class="l-section__subtitle">Portfolio Showcase</div>
+        <h1 class="l-section__title">Work & Case Studies</h1>
+        <p class="u-text-muted u-mt-16">
+          A selection of Shopify Plus, CRO experimentation, and custom front-end development projects built over the past 8+ years.
+        </p>
+      </div>
+
+      <!-- Work Grid -->
+      <div class="l-grid l-grid--2col">
+        {publishedWork.map((item) => (
+          <article class="c-card c-card--glass c-card--hoverable">
+            <div class="c-card__header">
+              <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
+              {item.data.createdAt && <span style="font-size:0.85rem; color:var(--color-text-dim);">{item.data.createdAt}</span>}
+            </div>
+
+            <h2 class="c-card__title">
+              <a href={`/work/${item.slug}`}>{item.data.title}</a>
+            </h2>
+
+            {item.data.highlight && (
+              <p style="font-size:0.95rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.75rem;">
+                {item.data.highlight}
+              </p>
+            )}
+
+            <div class="c-card__body">
+              {item.data.description}
+            </div>
+
+            <div class="c-card__footer">
+              <div class="c-card__tags">
+                {item.data.tools?.map((tool) => (
+                  <span class="c-tag">{tool}</span>
+                ))}
+              </div>
+              <a href={`/work/${item.slug}`} class="c-btn c-btn--ghost c-btn--sm">
+                View Case Study →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

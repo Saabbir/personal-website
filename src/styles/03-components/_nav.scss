@@ -1,0 +1,93 @@
+@use '../01-config/tokens' as *;
+
+.c-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 4.5rem;
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: $font-family-heading;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--color-text-main);
+
+    &-accent {
+      color: var(--color-accent);
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @media (max-width: 767px) {
+      display: none;
+      
+      &--open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 4.5rem;
+        left: 0;
+        right: 0;
+        background: var(--color-bg-surface);
+        padding: 2rem;
+        border-bottom: 1px solid var(--color-border-glass);
+        box-shadow: var(--shadow-glass-card);
+        gap: 1.5rem;
+        z-index: 100;
+      }
+    }
+  }
+
+  &__link {
+    font-family: $font-family-heading;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    transition: color $transition-fast;
+    position: relative;
+    padding: 0.25rem 0;
+
+    &:hover,
+    &--active {
+      color: var(--color-accent);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--color-accent);
+        box-shadow: 0 0 8px var(--color-accent);
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__toggle {
+    display: none;
+
+    @media (max-width: 767px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      color: var(--color-text-main);
+    }
+  }
+}

@@ -1,0 +1,67 @@
+---
+interface Props {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+---
+<div class="c-share">
+  <span class="c-share__title">Share this article:</span>
+  <div class="c-share__list">
+    <a
+      href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="c-share__btn"
+      aria-label="Share on X (Twitter)"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+    </a>
+    <a
+      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="c-share__btn"
+      aria-label="Share on LinkedIn"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </a>
+    <a
+      href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="c-share__btn"
+      aria-label="Share on Facebook"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </a>
+    <button
+      type="button"
+      id="copy-link-btn"
+      class="c-share__btn"
+      aria-label="Copy link to article"
+      data-url={url}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  const copyBtn = document.getElementById('copy-link-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const url = copyBtn.getAttribute('data-url') || window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        const origHtml = copyBtn.innerHTML;
+        copyBtn.innerHTML = '✓';
+        setTimeout(() => {
+          copyBtn.innerHTML = origHtml;
+        }, 2000);
+      });
+    });
+  }
+</script>

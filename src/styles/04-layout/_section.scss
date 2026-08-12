@@ -1,0 +1,39 @@
+@use '../01-config/tokens' as *;
+
+.l-section {
+  padding: 4rem 0;
+
+  @media (min-width: 768px) {
+    padding: 6rem 0;
+  }
+
+  &--alt {
+    background: var(--color-bg-surface-alt);
+  }
+
+  &--hero {
+    padding-top: 3rem;
+  }
+
+  &__header {
+    margin-bottom: 2.5rem;
+
+    @media (min-width: 768px) {
+      margin-bottom: 3.5rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+  }
+}

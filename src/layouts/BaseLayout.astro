@@ -1,0 +1,108 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+import '../styles/main.scss';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  type?: string;
+}
+
+const {
+  title = "Saabbir Hossain — Sr. Software Engineer & Shopify Plus CRO Expert",
+  description = "Saabbir Hossain — CRO-driven Shopify Plus developer and Optimizely Certified A/B Testing expert. Sr. Software Engineer at EchoLogyx Ltd.",
+  image = "https://saabbir.github.io/images/cv-headshot.png",
+  canonicalUrl = Astro.url.href,
+  type = "website",
+} = Astro.props;
+
+const siteTitle = title.includes("Saabbir") ? title : `${title} | Saabbir Hossain`;
+
+// Schema.org Person Structured Data
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Saabbir Hossain",
+  "jobTitle": "Senior Software Engineer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "EchoLogyx Ltd"
+  },
+  "url": "https://saabbir.github.io",
+  "sameAs": [
+    "https://github.com/Saabbir",
+    "https://www.linkedin.com/in/thesaabbir",
+    "https://twitter.com/thesaabbir",
+    "https://codepen.io/Saabbir",
+    "https://stackoverflow.com/users/5527156/saabbir"
+  ],
+  "knowsAbout": [
+    "Shopify Plus",
+    "A/B Testing",
+    "Conversion Rate Optimization (CRO)",
+    "Optimizely",
+    "Frontend Engineering",
+    "Vue.js",
+    "Astro",
+    "Performance Engineering"
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0a0f1d" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={siteTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Inline FOUC Prevention Script -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <!-- Schema.org Person JSON-LD -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <ChatWidget />
+  </body>
+</html>

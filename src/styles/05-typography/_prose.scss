@@ -1,0 +1,184 @@
+@use '../01-config/tokens' as *;
+
+.c-prose {
+  max-width: 768px; // 65ch optimal reading length
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+
+  p {
+    margin-bottom: 1.75rem;
+    color: var(--color-text-muted);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-main);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    scroll-margin-top: 5rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  h3 {
+    font-size: 1.65rem;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: var(--color-accent-hover);
+    }
+  }
+
+  strong, b {
+    color: var(--color-text-main);
+  }
+
+  // Bulleted Lists
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.75rem;
+
+    li {
+      position: relative;
+      padding-left: 1.75rem;
+      margin-bottom: 0.65rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.65rem;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        box-shadow: 0 0 8px var(--color-accent-glow);
+      }
+    }
+  }
+
+  // Numbered Lists
+  ol {
+    counter-reset: prose-counter;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.75rem;
+
+    li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.65rem;
+      counter-increment: prose-counter;
+
+      &::before {
+        content: counter(prose-counter);
+        position: absolute;
+        left: 0;
+        top: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: rgba(0, 229, 153, 0.15);
+        border: 1px solid var(--color-accent);
+        color: var(--color-accent);
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  // Blockquotes
+  blockquote {
+    border-left: 4px solid var(--color-accent);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(0, 229, 153, 0.05);
+    border-radius: 0 $radius-md $radius-md 0;
+    font-style: italic;
+
+    p {
+      margin-bottom: 0;
+      color: var(--color-text-main);
+    }
+  }
+
+  // Tables
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    display: block;
+    overflow-x: auto;
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--color-border-glass);
+      text-align: left;
+    }
+
+    th {
+      background: var(--color-bg-surface-alt);
+      color: var(--color-text-main);
+      font-weight: 700;
+      border-bottom: 2px solid var(--color-accent);
+    }
+
+    tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+  }
+
+  // Code Blocks
+  code {
+    background: rgba(0, 229, 153, 0.1);
+    color: var(--color-accent);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.88em;
+  }
+
+  pre {
+    position: relative;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: $radius-md;
+    background: #060913 !important;
+    border: 1px solid var(--color-border-glass);
+    overflow-x: auto;
+
+    code {
+      background: transparent;
+      color: #e2e8f0;
+      padding: 0;
+    }
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background: var(--color-border-glass);
+    margin: 3rem 0;
+  }
+}

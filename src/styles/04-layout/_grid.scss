@@ -1,0 +1,49 @@
+@use '../01-config/tokens' as *;
+
+.l-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  &--narrow {
+    max-width: 768px; // 65ch readable prose
+  }
+
+  &--wide {
+    max-width: 1440px;
+  }
+}
+
+.l-grid {
+  display: grid;
+  gap: 1.75rem;
+
+  &--2col {
+    grid-template-columns: 1fr;
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &--3col {
+    grid-template-columns: 1fr;
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &--4col {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}

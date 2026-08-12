@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allSnippets = await getCollection('snippets');
+const publishedSnippets = allSnippets.filter((s) => s.data.publish !== false);
+---
+
+<BaseLayout title="Developer Code Snippets" description="Practical frontend development tips, tricks, and code snippets by Saabbir Hossain.">
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header u-text-center" style="max-width:700px; margin-left:auto; margin-right:auto;">
+        <div class="l-section__subtitle">Developer Library</div>
+        <h1 class="l-section__title">Code Snippets & Tips</h1>
+        <p class="u-text-muted u-mt-16">
+          Reusable utilities, quick frontend fixes, and practical code solutions.
+        </p>
+      </div>
+
+      <div class="l-grid l-grid--3col">
+        {publishedSnippets.map((snippet) => (
+          <article class="c-card c-card--glass c-card--hoverable">
+            <div class="c-card__meta">
+              {snippet.data.createdAt && <span>{snippet.data.createdAt}</span>}
+              <span>•</span>
+              <span style="color:var(--color-accent); font-weight:600;">Snippet</span>
+            </div>
+
+            <h2 class="c-card__title">
+              <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
+            </h2>
+
+            <div class="c-card__body">
+              {snippet.data.description}
+            </div>
+
+            <div class="c-card__footer">
+              <div class="c-card__tags">
+                {snippet.data.tags?.map((tag) => (
+                  <span class="c-tag">#{tag}</span>
+                ))}
+              </div>
+              <a href={`/snippets/${snippet.slug}`} class="c-btn c-btn--ghost c-btn--sm">
+                View Snippet →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

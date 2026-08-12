@@ -1,0 +1,64 @@
+@use '../01-config/tokens' as *;
+
+.c-timeline {
+  position: relative;
+  padding-left: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    width: 2px;
+    background: var(--color-border-glass);
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: 2.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__point {
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-bg-base);
+    border: 3px solid var(--color-accent);
+    box-shadow: 0 0 10px var(--color-accent-glow);
+  }
+
+  &__meta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 0.25rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 0.25rem;
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  &__desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+}

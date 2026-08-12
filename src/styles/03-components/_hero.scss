@@ -1,0 +1,100 @@
+@use '../01-config/tokens' as *;
+
+.c-hero {
+  padding: 4rem 0 3rem;
+
+  @media (min-width: 768px) {
+    padding: 6rem 0 4rem;
+  }
+
+  &__content {
+    max-width: 850px;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: $radius-full;
+    background: rgba(0, 229, 153, 0.1);
+    border: 1px solid rgba(0, 229, 153, 0.25);
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+
+    &-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      box-shadow: 0 0 10px var(--color-accent);
+      animation: pulse 2s infinite;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+
+    &-highlight {
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &__bio {
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 750px;
+
+    strong {
+      color: var(--color-text-main);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  &__stat {
+    &-number {
+      font-family: $font-family-heading;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    &-label {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}

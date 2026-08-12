@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const socialLinks = [
+  { name: 'Facebook', handle: '@thesaabbir', href: 'https://www.facebook.com/thesaabbir', color: '#1877f2' },
+  { name: 'Twitter/X', handle: '@thesaabbir', href: 'https://twitter.com/thesaabbir', color: '#1da1f2' },
+  { name: 'LinkedIn', handle: '@thesaabbir', href: 'https://www.linkedin.com/in/thesaabbir', color: '#0a66c2' },
+  { name: 'GitHub', handle: '@Saabbir', href: 'https://github.com/Saabbir', color: '#00e599' },
+  { name: 'CodePen', handle: '@Saabbir', href: 'https://codepen.io/Saabbir', color: '#ffffff' },
+  { name: 'StackOverflow', handle: '@saabbir', href: 'https://stackoverflow.com/users/5527156/saabbir', color: '#f48024' }
+];
+---
+
+<BaseLayout title="Contact Saabbir Hossain" description="Get in touch with Saabbir Hossain for Shopify Plus development, Optimizely CRO A/B testing consulting, and software engineering.">
+  <section class="l-section">
+    <div class="l-container l-container--narrow">
+      <div class="l-section__header u-text-center">
+        <div class="l-section__subtitle">Get In Touch</div>
+        <h1 class="l-section__title">Let's Connect</h1>
+        <p class="u-text-muted u-mt-16" style="font-size:1.15rem; line-height:1.7;">
+          Have a project in mind, an A/B testing strategy to discuss, or want to collaborate? Send me a message below or email me directly at <a href="mailto:thesaabbir@gmail.com" style="color:var(--color-accent); font-weight:600;">thesaabbir@gmail.com</a>.
+        </p>
+      </div>
+
+      <!-- Quick Action Cards -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem; margin-bottom:3rem;">
+        <div class="c-card c-card--glass" style="text-align:center;">
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Email Directly</h3>
+          <a href="mailto:thesaabbir@gmail.com" class="c-btn c-btn--ghost c-btn--sm" style="color:var(--color-accent);">
+            thesaabbir@gmail.com
+          </a>
+        </div>
+        <div class="c-card c-card--glass" style="text-align:center;">
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Call / WhatsApp</h3>
+          <a href="tel:+8801789243439" class="c-btn c-btn--ghost c-btn--sm" style="color:var(--color-accent);">
+            +8801789243439
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form Card -->
+      <div class="c-card c-card--glass u-mb-32">
+        <h2 style="font-size:1.5rem; font-weight:700; margin-bottom:1.5rem; text-align:center;">Send a Message</h2>
+        <ContactForm />
+      </div>
+
+      <!-- Social Media Grid -->
+      <div class="u-mt-32">
+        <h3 class="u-text-center u-mb-24" style="font-size:1.35rem; font-weight:700;">Social Media Profiles</h3>
+        <div class="l-grid l-grid--3col">
+          {socialLinks.map((s) => (
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="c-card c-card--glass c-card--hoverable"
+              style="display:flex; align-items:center; gap:1rem; padding:1rem; text-decoration:none;"
+            >
+              <div>
+                <div style="font-weight:700; color:var(--color-text-main); font-size:1.05rem;">{s.name}</div>
+                <div style="font-size:0.85rem; color:var(--color-text-muted);">{s.handle}</div>
+              </div>
+              <span style="margin-left:auto; color:var(--color-accent); font-weight:700;">↗</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

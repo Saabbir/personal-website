@@ -1,0 +1,58 @@
+---
+const currentYear = new Date().getFullYear();
+const socials = [
+  { name: 'GitHub', href: 'https://github.com/Saabbir', handle: '@Saabbir' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/thesaabbir', handle: '@thesaabbir' },
+  { name: 'Twitter/X', href: 'https://twitter.com/thesaabbir', handle: '@thesaabbir' },
+  { name: 'Facebook', href: 'https://www.facebook.com/thesaabbir', handle: '@thesaabbir' },
+  { name: 'CodePen', href: 'https://codepen.io/Saabbir', handle: '@saabbir' },
+  { name: 'StackOverflow', href: 'https://stackoverflow.com/users/5527156/saabbir', handle: '@saabbir' }
+];
+---
+<footer class="l-footer">
+  <div class="l-container">
+    <div class="l-footer__content">
+      <div>
+        <a href="/" class="c-nav__brand u-mb-16" style="display:inline-block;">
+          Saabbir<span class="c-nav__brand-accent">.</span>
+        </a>
+        <p class="u-text-muted" style="max-width: 400px; font-size: 0.95rem;">
+          CRO-driven Shopify Plus developer & Optimizely Certified A/B Testing expert. Sr. Software Engineer at EchoLogyx Ltd.
+        </p>
+      </div>
+
+      <div>
+        <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">Navigation</h4>
+        <ul style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.9rem;">
+          <li><a href="/" class="u-text-muted">Home</a></li>
+          <li><a href="/about" class="u-text-muted">About</a></li>
+          <li><a href="/work" class="u-text-muted">Work</a></li>
+          <li><a href="/blog" class="u-text-muted">Blog</a></li>
+          <li><a href="/snippets" class="u-text-muted">Snippets</a></li>
+          <li><a href="/contact" class="u-text-muted">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">Social Media</h4>
+        <ul style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.9rem;">
+          {socials.map(s => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener noreferrer" class="u-text-muted" style="display:inline-flex; align-items:center; gap:0.35rem;">
+                {s.name} <span style="font-size:0.75rem; opacity:0.6;">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="l-footer__bottom">
+      <div>© {currentYear} Saabbir Hossain. All rights reserved.</div>
+      <div style="display:flex; gap:1.5rem;">
+        <a href="/rss.xml" target="_blank" class="u-text-muted">RSS Feed</a>
+        <a href="/sitemap-index.xml" target="_blank" class="u-text-muted">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>

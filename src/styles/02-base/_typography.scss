@@ -1,0 +1,45 @@
+@use '../01-config/tokens' as *;
+
+body {
+  font-family: $font-family-body;
+  font-size: 1.0625rem; // 17px
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text-main);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+}
+
+h2 {
+  font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+strong, b {
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+code, pre, kbd {
+  font-family: $font-family-code;
+}

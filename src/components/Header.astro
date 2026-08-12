@@ -1,0 +1,68 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Work', href: '/work' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Snippets', href: '/snippets' },
+  { name: 'Contact', href: '/contact' },
+];
+---
+<header class="l-header">
+  <div class="l-container">
+    <nav class="c-nav" aria-label="Main Navigation">
+      <a href="/" class="c-nav__brand" aria-label="Saabbir Hossain Portfolio">
+        Saabbir<span class="c-nav__brand-accent">.</span>
+      </a>
+
+      <div class="c-nav__menu" id="nav-menu">
+        {navItems.map((item) => {
+          const isActive = item.href === '/' 
+            ? currentPath === '/' 
+            : currentPath.startsWith(item.href);
+          return (
+            <a
+              href={item.href}
+              class={`c-nav__link ${isActive ? 'c-nav__link--active' : ''}`}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {item.name}
+            </a>
+          );
+        })}
+      </div>
+
+      <div class="c-nav__actions">
+        <ThemeToggle />
+        <button
+          class="c-nav__toggle"
+          id="menu-toggle"
+          aria-label="Toggle Navigation Menu"
+          aria-expanded="false"
+          type="button"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('c-nav__menu--open');
+      menuToggle.setAttribute('aria-expanded', isOpen.toString());
+    });
+  }
+</script>

@@ -1,0 +1,65 @@
+@use '../01-config/tokens' as *;
+
+.c-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-glass);
+    border-radius: $radius-md;
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px var(--color-accent-glow);
+    }
+
+    &::placeholder {
+      color: var(--color-text-dim);
+    }
+  }
+
+  &__textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  &__feedback {
+    padding: 1rem;
+    border-radius: $radius-md;
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    &--success {
+      background: rgba(0, 229, 153, 0.1);
+      border: 1px solid rgba(0, 229, 153, 0.3);
+      color: var(--color-accent);
+    }
+
+    &--error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+  }
+}

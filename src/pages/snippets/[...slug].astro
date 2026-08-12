@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
+
+export async function getStaticPaths() {
+  const snippets = await getCollection('snippets');
+  return snippets.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const currentUrl = Astro.url.href;
+---
+
+<BaseLayout title={`Snippet: ${entry.data.title}`} description={entry.data.description}>
+  <article class="l-section">
+    <div class="l-container l-container--narrow">
+      <header class="u-mb-32">
+        <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.3rem 0.75rem; background:rgba(0,229,153,0.1); border:1px solid rgba(0,229,153,0.25); border-radius:9999px; color:var(--color-accent); font-size:0.8rem; font-weight:600; margin-bottom:1rem;">
+          Developer Snippet
+        </div>
+
+        <h1 style="font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem;">
+          {entry.data.title}
+        </h1>
+
+        {entry.data.description && (
+          <p class="u-text-muted" style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            {entry.data.description}
+          </p>
+        )}
+
+        {entry.data.tags && entry.data.tags.length > 0 && (
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+            {entry.data.tags.map((tag) => (
+              <span class="c-tag">#{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <div class="c-prose">
+        <Content />
+      </div>
+
+      <ShareButtons title={entry.data.title} url={currentUrl} />
+
+      <div class="u-text-center u-mt-32">
+        <a href="/snippets" class="c-btn c-btn--secondary">← Back to All Snippets</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

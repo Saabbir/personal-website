@@ -1,0 +1,56 @@
+@use '../01-config/tokens' as *;
+
+:root {
+  color-scheme: dark light;
+  
+  // Theme Tokens - Default Dark Mode
+  --color-bg-base: #{$color-obsidian-950};
+  --color-bg-surface: #{$color-obsidian-900};
+  --color-bg-surface-alt: #{$color-obsidian-800};
+  --color-surface-glass: rgba(10, 15, 29, 0.75);
+  --color-border-glass: rgba(255, 255, 255, 0.1);
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+
+  --color-text-main: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-text-dim: #64748b;
+
+  --color-accent: #{$color-neon-emerald};
+  --color-accent-hover: #{$color-neon-emerald-hover};
+  --color-accent-glow: rgba(0, 229, 153, 0.25);
+  --color-accent-cyan: #{$color-neon-cyan};
+  --color-accent-purple: #{$color-neon-purple};
+
+  --shadow-glass-card: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-neon-glow: 0 0 25px rgba(0, 229, 153, 0.2);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg-base: #{$color-light-bg};
+  --color-bg-surface: #{$color-light-surface};
+  --color-bg-surface-alt: #{$color-light-surface-alt};
+  --color-surface-glass: rgba(255, 255, 255, 0.85);
+  --color-border-glass: rgba(0, 0, 0, 0.08);
+  --color-border-subtle: rgba(0, 0, 0, 0.06);
+
+  --color-text-main: #{$color-light-text};
+  --color-text-muted: #{$color-light-muted};
+  --color-text-dim: #94a3b8;
+
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
+  --color-accent-glow: rgba(5, 150, 105, 0.15);
+  --color-accent-cyan: #0284c7;
+  --color-accent-purple: #7e22ce;
+
+  --shadow-glass-card: 0 10px 30px rgba(0, 0, 0, 0.06);
+  --shadow-neon-glow: 0 0 20px rgba(5, 150, 105, 0.15);
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

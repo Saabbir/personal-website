@@ -1,0 +1,12 @@
+# Cursor Project Rules - Saabbir Portfolio & Blog
+
+Use Astro 4+, SCSS with strict BEM methodology (`.c-block__element--modifier`), and MDX Content Collections.
+
+## Guidelines
+- Follow the architectural guidelines in `AGENTS.md`.
+- All CSS styles must be modular SCSS inside `src/styles/` or scoped `<style lang="scss">`.
+- Use CSS variables for design tokens (`light-dark()`, neon emerald `#00e599`, obsidian `#0a0f1d`).
+- Keep blog posts standard portable Markdown/MDX in `src/content/`.
+- Ensure zero Flash of Unstyled Content (FOUC) when switching themes.
+- External links must include `target="_blank" rel="noopener noreferrer"`.
+- Maintain touch target minimum size of 44px x 44px on mobile.

@@ -1,0 +1,28 @@
+// Screen reader only utility class
+.u-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Focus Visible Styles for WCAG 2.1 AA Compliance
+:focus-visible {
+  outline: 2px solid var(--color-accent) !important;
+  outline-offset: 3px !important;
+}
+
+// Reduced Motion Preferences
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

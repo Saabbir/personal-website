@@ -1,0 +1,44 @@
+@use '../01-config/tokens' as *;
+
+.c-toc {
+  padding: 1.5rem;
+  background: var(--color-bg-surface-alt);
+  border: 1px solid var(--color-border-glass);
+  border-radius: $radius-md;
+  margin-bottom: 2.5rem;
+
+  &__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 0;
+  }
+
+  &__item {
+    font-size: 0.9rem;
+    
+    &--depth-3 {
+      padding-left: 1rem;
+    }
+  }
+
+  &__link {
+    color: var(--color-text-muted);
+    transition: color $transition-fast;
+
+    &:hover,
+    &--active {
+      color: var(--color-accent);
+    }
+  }
+}

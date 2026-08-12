@@ -1,0 +1,61 @@
+@use '../01-config/tokens' as *;
+
+.c-chat-widget {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99;
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent), #00c58e);
+    color: #040711;
+    box-shadow: 0 4px 20px rgba(0, 229, 153, 0.4);
+    transition: transform $transition-base;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__menu {
+    display: none;
+    position: absolute;
+    bottom: 4rem;
+    right: 0;
+    width: 220px;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-glass);
+    border-radius: $radius-md;
+    box-shadow: var(--shadow-glass-card);
+    padding: 0.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &--open {
+      display: flex;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: $radius-sm;
+    color: var(--color-text-main);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background $transition-fast;
+
+    &:hover {
+      background: var(--color-bg-surface-alt);
+      color: var(--color-accent);
+    }
+  }
+}
