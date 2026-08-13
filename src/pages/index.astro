@@ -22,12 +22,14 @@ const recentSnippets = allSnippets
 const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7.pdf";
 
 const clientLogos = [
-  { name: 'BAT UK', logo: '/images/clients/bat-uk.svg' },
-  { name: 'A Perfect Space', logo: '/images/clients/aperfectspace.png' },
+  { name: 'Wax London', logo: '/images/clients/wax-london.svg' },
+  { name: 'Inspectiv', logo: '/images/clients/inspectiv.svg' },
+  { name: 'Raab Vital', logo: '/images/clients/raab-vital.svg' },
   { name: 'Optimizely', logo: '/images/clients/optimizely.svg' },
   { name: 'Shopify Plus', logo: '/images/clients/shopify-plus.svg' },
+  { name: 'A Perfect Space', logo: '/images/clients/aperfectspace.png' },
   { name: 'Pragmatic Works', logo: '/images/clients/pragmaticworks.png' },
-  { name: 'Jump Work', logo: '/images/clients/jump-work.png' },
+  { name: 'BAT UK', logo: '/images/clients/bat-uk.svg' },
   { name: 'EchoLogyx', logo: '/images/clients/echologyx.svg' }
 ];
 
@@ -36,44 +38,92 @@ const marqueeLogos = [...clientLogos, ...clientLogos];
 
 const testimonials = [
   {
-    name: 'Liam Carter',
-    role: 'Lead CRO Strategist, EchoLogyx',
-    initials: 'LC',
-    quote: "Saabbir is an exceptional A/B testing and front-end engineering expert. His deep understanding of Optimizely, Shopify Plus architecture, and performance optimization has consistently unlocked massive revenue growth for our client campaigns.",
+    name: 'Haley Carpenter',
+    role: 'Managed Saabbir Directly (Enterprise Testing)',
+    initials: 'HC',
+    date: 'June 28, 2024',
+    quote: "Saabbir is one of the best, if not THE best, developers I have ever had the pleasure of working with in my career. I recently worked with him on a large enterprise client, and he was a MAJOR reason for their testing success. He's unbelievably fast, super knowledgable, proactive, lovely to work with, and always found solutions for anything that came up. Anyone that gets to have Saabbir on their team is very lucky!",
     rating: 5
   },
   {
-    name: 'Sarah Jenkins',
-    role: 'Product Manager, A Perfect Space (Australia)',
-    initials: 'SJ',
-    quote: "Saabbir delivered high-quality, pixel-perfect HTML/SCSS site templates for our platform ahead of deadline. His code is extraordinarily clean, BEM structured, and optimized for speed. Truly a top-tier developer!",
+    name: 'Joseph Melika',
+    role: 'Founder & CEO at Discloze | YPO Technology Board Member',
+    initials: 'JM',
+    date: 'December 7, 2019',
+    quote: "Saabbir has been an integral part of our development operations. Despite being remote with very different timezone, he's been very capable of adapting and integrating into our US-based operations. Very creative, prompt, and skilled.",
     rating: 5
   },
   {
-    name: 'David Miller',
-    role: 'E-Commerce Director, Global Retail Brand',
-    initials: 'DM',
-    quote: "Working with Saabbir on our Shopify Plus theme performance and CRO experiments was a game changer. He brought our page load times under 1.5 seconds and improved our mobile conversion rates by 28%.",
+    name: 'A Perfect Space Team',
+    role: 'Product Lead, A Perfect Space (Australia)',
+    initials: 'PS',
+    date: 'Client Review',
+    quote: "Saabbir delivered pixel-perfect HTML/SCSS site templates for our digital location platform ahead of schedule. His modular BEM code structure and attention to detail were outstanding.",
     rating: 5
+  }
+];
+
+const openSourceProjects = [
+  {
+    name: 'ios-quirks',
+    tech: 'Astro',
+    desc: 'A dedicated web application documenting common iOS web view & Safari issues along with tested CSS/JS fixes.',
+    url: 'https://ios-quirks.netlify.app',
+    github: 'https://github.com/Saabbir/ios-quirks'
+  },
+  {
+    name: 'shopify-tab-extension',
+    tech: 'JavaScript',
+    desc: 'Chrome extension overriding the browser new-tab page with a curated feed of recent Shopify & web development YouTube videos.',
+    url: 'https://github.com/Saabbir/shopify-tab-extension',
+    github: 'https://github.com/Saabbir/shopify-tab-extension'
+  },
+  {
+    name: 'school-finder-bangladesh',
+    tech: 'TypeScript',
+    desc: 'Location-based application to discover and locate schools near your neighbourhood in Dhaka, Bangladesh.',
+    url: 'https://school-finder-bangladesh.vercel.app/',
+    github: 'https://github.com/Saabbir/school-finder-bangladesh'
+  },
+  {
+    name: 'expensify-app',
+    tech: 'React / Redux / Firebase',
+    desc: 'Comprehensive expense tracking dashboard web app featuring real-time state management and authentication.',
+    url: 'https://expenseer.onrender.com/',
+    github: 'https://github.com/Saabbir/expensify-app'
+  },
+  {
+    name: 'github-bd-toppers',
+    tech: 'JavaScript',
+    desc: 'Public developer leaderboard listing the most followed GitHub engineers from Bangladesh.',
+    url: 'https://saabbir.github.io/github-bd-toppers/',
+    github: 'https://github.com/Saabbir/github-bd-toppers'
+  },
+  {
+    name: 'youtube-clone',
+    tech: 'React / Axios',
+    desc: 'Modern YouTube video player clone built with React, Axios, and YouTube Data API v3.',
+    url: 'https://saabbir.github.io/youtube-clone/',
+    github: 'https://github.com/Saabbir/youtube-clone'
   }
 ];
 
 const skillsCategories = [
   {
     name: 'CRO & A/B Testing',
-    skills: ['Optimizely Certified', 'VWO', 'WebTrends Optimize', 'Google Analytics 4', 'Hotjar', 'Experiment Design']
+    skills: ['Optimizely Web Platform Expert (2023)', 'Optimizely Practitioner', 'VWO', 'Adobe Target', 'AB Tasty', 'Convert', 'Kameleoon', 'GA4 Tagging']
   },
   {
     name: 'Shopify Plus & eCommerce',
-    skills: ['Shopify Plus Architecture', 'Liquid', 'Shopify CLI', 'Storefront API', 'Headless Commerce', 'Checkout Customization']
+    skills: ['Shopify Theme Architecture', 'Liquid', 'Shopify CLI', 'Storefront API', 'Alpine.js', '3PL Fulfillment Integration']
   },
   {
     name: 'Frontend Architecture',
-    skills: ['Vue.js / Nuxt 3', 'Astro', 'React', 'JavaScript (ESNext)', 'TypeScript', 'SCSS / Modern CSS']
+    skills: ['JavaScript (ES6+)', 'React.js', 'Vue.js / Vuex', 'Nuxt.js', 'Astro', 'SCSS BEM Architecture', 'HTML5/CSS3']
   },
   {
-    name: 'Performance & Engineering',
-    skills: ['Core Web Vitals (LCP, INP, CLS)', 'Lighthouse 100/100', 'Git / GitHub Actions', 'Vite', 'REST & GraphQL APIs']
+    name: 'Performance & Backend Tools',
+    skills: ['Core Web Vitals (38%+ Speed Boost)', 'Lighthouse 90s+', 'Node.js / Express', 'MongoDB', 'Firebase', 'GraphQL', 'PHP']
   }
 ];
 ---
@@ -87,15 +137,15 @@ const skillsCategories = [
         <div class="c-hero__content">
           <div class="c-hero__badge">
             <span class="c-hero__badge-dot"></span>
-            Available for Consultancy & Strategic Projects
+            Optimizely Certified CRO Specialist & Shopify Lead
           </div>
 
           <h1 class="c-hero__title">
-            CRO-driven Shopify Plus Developer & <span class="c-hero__title-highlight">A/B Testing Expert</span>.
+            Senior Frontend Engineer & <span class="c-hero__title-highlight">Shopify CRO Specialist</span>.
           </h1>
 
           <p class="c-hero__bio">
-            Hi, I'm <strong>Saabbir Hossain</strong> — Sr. Software Engineer at <strong>EchoLogyx Ltd</strong> with 8+ years of global experience helping ecommerce brands grow through experimentation, performance engineering, and scalable architecture.
+            Hi, I'm <strong>Saabbir Hossain</strong> — Sr. Software Engineer at <strong>EchoLogyx Ltd</strong> with 8+ years of experience leading Shopify Plus storefront development, 200+ Optimizely/A/B experiments, and high-performance frontend architecture.
           </p>
 
           <div class="c-hero__actions">
@@ -109,10 +159,10 @@ const skillsCategories = [
               href={resumeUrl}
               download="Saabbir_Hossain_Resume.pdf"
               class="c-btn c-btn--ghost"
-              aria-label="Download CV (PDF)"
+              aria-label="Download Resume (PDF)"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-              Download CV
+              Download Resume
             </a>
           </div>
         </div>
@@ -121,19 +171,19 @@ const skillsCategories = [
         <div class="c-hero__visual">
           <div class="c-hero__visual-card">
             <div class="c-hero__visual-number">8+</div>
-            <div class="c-hero__visual-label">Years of Engineering Experience</div>
+            <div class="c-hero__visual-label">Years Frontend Experience</div>
           </div>
           <div class="c-hero__visual-card">
-            <div class="c-hero__visual-number">250+</div>
-            <div class="c-hero__visual-label">A/B Experiments Conducted</div>
+            <div class="c-hero__visual-number">200+</div>
+            <div class="c-hero__visual-label">A/B Tests Executed</div>
           </div>
           <div class="c-hero__visual-card">
-            <div class="c-hero__visual-number">50+</div>
-            <div class="c-hero__visual-label">Shopify Plus Stores Optimized</div>
+            <div class="c-hero__visual-number">+14%</div>
+            <div class="c-hero__visual-label">Average Order Value Uplift</div>
           </div>
           <div class="c-hero__visual-card">
-            <div class="c-hero__visual-number">100/100</div>
-            <div class="c-hero__visual-label">Lighthouse Speed Performance</div>
+            <div class="c-hero__visual-number">90s+</div>
+            <div class="c-hero__visual-label">Lighthouse Performance Gains</div>
           </div>
         </div>
       </div>
@@ -145,7 +195,7 @@ const skillsCategories = [
     <div class="l-container">
       <div class="c-clients">
         <div class="c-clients__label">
-          Trusted By Global Brands, Agencies & Technology Leaders
+          Trusted By High-Growth eCommerce Brands & SaaS Platforms
         </div>
         <div class="c-clients__marquee">
           <div class="c-clients__marquee-track">
@@ -209,14 +259,14 @@ const skillsCategories = [
     </div>
   </section>
 
-  <!-- Client Testimonials & Recommendations -->
+  <!-- Client Recommendations & LinkedIn Endorsements -->
   <section class="l-section l-section--alt">
     <div class="l-container">
       <div class="l-section__header u-text-center" style="max-width:650px; margin-left:auto; margin-right:auto;">
-        <div class="l-section__subtitle">Client Feedback</div>
-        <h2 class="l-section__title">Testimonials & Reviews</h2>
+        <div class="l-section__subtitle">Verified Recommendations</div>
+        <h2 class="l-section__title">What Engineering Leaders Say</h2>
         <p class="u-text-muted u-mt-16">
-          Hear what agency leaders, product managers, and eCommerce directors say about collaborating on A/B testing and front-end engineering.
+          Endorsements from engineering directors, enterprise CRO strategists, and SaaS CEOs who have managed Saabbir directly.
         </p>
       </div>
 
@@ -235,6 +285,7 @@ const skillsCategories = [
               <div class="c-testimonial__author-info">
                 <div class="c-testimonial__author-name">{t.name}</div>
                 <div class="c-testimonial__author-role">{t.role}</div>
+                <div style="font-size:0.75rem; color:var(--color-text-dim); margin-top:0.15rem;">{t.date}</div>
               </div>
             </div>
           </div>
@@ -243,14 +294,57 @@ const skillsCategories = [
     </div>
   </section>
 
-  <!-- Skills & Tech Taxonomy Matrix -->
+  <!-- Open Source & Pinned GitHub Repositories -->
   <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header u-flex u-justify-between u-items-center">
+        <div>
+          <div class="l-section__subtitle">Open Source & Tools</div>
+          <h2 class="l-section__title">Pinned GitHub Repositories</h2>
+        </div>
+        <a href="https://github.com/Saabbir?tab=repositories" target="_blank" rel="noopener noreferrer" class="c-btn c-btn--ghost">
+          View GitHub Profile ↗
+        </a>
+      </div>
+
+      <div class="l-grid l-grid--3col">
+        {openSourceProjects.map((repo) => (
+          <div class="c-card c-card--glass c-card--hoverable">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <span class="c-tag c-tag--accent">{repo.tech}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-dim)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+            </div>
+
+            <h3 class="c-card__title">
+              <a href={repo.url} target="_blank" rel="noopener noreferrer">{repo.name}</a>
+            </h3>
+
+            <p class="c-card__body">
+              {repo.desc}
+            </p>
+
+            <div class="c-card__footer">
+              <a href={repo.github} target="_blank" rel="noopener noreferrer" class="c-btn c-btn--ghost c-btn--sm">
+                Repository ↗
+              </a>
+              <a href={repo.url} target="_blank" rel="noopener noreferrer" class="c-btn c-btn--primary c-btn--sm">
+                Live Demo ↗
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Tech Taxonomy Matrix -->
+  <section class="l-section l-section--alt">
     <div class="l-container">
       <div class="l-section__header u-text-center" style="max-width:650px; margin-left:auto; margin-right:auto;">
         <div class="l-section__subtitle">Core Competencies</div>
         <h2 class="l-section__title">Skills & Technologies</h2>
         <p class="u-text-muted u-mt-16">
-          Specializing in conversion rate optimization, Optimizely experiment design, and high-performance frontend architecture for global eCommerce brands.
+          Specializing in conversion rate optimization, Optimizely Web Experimentation, Shopify Plus Liquid architecture, and high-performance frontend engineering.
         </p>
       </div>
 
@@ -272,7 +366,7 @@ const skillsCategories = [
   </section>
 
   <!-- Recent Blog Articles -->
-  <section class="l-section l-section--alt">
+  <section class="l-section">
     <div class="l-container">
       <div class="l-section__header u-flex u-justify-between u-items-center">
         <div>
@@ -316,7 +410,7 @@ const skillsCategories = [
   </section>
 
   <!-- Quick Developer Snippets Preview -->
-  <section class="l-section">
+  <section class="l-section l-section--alt">
     <div class="l-container">
       <div class="l-section__header u-flex u-justify-between u-items-center">
         <div>
@@ -345,7 +439,7 @@ const skillsCategories = [
   </section>
 
   <!-- Contact CTA Section -->
-  <section class="l-section l-section--alt">
+  <section class="l-section">
     <div class="l-container l-container--narrow">
       <div class="u-text-center u-mb-32">
         <div class="l-section__subtitle">Get In Touch</div>

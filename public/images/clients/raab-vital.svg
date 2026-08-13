@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none">
+  <circle cx="20" cy="20" r="12" fill="#00e599"/>
+  <path d="M20 12v16M12 20h16" stroke="#0a0f1d" stroke-width="3"/>
+  <text x="40" y="26" font-family="Outfit, System-UI, sans-serif" font-weight="700" font-size="18" fill="#ffffff">Raab <tspan font-weight="400" fill="#00e599">Vital</tspan></text>
+</svg>
