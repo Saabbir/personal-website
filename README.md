@@ -71,3 +71,5 @@ GitHub Actions deploys `main` to GitHub Pages with the custom domain `saabbir.co
 |-----|--------|------------|
 | [saabbir.com](https://saabbir.com) | Astro (current) | `Saabbir/personal-website` |
 | [v1.saabbir.com](https://v1.saabbir.com) | Nuxt 3 archive | `Saabbir/personal-website-v1` |
+
+Generic GitBook-ready guides (GitHub Pages, DNS, Actions, v2/v3 redesign) live in [`cookbooks/`](cookbooks/).
