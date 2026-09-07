@@ -1,12 +1,13 @@
 ---
 ---
 
-<script is:inline>
+<script>
   function enhanceCodeBlocks() {
     const codePres = document.querySelectorAll('.c-prose pre');
 
     codePres.forEach((pre) => {
-      if (pre.parentNode && pre.parentNode.classList && pre.parentNode.classList.contains('c-code-block')) {
+      const parent = pre.parentElement;
+      if (parent?.classList.contains('c-code-block')) {
         return;
       }
 
@@ -16,7 +17,7 @@
       if (langClass) {
         lang = langClass.replace(/^(language-|lang-)/, '');
       } else if (pre.getAttribute('data-language')) {
-        lang = pre.getAttribute('data-language');
+        lang = pre.getAttribute('data-language') || 'code';
       } else {
         const codeElem = pre.querySelector('code');
         if (codeElem) {
@@ -53,18 +54,19 @@
         </button>
       `;
 
-      pre.parentNode.insertBefore(wrapper, pre);
+      parent?.insertBefore(wrapper, pre);
       wrapper.appendChild(header);
       wrapper.appendChild(pre);
 
-      // Copy logic
-      const copyBtn = header.querySelector('.c-code-header__copy');
-      const iconCopy = header.querySelector('.c-code-header__icon-copy');
-      const iconCheck = header.querySelector('.c-code-header__icon-check');
-      const copyText = header.querySelector('.c-code-header__copy-text');
+      const copyBtn = header.querySelector<HTMLButtonElement>('.c-code-header__copy');
+      const iconCopy = header.querySelector<HTMLElement>('.c-code-header__icon-copy');
+      const iconCheck = header.querySelector<HTMLElement>('.c-code-header__icon-check');
+      const copyText = header.querySelector<HTMLElement>('.c-code-header__copy-text');
+      if (!copyBtn || !iconCopy || !iconCheck || !copyText) return;
 
       copyBtn.addEventListener('click', async () => {
-        const codeText = pre.querySelector('code')?.innerText || pre.innerText;
+        const codeEl = pre.querySelector('code');
+        const codeText = (codeEl instanceof HTMLElement ? codeEl.innerText : '') || (pre instanceof HTMLElement ? pre.innerText : pre.textContent || '');
         try {
           await navigator.clipboard.writeText(codeText.trim());
           iconCopy.style.display = 'none';
@@ -72,7 +74,7 @@
           copyText.innerText = 'Copied!';
           copyBtn.classList.add('c-code-header__copy--copied');
 
-          setTimeout(() => {
+          window.setTimeout(() => {
             iconCopy.style.display = 'inline-block';
             iconCheck.style.display = 'none';
             copyText.innerText = 'Copy';
@@ -85,9 +87,6 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', enhanceCodeBlocks);
-  } else {
-    enhanceCodeBlocks();
-  }
+  document.addEventListener('astro:page-load', enhanceCodeBlocks);
+  enhanceCodeBlocks();
 </script>

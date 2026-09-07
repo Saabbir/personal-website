@@ -50,18 +50,18 @@ const encodedTitle = encodeURIComponent(title);
   </div>
 </div>
 
-<script is:inline>
-  const copyBtn = document.getElementById('copy-link-btn');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', () => {
-      const url = copyBtn.getAttribute('data-url') || window.location.href;
-      navigator.clipboard.writeText(url).then(() => {
-        const origHtml = copyBtn.innerHTML;
-        copyBtn.innerHTML = '✓';
-        setTimeout(() => {
-          copyBtn.innerHTML = origHtml;
-        }, 2000);
-      });
+<script>
+  document.addEventListener('click', (e) => {
+    const copyBtn = (e.target as Element).closest('#copy-link-btn') as HTMLElement | null;
+    if (!copyBtn) return;
+
+    const url = copyBtn.getAttribute('data-url') || window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      const origHtml = copyBtn.innerHTML;
+      copyBtn.innerHTML = '✓';
+      window.setTimeout(() => {
+        copyBtn.innerHTML = origHtml;
+      }, 2000);
     });
-  }
+  });
 </script>

@@ -52,6 +52,7 @@
       height: clamp(28px, 4vh, 36px);
       width: auto;
       max-width: 150px;
+      flex-shrink: 0;
       object-fit: contain;
       opacity: 0.65;
       filter: grayscale(1) brightness(1.2);

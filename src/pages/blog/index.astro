@@ -95,22 +95,16 @@ const allTags = Array.from(
   </section>
 </BaseLayout>
 
-<script is:inline>
-  const searchInput = document.getElementById('blog-search');
-  const cards = document.querySelectorAll('.article-card');
+<script>
+  document.addEventListener('input', (e) => {
+    const searchInput = e.target as HTMLInputElement;
+    if (searchInput.id !== 'blog-search') return;
 
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase().trim();
-      cards.forEach((card) => {
-        const title = card.getAttribute('data-title') || '';
-        const tags = card.getAttribute('data-tags') || '';
-        if (title.includes(query) || tags.includes(query)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+    const query = searchInput.value.toLowerCase().trim();
+    document.querySelectorAll<HTMLElement>('.article-card').forEach((card) => {
+      const title = card.getAttribute('data-title') || '';
+      const tags = card.getAttribute('data-tags') || '';
+      card.style.display = title.includes(query) || tags.includes(query) ? 'flex' : 'none';
     });
-  }
+  });
 </script>

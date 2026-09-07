@@ -11,7 +11,7 @@ const navItems = [
   { name: 'Contact', href: '/contact' },
 ];
 ---
-<header class="l-header">
+<header class="l-header" transition:name="site-header">
   <div class="l-container">
     <nav class="c-nav" aria-label="Main Navigation">
       <a href="/" class="c-nav__brand" aria-label="Saabbir Hossain Portfolio">
@@ -55,14 +55,21 @@ const navItems = [
   </div>
 </header>
 
-<script is:inline>
-  const menuToggle = document.getElementById('menu-toggle');
-  const navMenu = document.getElementById('nav-menu');
+<script>
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element;
+    const navMenu = document.getElementById('nav-menu');
+    const menuToggle = document.getElementById('menu-toggle');
 
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
+    if (target.closest('#menu-toggle') && navMenu && menuToggle) {
       const isOpen = navMenu.classList.toggle('c-nav__menu--open');
       menuToggle.setAttribute('aria-expanded', isOpen.toString());
-    });
-  }
+      return;
+    }
+
+    if (target.closest('.c-nav__link') && navMenu && menuToggle) {
+      navMenu.classList.remove('c-nav__menu--open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
 </script>

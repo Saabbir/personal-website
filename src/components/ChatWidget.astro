@@ -1,6 +1,6 @@
 ---
 ---
-<div class="c-chat-widget">
+<div class="c-chat-widget" transition:persist="chat-widget">
   <div class="c-chat-widget__menu" id="chat-menu">
     <a
       href="https://wa.me/8801789243439"
@@ -32,19 +32,20 @@
   </button>
 </div>
 
-<script is:inline>
-  const chatTrigger = document.getElementById('chat-trigger');
-  const chatMenu = document.getElementById('chat-menu');
+<script>
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element;
+    const chatTrigger = document.getElementById('chat-trigger');
+    const chatMenu = document.getElementById('chat-menu');
+    if (!chatTrigger || !chatMenu) return;
 
-  if (chatTrigger && chatMenu) {
-    chatTrigger.addEventListener('click', () => {
+    if (target.closest('#chat-trigger')) {
       chatMenu.classList.toggle('c-chat-widget__menu--open');
-    });
+      return;
+    }
 
-    document.addEventListener('click', (e) => {
-      if (!chatTrigger.contains(e.target) && !chatMenu.contains(e.target)) {
-        chatMenu.classList.remove('c-chat-widget__menu--open');
-      }
-    });
-  }
+    if (!target.closest('.c-chat-widget')) {
+      chatMenu.classList.remove('c-chat-widget__menu--open');
+    }
+  });
 </script>

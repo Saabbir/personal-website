@@ -32,36 +32,40 @@
   }
 </style>
 
-<script is:inline>
-  (function () {
-    const toggleBtn = document.getElementById('theme-toggle');
-    const getPreferredTheme = () => {
-      const stored = localStorage.getItem('theme');
-      if (stored) return stored;
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    };
+<script>
+  function getPreferredTheme() {
+    const stored = localStorage.getItem('theme');
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
 
-    const setTheme = (theme) => {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-    };
+  function applyTheme(theme: string) {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
 
-    // Initialize
-    setTheme(getPreferredTheme());
+  function setTheme(theme: string) {
+    applyTheme(theme);
+    localStorage.setItem('theme', theme);
+  }
 
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
-        const next = current === 'dark' ? 'light' : 'dark';
-        setTheme(next);
-      });
+  document.addEventListener('click', (e) => {
+    const toggle = (e.target as Element).closest('#theme-toggle');
+    if (!toggle) return;
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  document.addEventListener('astro:before-swap', (e) => {
+    e.newDocument.documentElement.setAttribute('data-theme', getPreferredTheme());
+  });
+
+  document.addEventListener('astro:after-swap', () => {
+    applyTheme(getPreferredTheme());
+  });
+
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      setTheme(e.matches ? 'light' : 'dark');
     }
-
-    // Listen for OS theme changes
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        setTheme(e.matches ? 'light' : 'dark');
-      }
-    });
-  })();
+  });
 </script>
