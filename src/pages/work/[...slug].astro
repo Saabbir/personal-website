@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import { workCover } from '../../utils/work';
 
 export async function getStaticPaths() {
   const workEntries = await getCollection('work');
@@ -22,6 +23,7 @@ const { Content } = await entry.render();
   type={entry.data.type}
   tools={entry.data.tools}
   url={entry.data.url}
+  cover={workCover(entry.data.imgFolderName)}
 >
   <Content />
 </CaseStudyLayout>

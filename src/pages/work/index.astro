@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { workThumb } from '../../utils/work';
 
 const allWork = await getCollection('work');
 const publishedWork = allWork.filter((w) => w.data.publish !== false);
@@ -20,35 +21,46 @@ const publishedWork = allWork.filter((w) => w.data.publish !== false);
       <!-- Work Grid -->
       <div class="l-grid l-grid--2col">
         {publishedWork.map((item) => (
-          <article class="c-card c-card--glass c-card--hoverable">
-            <div class="c-card__header">
-              <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
-              {item.data.createdAt && <span style="font-size:0.85rem; color:var(--color-text-dim);">{item.data.createdAt}</span>}
-            </div>
-
-            <h2 class="c-card__title">
-              <a href={`/work/${item.slug}`}>{item.data.title}</a>
-            </h2>
-
-            {item.data.highlight && (
-              <p style="font-size:0.95rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.75rem;">
-                {item.data.highlight}
-              </p>
+          <article class="c-card c-card--glass c-card--hoverable c-card--work">
+            {workThumb(item.data.imgFolderName) && (
+              <img
+                class="c-card__media"
+                src={workThumb(item.data.imgFolderName)!}
+                alt=""
+                width="414"
+                height="310"
+              />
             )}
-
-            <div class="c-card__body">
-              {item.data.description}
-            </div>
-
-            <div class="c-card__footer">
-              <div class="c-card__tags">
-                {item.data.tools?.map((tool) => (
-                  <span class="c-tag">{tool}</span>
-                ))}
+            <div class="c-card__content">
+              <div class="c-card__header">
+                <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
+                {item.data.createdAt && <span style="font-size:0.85rem; color:var(--color-text-dim);">{item.data.createdAt}</span>}
               </div>
-              <a href={`/work/${item.slug}`} class="c-btn c-btn--ghost c-btn--sm">
-                View Case Study →
-              </a>
+
+              <h2 class="c-card__title">
+                <a href={`/work/${item.slug}`}>{item.data.title}</a>
+              </h2>
+
+              {item.data.highlight && (
+                <p style="font-size:0.95rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.75rem;">
+                  {item.data.highlight}
+                </p>
+              )}
+
+              <div class="c-card__body">
+                {item.data.description}
+              </div>
+
+              <div class="c-card__footer">
+                <div class="c-card__tags">
+                  {item.data.tools?.map((tool) => (
+                    <span class="c-tag">{tool}</span>
+                  ))}
+                </div>
+                <span class="c-btn c-btn--ghost c-btn--sm">
+                  View Case Study →
+                </span>
+              </div>
             </div>
           </article>
         ))}

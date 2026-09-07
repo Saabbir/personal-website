@@ -1,0 +1,51 @@
+@use '../01-config/tokens' as *;
+
+.c-case {
+  &__copy {
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+    border-radius: $radius-lg;
+    border: 1px solid var(--color-border-glass);
+  }
+
+  &__compare {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    margin: 2.5rem 0;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  &__logo {
+    display: block;
+    width: auto;
+    max-width: 11rem;
+    height: auto;
+    margin: 0.5rem 0 0;
+    border: 0;
+    border-radius: 0;
+  }
+}

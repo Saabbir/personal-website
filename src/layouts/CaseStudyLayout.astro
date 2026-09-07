@@ -1,6 +1,5 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import ShareButtons from '../components/ShareButtons.astro';
 
 interface Props {
   title: string;
@@ -10,76 +9,87 @@ interface Props {
   type?: string | null;
   tools?: string[];
   url?: string | null;
+  cover?: string | null;
 }
 
-const { title, description, highlight, createdAt, type = 'Project', tools = [], url } = Astro.props;
-const currentUrl = Astro.url.href;
+const { title, description, highlight, createdAt, type = 'Project', tools = [], url, cover } = Astro.props;
 ---
 
 <BaseLayout title={`Case Study: ${title}`} description={description || highlight || undefined}>
-  <article class="l-section">
-    <div class="l-container l-container--narrow">
-      <header class="u-mb-32">
-        <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.3rem 0.75rem; background:rgba(0,229,153,0.1); border:1px solid rgba(0,229,153,0.25); border-radius:9999px; color:var(--color-accent); font-size:0.8rem; font-weight:600; margin-bottom:1rem;">
-          {type} Case Study
+  <article class="l-section c-case">
+    <div class="l-container l-container--wide">
+      <header>
+        <div class="c-case__copy">
+          <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.3rem 0.75rem; background:rgba(0,229,153,0.1); border:1px solid rgba(0,229,153,0.25); border-radius:9999px; color:var(--color-accent); font-size:0.8rem; font-weight:600; margin-bottom:1rem;">
+            {type} Case Study
+          </div>
+
+          <h1 style="font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem;">
+            {title}
+          </h1>
+
+          {highlight && (
+            <p style="font-size: 1.25rem; font-weight: 600; color: var(--color-text-main); margin-bottom: 1.5rem;">
+              {highlight}
+            </p>
+          )}
+
+          {description && (
+            <p class="u-text-muted" style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;">
+              {description}
+            </p>
+          )}
         </div>
 
-        <h1 style="font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem;">
-          {title}
-        </h1>
-
-        {highlight && (
-          <p style="font-size: 1.25rem; font-weight: 600; color: var(--color-text-main); margin-bottom: 1.5rem;">
-            {highlight}
-          </p>
+        {cover && (
+          <img
+            class="c-case__cover"
+            src={cover}
+            alt={`${title} cover`}
+            width="1600"
+            height="1200"
+          />
         )}
 
-        {description && (
-          <p class="u-text-muted" style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;">
-            {description}
-          </p>
-        )}
-
-        <!-- Tech Stack & Metrics Bar -->
-        <div class="c-card c-card--glass u-mb-32">
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:1.5rem;">
-            {url && (
-              <div>
-                <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim);">Live Site</span>
-                <div style="margin-top:0.25rem;">
-                  <a href={url} target="_blank" rel="noopener noreferrer" style="color:var(--color-accent); font-weight:600; font-size:0.95rem; display:inline-flex; align-items:center; gap:0.25rem;">
-                    View Live Site ↗
-                  </a>
+        <div class="c-case__copy u-mb-64">
+          <div class="c-card c-card--glass">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:1.5rem;">
+              {url && (
+                <div>
+                  <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim);">Live Site</span>
+                  <div style="margin-top:0.25rem;">
+                    <a href={url} target="_blank" rel="noopener noreferrer" style="color:var(--color-accent); font-weight:600; font-size:0.95rem; display:inline-flex; align-items:center; gap:0.25rem;">
+                      View Live Site ↗
+                    </a>
+                  </div>
                 </div>
-              </div>
-            )}
-            {createdAt && (
-              <div>
-                <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim);">Date</span>
-                <div style="margin-top:0.25rem; font-weight:600; color:var(--color-text-main);">{createdAt}</div>
-              </div>
-            )}
-            {tools.length > 0 && (
-              <div style="grid-column: 1 / -1;">
-                <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim); display:block; margin-bottom:0.5rem;">Technologies Used</span>
-                <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
-                  {tools.map(tool => (
-                    <span class="c-tag">{tool}</span>
-                  ))}
+              )}
+              {createdAt && (
+                <div>
+                  <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim);">Date</span>
+                  <div style="margin-top:0.25rem; font-weight:600; color:var(--color-text-main);">{createdAt}</div>
                 </div>
-              </div>
-            )}
+              )}
+              {tools.length > 0 && (
+                <div style="grid-column: 1 / -1;">
+                  <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim); display:block; margin-bottom:0.5rem;">Technologies Used</span>
+                  <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+                    {tools.map(tool => (
+                      <span class="c-tag">{tool}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>
 
-      <div class="c-prose">
+      <div class="c-prose c-prose--case">
         <slot />
       </div>
 
-      <ShareButtons title={title} url={currentUrl} />
-
-      <div class="u-text-center u-mt-32">
+      <div class="c-case__copy u-text-center u-mt-32">
         <a href="/work" class="c-btn c-btn--secondary">← Back to All Case Studies</a>
       </div>
     </div>

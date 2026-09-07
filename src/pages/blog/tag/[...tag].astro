@@ -1,14 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-
-export function slugifyTag(tag: string) {
-  return tag
-    .toLowerCase()
-    .trim()
-    .replace(/\//g, '-')
-    .replace(/\s+/g, '-');
-}
+import { articleHref, articleLinkRel, isExternalArticle, slugifyTag } from '../../../utils/article';
 
 export async function getStaticPaths() {
   const allArticles = await getCollection('articles');
@@ -49,19 +42,21 @@ const { tag, articles } = Astro.props;
         </div>
       </div>
 
-      <div class="l-grid l-grid--3col">
+      <div class="l-grid l-grid--3col l-grid--cards">
         {articles.map((article) => (
-          <article class="c-card c-card--glass c-card--hoverable">
+          <article class="c-card c-card--glass c-card--hoverable c-card--article">
             <div class="c-card__meta">
               {article.data.createdAt && <span>{article.data.createdAt}</span>}
             </div>
 
-            <h2 class="c-card__title">
-              <a href={`/blog/${article.slug}`}>{article.data.title}</a>
-            </h2>
+            <div class="c-card__main">
+              <h2 class="c-card__title">
+                <a href={articleHref(article)} {...articleLinkRel(article)}>{article.data.title}</a>
+              </h2>
 
-            <div class="c-card__body">
-              {article.data.description}
+              <div class="c-card__body">
+                {article.data.description}
+              </div>
             </div>
 
             <div class="c-card__footer">
@@ -72,8 +67,8 @@ const { tag, articles } = Astro.props;
                   </a>
                 ))}
               </div>
-              <a href={`/blog/${article.slug}`} class="c-btn c-btn--ghost c-btn--sm">
-                Read →
+              <a href={articleHref(article)} class="c-btn c-btn--ghost c-btn--sm" {...articleLinkRel(article)}>
+                {isExternalArticle(article) ? `Read on ${article.data.externalSource || 'EchoLogyx'} ↗` : 'Read →'}
               </a>
             </div>
           </article>

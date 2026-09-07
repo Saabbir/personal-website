@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { getCollection } from 'astro:content';
+import { articleHref, articleLinkRel, isExternalArticle } from '../utils/article';
+import { workThumb } from '../utils/work';
 
 const allArticles = await getCollection('articles');
 const recentArticles = allArticles
@@ -222,35 +224,46 @@ const skillsCategories = [
 
       <div class="l-grid l-grid--2col">
         {featuredWork.map((item) => (
-          <article class="c-card c-card--glass c-card--hoverable">
-            <div class="c-card__header">
-              <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
-              {item.data.createdAt && <span style="font-size:0.85rem; color:var(--color-text-dim);">{item.data.createdAt}</span>}
-            </div>
-
-            <h3 class="c-card__title">
-              <a href={`/work/${item.slug}`}>{item.data.title}</a>
-            </h3>
-
-            {item.data.highlight && (
-              <p style="font-size:0.9rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.5rem;">
-                {item.data.highlight}
-              </p>
+          <article class="c-card c-card--glass c-card--hoverable c-card--work">
+            {workThumb(item.data.imgFolderName) && (
+              <img
+                class="c-card__media"
+                src={workThumb(item.data.imgFolderName)!}
+                alt=""
+                width="414"
+                height="310"
+              />
             )}
-
-            <div class="c-card__body">
-              {item.data.description}
-            </div>
-
-            <div class="c-card__footer">
-              <div class="c-card__tags">
-                {item.data.tools?.slice(0, 4).map((tool) => (
-                  <span class="c-tag">{tool}</span>
-                ))}
+            <div class="c-card__content">
+              <div class="c-card__header">
+                <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
+                {item.data.createdAt && <span style="font-size:0.85rem; color:var(--color-text-dim);">{item.data.createdAt}</span>}
               </div>
-              <a href={`/work/${item.slug}`} class="c-btn c-btn--ghost c-btn--sm">
-                View Details →
-              </a>
+
+              <h3 class="c-card__title">
+                <a href={`/work/${item.slug}`}>{item.data.title}</a>
+              </h3>
+
+              {item.data.highlight && (
+                <p style="font-size:0.9rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.5rem;">
+                  {item.data.highlight}
+                </p>
+              )}
+
+              <div class="c-card__body">
+                {item.data.description}
+              </div>
+
+              <div class="c-card__footer">
+                <div class="c-card__tags">
+                  {item.data.tools?.slice(0, 4).map((tool) => (
+                    <span class="c-tag">{tool}</span>
+                  ))}
+                </div>
+                <span class="c-btn c-btn--ghost c-btn--sm">
+                  View Details →
+                </span>
+              </div>
             </div>
           </article>
         ))}
@@ -375,21 +388,25 @@ const skillsCategories = [
         <a href="/blog" class="c-btn c-btn--ghost">View All Posts →</a>
       </div>
 
-      <div class="l-grid l-grid--3col">
+      <div class="l-grid l-grid--3col l-grid--cards">
         {recentArticles.map((article) => (
-          <article class="c-card c-card--glass c-card--hoverable">
+          <article class="c-card c-card--glass c-card--hoverable c-card--article">
             <div class="c-card__meta">
               {article.data.createdAt && <span>{article.data.createdAt}</span>}
               <span>•</span>
-              <span style="color:var(--color-accent); font-weight:600;">Blog</span>
+              <span style="color:var(--color-accent); font-weight:600;">
+                {article.data.externalSource || (isExternalArticle(article) ? 'External' : 'Blog')}
+              </span>
             </div>
 
-            <h3 class="c-card__title">
-              <a href={`/blog/${article.slug}`}>{article.data.title}</a>
-            </h3>
+            <div class="c-card__main">
+              <h3 class="c-card__title">
+                <a href={articleHref(article)} {...articleLinkRel(article)}>{article.data.title}</a>
+              </h3>
 
-            <div class="c-card__body">
-              {article.data.description}
+              <div class="c-card__body">
+                {article.data.description}
+              </div>
             </div>
 
             <div class="c-card__footer">
@@ -398,8 +415,8 @@ const skillsCategories = [
                   <span class="c-tag">#{tag}</span>
                 ))}
               </div>
-              <a href={`/blog/${article.slug}`} class="c-btn c-btn--ghost c-btn--sm">
-                Read →
+              <a href={articleHref(article)} class="c-btn c-btn--ghost c-btn--sm" {...articleLinkRel(article)}>
+                {isExternalArticle(article) ? `Read on ${article.data.externalSource || 'EchoLogyx'} ↗` : 'Read →'}
               </a>
             </div>
           </article>

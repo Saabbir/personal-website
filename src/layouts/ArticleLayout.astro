@@ -4,6 +4,8 @@ import ShareButtons from '../components/ShareButtons.astro';
 import GiscusComments from '../components/GiscusComments.astro';
 import Pager from '../components/Pager.astro';
 import type { AdjacentItem } from '../utils/adjacent';
+import { articleCanonicalUrl, canonicalForPath, toIsoDate } from '../utils/seo';
+import { slugifyTag } from '../utils/article';
 
 interface Props {
   title: string;
@@ -15,10 +17,14 @@ interface Props {
   readTime?: string;
   prev?: AdjacentItem | null;
   next?: AdjacentItem | null;
+  originalSource?: string;
+  originalUrl?: string;
 }
 
-const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read", prev = null, next = null } = Astro.props;
-const currentUrl = Astro.url.href;
+const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read", prev = null, next = null, originalSource, originalUrl } = Astro.props;
+const pageUrl = canonicalForPath(Astro.url.pathname);
+const canonicalUrl = articleCanonicalUrl(Astro.url.pathname, originalUrl);
+const publishedTime = toIsoDate(createdAt);
 const githubEditUrl = `https://github.com/Saabbir/personal-website/edit/main/src/content/articles/${slug}.md`;
 
 const articleSchema = {
@@ -26,20 +32,28 @@ const articleSchema = {
   "@type": "BlogPosting",
   "headline": title,
   "description": description || "",
+  "url": canonicalUrl,
+  "image": "https://saabbir.com/images/cv-headshot.png",
   "author": {
     "@type": "Person",
     "name": "Saabbir Hossain",
     "url": "https://saabbir.com"
   },
-  "datePublished": createdAt || "",
+  "publisher": {
+    "@type": "Person",
+    "name": "Saabbir Hossain",
+    "url": "https://saabbir.com"
+  },
+  "datePublished": publishedTime || createdAt || undefined,
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": currentUrl
-  }
+    "@id": canonicalUrl
+  },
+  ...(originalUrl ? { isBasedOn: originalUrl } : {}),
 };
 ---
 
-<BaseLayout title={title} description={description || undefined} type="article">
+<BaseLayout title={title} description={description || undefined} type="article" canonicalUrl={canonicalUrl} publishedTime={publishedTime}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   
   <article class="l-section">
@@ -62,10 +76,19 @@ const articleSchema = {
           </p>
         )}
 
+        {originalSource && originalUrl && (
+          <p class="u-text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
+            Originally published on{' '}
+            <a href={originalUrl} target="_blank" rel="noopener noreferrer" style="color:var(--color-accent); font-weight:600;">
+              {originalSource}
+            </a>
+          </p>
+        )}
+
         {tags.length > 0 && (
           <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom: 1.5rem;">
             {tags.map((tag) => (
-              <a href={`/blog/tag/${encodeURIComponent(tag)}`} class="c-tag">
+              <a href={`/blog/tag/${slugifyTag(tag)}`} class="c-tag">
                 #{tag}
               </a>
             ))}
@@ -111,7 +134,7 @@ const articleSchema = {
       </div>
 
       <!-- Social Share -->
-      <ShareButtons title={title} url={currentUrl} />
+      <ShareButtons title={title} url={pageUrl} />
 
       <div class="c-card c-card--glass c-author">
         <img

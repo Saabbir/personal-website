@@ -1,0 +1,58 @@
+@use '../01-config/tokens' as *;
+
+.c-feature-list {
+  display: grid;
+  gap: 3.5rem;
+  margin: 3rem 0;
+
+  @media (min-width: 768px) {
+    gap: 5rem;
+  }
+}
+
+.c-feature {
+  display: grid;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    gap: 3rem;
+    grid-template-columns: 6.25rem 1fr;
+
+    &:nth-child(odd) {
+      grid-template-columns: 1fr 6.25rem;
+    }
+
+    &:nth-child(odd) .c-feature__media {
+      order: 2;
+    }
+  }
+
+  &__media {
+    width: 6.25rem;
+    max-width: 6.25rem;
+    justify-self: center;
+
+    img {
+      display: block;
+      width: 6.25rem;
+      max-width: 6.25rem;
+      height: auto;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+  }
+
+  &__body {
+    h4 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+}

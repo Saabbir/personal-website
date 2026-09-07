@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import Pager from '../../components/Pager.astro';
 import { getAdjacentEntries } from '../../utils/adjacent';
+import { canonicalForPath } from '../../utils/seo';
 
 export async function getStaticPaths() {
   const snippets = await getCollection('snippets');
@@ -18,7 +19,7 @@ export async function getStaticPaths() {
 
 const { entry, prev, next } = Astro.props;
 const { Content } = await entry.render();
-const currentUrl = Astro.url.href;
+const pageUrl = canonicalForPath(Astro.url.pathname);
 ---
 
 <BaseLayout title={`Snippet: ${entry.data.title}`} description={entry.data.description}>
@@ -52,7 +53,7 @@ const currentUrl = Astro.url.href;
         <Content />
       </div>
 
-      <ShareButtons title={entry.data.title} url={currentUrl} />
+      <ShareButtons title={entry.data.title} url={pageUrl} />
 
       <Pager collection="snippets" prev={prev} next={next} />
 

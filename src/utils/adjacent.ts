@@ -13,6 +13,7 @@ export function getAdjacentEntries<T extends DatedEntry>(
 ): { prev: AdjacentItem | null; next: AdjacentItem | null } {
   const sorted = entries
     .filter((entry) => entry.data.publish !== false)
+    .filter((entry) => !('external' in entry.data && entry.data.external))
     .sort((a, b) => {
       const dateDiff =
         new Date(b.data.createdAt || '').getTime() -

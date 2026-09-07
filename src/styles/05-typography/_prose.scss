@@ -15,24 +15,88 @@
 
   h1, h2, h3, h4, h5, h6 {
     color: var(--color-text-main);
-    margin-top: 2.5rem;
     margin-bottom: 1rem;
     position: relative;
     scroll-margin-top: 5rem;
   }
 
+  > :first-child {
+    margin-top: 0;
+  }
+
   h2 {
     font-size: 2.25rem;
+    margin-top: $space-3xl;
+    margin-bottom: 1.25rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-border-subtle);
   }
 
   h3 {
     font-size: 1.65rem;
+    margin-top: 3.25rem;
   }
 
   h4 {
     font-size: 1.3rem;
+    margin-top: $space-2xl;
+  }
+
+  h5, h6 {
+    margin-top: $space-xl;
+  }
+
+  h2 + h3,
+  h3 + h4 {
+    margin-top: $space-xl;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+    border-radius: $radius-md;
+    border: 1px solid var(--color-border-glass);
+  }
+
+  .c-feature img,
+  .c-case__logo {
+    width: auto;
+    max-width: 6.25rem;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .c-case__logo {
+    max-width: 11rem;
+  }
+
+  // Case studies: text stays in the reading column; screenshots use the wide page.
+  &--case {
+    max-width: none;
+
+    > * {
+      max-width: 768px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    > .c-case__compare,
+    > img,
+    > p:has(> img:only-child),
+    > figure {
+      max-width: none;
+      width: 100%;
+    }
+
+    > .c-case__compare img,
+    > p:has(> img:only-child) img,
+    > figure img {
+      width: 100%;
+      margin: 0.75rem 0 0;
+    }
   }
 
   a {
@@ -43,6 +107,23 @@
 
     &:hover {
       color: var(--color-accent-hover);
+    }
+  }
+
+  a.c-btn {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+    }
+
+    &.c-btn--primary {
+      color: #040711;
+
+      &:hover {
+        color: #040711;
+      }
     }
   }
 

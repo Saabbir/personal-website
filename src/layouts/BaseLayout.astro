@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ChatWidget from '../components/ChatWidget.astro';
 import CodeEnhancer from '../components/CodeEnhancer.astro';
+import { canonicalForPath } from '../utils/seo';
 import '../styles/main.scss';
 
 interface Props {
@@ -12,15 +13,19 @@ interface Props {
   image?: string;
   canonicalUrl?: string;
   type?: string;
+  publishedTime?: string;
 }
 
 const {
   title = "Saabbir Hossain — Sr. Software Engineer & Shopify Plus CRO Expert",
   description = "Saabbir Hossain — CRO-driven Shopify Plus developer and Optimizely Certified A/B Testing expert. Sr. Software Engineer at EchoLogyx Ltd.",
   image = "https://saabbir.com/images/cv-headshot.png",
-  canonicalUrl = Astro.url.href,
+  canonicalUrl,
   type = "website",
+  publishedTime,
 } = Astro.props;
+
+const resolvedCanonical = canonicalUrl || canonicalForPath(Astro.url.pathname);
 
 const siteTitle = title.includes("Saabbir") ? title : `${title} | Saabbir Hossain`;
 
@@ -62,7 +67,7 @@ const personSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{siteTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
+    <link rel="canonical" href={resolvedCanonical} />
 
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
@@ -72,14 +77,18 @@ const personSchema = {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
-    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:url" content={resolvedCanonical} />
+    <meta property="og:site_name" content="Saabbir Hossain" />
     <meta property="og:title" content={siteTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
+    {type === 'article' && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:url" content={resolvedCanonical} />
     <meta property="twitter:title" content={siteTitle} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={image} />

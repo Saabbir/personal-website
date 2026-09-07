@@ -25,6 +25,23 @@
 .l-grid {
   display: grid;
   gap: 1.75rem;
+  align-items: stretch;
+
+  // Shared rows so sibling article footers (and their borders) line up.
+  &--cards > .c-card--article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    height: auto;
+  }
+
+  @supports not (grid-template-rows: subgrid) {
+    &--cards > .c-card--article {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  }
 
   &--2col {
     grid-template-columns: 1fr;

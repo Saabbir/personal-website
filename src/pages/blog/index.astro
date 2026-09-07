@@ -1,14 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-
-function slugifyTag(tag: string) {
-  return tag
-    .toLowerCase()
-    .trim()
-    .replace(/\//g, '-')
-    .replace(/\s+/g, '-');
-}
+import { articleHref, articleLinkRel, isExternalArticle, slugifyTag } from '../../utils/article';
 
 const allArticles = await getCollection('articles');
 const publishedArticles = allArticles
@@ -55,25 +48,29 @@ const allTags = Array.from(
       </div>
 
       <!-- Articles Grid -->
-      <div class="l-grid l-grid--3col" id="articles-grid">
+      <div class="l-grid l-grid--3col l-grid--cards" id="articles-grid">
         {publishedArticles.map((article) => (
           <article
-            class="c-card c-card--glass c-card--hoverable article-card"
+            class="c-card c-card--glass c-card--hoverable c-card--article article-card"
             data-title={article.data.title.toLowerCase()}
             data-tags={JSON.stringify(article.data.tags || [])}
           >
             <div class="c-card__meta">
               {article.data.createdAt && <span>{article.data.createdAt}</span>}
               <span>•</span>
-              <span style="color:var(--color-accent); font-weight:600;">Article</span>
+              <span style="color:var(--color-accent); font-weight:600;">
+                {article.data.externalSource || (isExternalArticle(article) ? 'External' : 'Article')}
+              </span>
             </div>
 
-            <h2 class="c-card__title">
-              <a href={`/blog/${article.slug}`}>{article.data.title}</a>
-            </h2>
+            <div class="c-card__main">
+              <h2 class="c-card__title">
+                <a href={articleHref(article)} {...articleLinkRel(article)}>{article.data.title}</a>
+              </h2>
 
-            <div class="c-card__body">
-              {article.data.description}
+              <div class="c-card__body">
+                {article.data.description}
+              </div>
             </div>
 
             <div class="c-card__footer">
@@ -84,8 +81,8 @@ const allTags = Array.from(
                   </a>
                 ))}
               </div>
-              <a href={`/blog/${article.slug}`} class="c-btn c-btn--ghost c-btn--sm">
-                Read Article →
+              <a href={articleHref(article)} class="c-btn c-btn--ghost c-btn--sm" {...articleLinkRel(article)}>
+                {isExternalArticle(article) ? `Read on ${article.data.externalSource || 'EchoLogyx'} ↗` : 'Read Article →'}
               </a>
             </div>
           </article>
@@ -104,7 +101,7 @@ const allTags = Array.from(
     document.querySelectorAll<HTMLElement>('.article-card').forEach((card) => {
       const title = card.getAttribute('data-title') || '';
       const tags = card.getAttribute('data-tags') || '';
-      card.style.display = title.includes(query) || tags.includes(query) ? 'flex' : 'none';
+      card.style.display = title.includes(query) || tags.includes(query) ? '' : 'none';
     });
   });
 </script>

@@ -12,6 +12,9 @@ const articlesCollection = defineCollection({
     publish: z.boolean().optional().default(true),
     tags: z.array(z.string()).optional().default([]),
     layout: z.union([z.string(), z.null()]).optional(),
+    external: z.boolean().optional().default(false),
+    externalUrl: z.string().url().optional(),
+    externalSource: z.string().optional(),
   }),
 });
 

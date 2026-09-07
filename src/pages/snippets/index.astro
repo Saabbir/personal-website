@@ -17,21 +17,23 @@ const publishedSnippets = allSnippets.filter((s) => s.data.publish !== false);
         </p>
       </div>
 
-      <div class="l-grid l-grid--3col">
+      <div class="l-grid l-grid--3col l-grid--cards">
         {publishedSnippets.map((snippet) => (
-          <article class="c-card c-card--glass c-card--hoverable">
+          <article class="c-card c-card--glass c-card--hoverable c-card--article">
             <div class="c-card__meta">
               {snippet.data.createdAt && <span>{snippet.data.createdAt}</span>}
               <span>•</span>
               <span style="color:var(--color-accent); font-weight:600;">Snippet</span>
             </div>
 
-            <h2 class="c-card__title">
-              <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
-            </h2>
+            <div class="c-card__main">
+              <h2 class="c-card__title">
+                <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
+              </h2>
 
-            <div class="c-card__body">
-              {snippet.data.description}
+              <div class="c-card__body">
+                {snippet.data.description}
+              </div>
             </div>
 
             <div class="c-card__footer">

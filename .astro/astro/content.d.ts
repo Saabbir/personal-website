@@ -173,6 +173,20 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".md"] };
+"how-to-fix-shopify-sandbox-url-pageview-issues-in-ga4.md": {
+	id: "how-to-fix-shopify-sandbox-url-pageview-issues-in-ga4.md";
+  slug: "how-to-fix-shopify-sandbox-url-pageview-issues-in-ga4";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".md"] };
+"how-to-integrate-convert-a-b-testing-with-shopify-using-the-convert-shopify-app.md": {
+	id: "how-to-integrate-convert-a-b-testing-with-shopify-using-the-convert-shopify-app.md";
+  slug: "how-to-integrate-convert-a-b-testing-with-shopify-using-the-convert-shopify-app";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".md"] };
 "how-to-preview-experiments-in-webtrends-optimize.md": {
 	id: "how-to-preview-experiments-in-webtrends-optimize.md";
   slug: "how-to-preview-experiments-in-webtrends-optimize";

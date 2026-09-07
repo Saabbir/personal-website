@@ -20,11 +20,6 @@ tools:
   - Adobe Target
 ---
 
-<!-- Start Problem Section -->
-<div class="l-wrap">
-  <div class="u-my-64">
-  <div class="u-maxw-700 u-mx-auto">
-
 ## The Problem
 
 The current website structure presents a discoverability challenge for users seeking best-selling products. While most traffic lands on the homepage, finding these products requires an additional step of navigating to a dedicated "collection" page. This extra step can lead to user frustration and abandonment, as some visitors may not be willing to invest the additional effort.
@@ -43,27 +38,19 @@ The final winning design resulted in:
 - 11.6% increase in transactions
 - 5.2% increase in average order value
 
-  </div>
-  </div>
+<div class="c-case__compare">
+<div>
+
+## Control
+
+![BAT UK Homepage Product Carousel Control](/images/work/bat-uk-homepage-product-carousel/Control.png)
+
 </div>
-<!-- End Problem Section -->
+<div>
 
-<!-- Start Control | Variation Section -->
-<div class="l-wrap l-wrap--fluid">
-  <div class="u-d-grid u-grid-2-columns-from-500 u-gap-48-16">
-  <div class="c-control">
-    <h2>Control</h2>
+## Variation
 
-<MarkdownImg src="work/bat-uk-homepage-product-carousel/Control.png" alt="BAT UK Homepage Product Carousel Control"></MarkdownImg>
+![BAT UK Homepage Product Carousel Variation](/images/work/bat-uk-homepage-product-carousel/Variation.png)
 
-  </div>
-
-  <div class="c-variation">
-    <h2>Variation</h2>
-
-<MarkdownImg src="work/bat-uk-homepage-product-carousel/Variation.png" alt="BAT UK Homepage Product Carousel Variation"></MarkdownImg>
-
-  </div>
-  </div>
 </div>
-<!-- End Control | Variation Section -->
+</div>
