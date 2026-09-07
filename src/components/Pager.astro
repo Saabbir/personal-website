@@ -1,0 +1,34 @@
+---
+import type { AdjacentItem } from '../utils/adjacent';
+
+interface Props {
+  prev?: AdjacentItem | null;
+  next?: AdjacentItem | null;
+  collection: 'blog' | 'snippets';
+}
+
+const { prev = null, next = null, collection } = Astro.props;
+const noun = collection === 'blog' ? 'article' : 'snippet';
+---
+
+{(prev || next) && (
+  <nav class="c-pager" aria-label={`${noun} pagination`}>
+    {prev ? (
+      <a href={`/${collection}/${prev.slug}`} class="c-pager__link c-pager__link--prev">
+        <span class="c-pager__label">← Previous {noun}</span>
+        <span class="c-pager__title">{prev.title}</span>
+      </a>
+    ) : (
+      <span class="c-pager__spacer" aria-hidden="true"></span>
+    )}
+
+    {next ? (
+      <a href={`/${collection}/${next.slug}`} class="c-pager__link c-pager__link--next">
+        <span class="c-pager__label">Next {noun} →</span>
+        <span class="c-pager__title">{next.title}</span>
+      </a>
+    ) : (
+      <span class="c-pager__spacer" aria-hidden="true"></span>
+    )}
+  </nav>
+)}

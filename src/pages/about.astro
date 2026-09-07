@@ -95,9 +95,10 @@ const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7
         </figcaption>
       </figure>
     </div>
+  </section>
 
-    <!-- Licenses & Certifications Section -->
-    <div class="l-container l-container--narrow u-mt-32">
+  <section class="l-section l-section--alt">
+    <div class="l-container l-container--narrow">
       <div class="l-section__header u-text-center">
         <div class="l-section__subtitle">Verified Credentials</div>
         <h2 class="l-section__title">Licenses & Certifications</h2>
@@ -105,31 +106,30 @@ const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7
 
       <div style="display:flex; flex-direction:column; gap:1.25rem;">
         {certifications.map((cert) => (
-          <div class="c-card c-card--glass" style="display:flex; justify-content:space-between; align-items:center; gap:1.25rem; flex-wrap:wrap;">
-            <div style="display:flex; align-items:center; gap:1.25rem;">
-              <div style="width:48px; height:48px; border-radius:12px; background:rgba(0,229,153,0.1); border:1px solid rgba(0,229,153,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l-2 5l9-11h-7l2-5l-9 11h7z"></path></svg>
-              </div>
-              <div>
-                <h3 style="font-size:1.15rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.2rem;">
-                  {cert.title}
-                </h3>
-                <div style="font-size:0.9rem; color:var(--color-accent); font-weight:600; margin-bottom:0.25rem;">
-                  {cert.issuer} • <span style="color:var(--color-text-dim); font-weight:400;">Issued {cert.issued}</span>
-                </div>
-                <div style="font-size:0.85rem; color:var(--color-text-muted);">
-                  <strong>Skills:</strong> {cert.skills}
-                </div>
-              </div>
+          <div class="c-card c-card--glass" style="display:flex; flex-direction:row; align-items:flex-start; gap:1.25rem;">
+            <div style="width:48px; height:48px; min-width:48px; border-radius:12px; background:rgba(0,229,153,0.1); border:1px solid rgba(0,229,153,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l-2 5l9-11h-7l2-5l-9 11h7z"></path></svg>
             </div>
-            <span class="c-tag c-tag--accent">{cert.badge}</span>
+            <div>
+              <h3 style="font-size:1.15rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.2rem;">
+                {cert.title}
+              </h3>
+              <div style="font-size:0.9rem; color:var(--color-accent); font-weight:600; margin-bottom:0.25rem;">
+                {cert.issuer} • <span style="color:var(--color-text-dim); font-weight:400;">Issued {cert.issued}</span>
+              </div>
+              <div style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:0.75rem;">
+                <strong>Skills:</strong> {cert.skills}
+              </div>
+              <span class="c-tag c-tag--accent">{cert.badge}</span>
+            </div>
           </div>
         ))}
       </div>
     </div>
+  </section>
 
-    <!-- Experience & Education -->
-    <div class="l-container l-container--narrow u-mt-32">
+  <section class="l-section l-section--surface">
+    <div class="l-container l-container--narrow">
       <div class="l-section__header u-text-center">
         <div class="l-section__subtitle">Career Progression</div>
         <h2 class="l-section__title">Work Experience</h2>
@@ -146,24 +146,25 @@ const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <!-- Education Card -->
-      <div class="u-mt-32">
-        <div class="l-section__header u-text-center">
-          <div class="l-section__subtitle">Academic Background</div>
-          <h2 class="l-section__title">Education</h2>
+  <section class="l-section">
+    <div class="l-container l-container--narrow">
+      <div class="l-section__header u-text-center">
+        <div class="l-section__subtitle">Academic Background</div>
+        <h2 class="l-section__title">Education</h2>
+      </div>
+
+      <div class="c-card c-card--glass">
+        <h3 style="font-size:1.25rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.3rem;">
+          Bachelor of Science in Computer Science and Engineering
+        </h3>
+        <div style="font-size:0.95rem; color:var(--color-accent); font-weight:600; margin-bottom:0.5rem;">
+          Institute of Science, Trade and Technology (ISTT)
         </div>
-
-        <div class="c-card c-card--glass">
-          <h3 style="font-size:1.25rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.3rem;">
-            Bachelor of Science in Computer Science and Engineering
-          </h3>
-          <div style="font-size:0.95rem; color:var(--color-accent); font-weight:600; margin-bottom:0.5rem;">
-            Institute of Science, Trade and Technology (ISTT)
-          </div>
-          <div style="font-size:0.85rem; color:var(--color-text-dim);">
-            2014 — 2018 | Dhaka, Bangladesh
-          </div>
+        <div style="font-size:0.85rem; color:var(--color-text-dim);">
+          2014 — 2018 | Dhaka, Bangladesh
         </div>
       </div>
     </div>

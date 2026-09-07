@@ -2,6 +2,8 @@
 import BaseLayout from './BaseLayout.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import GiscusComments from '../components/GiscusComments.astro';
+import Pager from '../components/Pager.astro';
+import type { AdjacentItem } from '../utils/adjacent';
 
 interface Props {
   title: string;
@@ -11,9 +13,11 @@ interface Props {
   slug: string;
   headings?: { depth: number; slug: string; text: string }[];
   readTime?: string;
+  prev?: AdjacentItem | null;
+  next?: AdjacentItem | null;
 }
 
-const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read" } = Astro.props;
+const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read", prev = null, next = null } = Astro.props;
 const currentUrl = Astro.url.href;
 const githubEditUrl = `https://github.com/Saabbir/personal-website/edit/main/src/content/articles/${slug}.md`;
 
@@ -109,18 +113,17 @@ const articleSchema = {
       <!-- Social Share -->
       <ShareButtons title={title} url={currentUrl} />
 
-      <!-- Author Bio -->
-      <div class="c-card c-card--glass u-my-32" style="display:flex; gap:1.5rem; align-items:center;">
+      <div class="c-card c-card--glass c-author">
         <img
+          class="c-author__photo"
           src="/images/cv-headshot.png"
           alt="Saabbir Hossain"
           width="80"
           height="80"
-          style="border-radius:50%; object-fit:cover; border:2px solid var(--color-accent);"
         />
-        <div>
-          <h4 style="font-size:1.1rem; font-weight:700; margin-bottom:0.25rem;">Written by Saabbir Hossain</h4>
-          <p style="font-size:0.9rem; color:var(--color-text-muted); margin:0;">
+        <div class="c-author__body">
+          <h4 class="c-author__name">Written by Saabbir Hossain</h4>
+          <p class="c-author__bio">
             Sr. Software Engineer at EchoLogyx Ltd, CRO-driven Shopify Plus Developer and Optimizely Certified A/B Testing Expert based in Bangladesh.
           </p>
         </div>
@@ -128,6 +131,8 @@ const articleSchema = {
 
       <!-- Giscus GitHub Comments -->
       <GiscusComments />
+
+      <Pager collection="blog" prev={prev} next={next} />
     </div>
   </article>
 </BaseLayout>

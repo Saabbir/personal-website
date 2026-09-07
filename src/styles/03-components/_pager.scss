@@ -1,0 +1,64 @@
+@use '../01-config/tokens' as *;
+@use '../01-config/mixins' as *;
+
+.c-pager {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  @include respond-to('tablet') {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 44px;
+    padding: 1rem 1.25rem;
+    border-radius: $radius-md;
+    border: 1px solid var(--color-border-glass);
+    background: var(--color-surface-glass);
+    color: var(--color-text-main);
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-neon-glow);
+    }
+
+    &--next {
+      text-align: right;
+      align-items: flex-end;
+
+      @include respond-to('tablet') {
+        grid-column: 2;
+      }
+    }
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  &__spacer {
+    display: none;
+
+    @include respond-to('tablet') {
+      display: block;
+    }
+  }
+}

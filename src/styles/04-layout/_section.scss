@@ -14,6 +14,10 @@
     border-bottom: 1px solid var(--color-border-subtle);
   }
 
+  &--surface {
+    background: var(--color-bg-surface);
+  }
+
   &--hero {
     padding-top: 3.5rem;
     padding-bottom: 4.5rem;
