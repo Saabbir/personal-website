@@ -18,6 +18,20 @@
     background: var(--color-bg-surface);
   }
 
+  // Always dark so light brand marks stay visible in both themes.
+  &--brands {
+    padding: 2.25rem 0;
+    overflow: hidden;
+    background: $color-obsidian-900;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color-scheme: dark;
+
+    .c-clients__label {
+      color: #94a3b8;
+    }
+  }
+
   &--hero {
     padding-top: 3.5rem;
     padding-bottom: 4.5rem;
@@ -33,6 +47,32 @@
 
     @media (min-width: 768px) {
       margin-bottom: 4.25rem;
+    }
+
+    &--split {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+
+        > .c-btn {
+          align-self: center;
+        }
+      }
+
+      .l-section__title {
+        margin-bottom: 0;
+      }
+
+      > .c-btn {
+        align-self: flex-end;
+      }
     }
   }
 

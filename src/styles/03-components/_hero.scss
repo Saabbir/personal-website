@@ -83,9 +83,36 @@
 
   &__actions {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
+
+    &-row {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 0.75rem;
+      width: 100%;
+
+      .c-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        font-size: 0.88rem;
+      }
+
+      @media (min-width: 640px) {
+        width: auto;
+        gap: 1rem;
+
+        .c-btn {
+          flex: 0 0 auto;
+          padding: 1rem 2rem;
+          font-size: 1.05rem;
+        }
+      }
+    }
   }
 
   /* Right Column: 2x2 Cyber Metrics Dashboard Visual */

@@ -150,12 +150,14 @@ const skillsCategories = [
           </p>
 
           <div class="c-hero__actions">
-            <a href="/contact" class="c-btn c-btn--primary c-btn--lg">
-              Get in Touch
-            </a>
-            <a href="/work" class="c-btn c-btn--secondary c-btn--lg">
-              Explore Portfolio
-            </a>
+            <div class="c-hero__actions-row">
+              <a href="/contact" class="c-btn c-btn--primary c-btn--lg">
+                Get in Touch
+              </a>
+              <a href="/work" class="c-btn c-btn--secondary c-btn--lg">
+                Explore Portfolio
+              </a>
+            </div>
             <a
               href={resumeUrl}
               download="Saabbir_Hossain_Resume.pdf"
@@ -192,7 +194,7 @@ const skillsCategories = [
   </section>
 
   <!-- Clean Client Logos Infinite Marquee -->
-  <section class="l-section l-section--alt" style="padding: 2.25rem 0; overflow:hidden;">
+  <section class="l-section l-section--brands">
     <div class="l-container">
       <div class="c-clients">
         <div class="c-clients__label">
@@ -214,7 +216,7 @@ const skillsCategories = [
   <!-- Featured Case Studies -->
   <section class="l-section">
     <div class="l-container">
-      <div class="l-section__header u-flex u-justify-between u-items-center">
+      <div class="l-section__header l-section__header--split">
         <div>
           <div class="l-section__subtitle">Selected Work</div>
           <h2 class="l-section__title">Case Studies & Projects</h2>
@@ -224,7 +226,7 @@ const skillsCategories = [
 
       <div class="l-grid l-grid--2col">
         {featuredWork.map((item) => (
-          <article class="c-card c-card--glass c-card--hoverable c-card--work">
+          <article class="c-card c-card--glass c-card--hoverable c-card--work c-card--work-stack">
             {workThumb(item.data.imgFolderName) && (
               <img
                 class="c-card__media"
@@ -309,7 +311,7 @@ const skillsCategories = [
   <!-- Open Source & Pinned GitHub Repositories -->
   <section class="l-section">
     <div class="l-container">
-      <div class="l-section__header u-flex u-justify-between u-items-center">
+      <div class="l-section__header l-section__header--split">
         <div>
           <div class="l-section__subtitle">Open Source & Tools</div>
           <h2 class="l-section__title">Pinned GitHub Repositories</h2>
@@ -380,7 +382,7 @@ const skillsCategories = [
   <!-- Recent Blog Articles -->
   <section class="l-section">
     <div class="l-container">
-      <div class="l-section__header u-flex u-justify-between u-items-center">
+      <div class="l-section__header l-section__header--split">
         <div>
           <div class="l-section__subtitle">Knowledge Sharing</div>
           <h2 class="l-section__title">Latest Articles</h2>
@@ -428,7 +430,7 @@ const skillsCategories = [
   <!-- Quick Developer Snippets Preview -->
   <section class="l-section l-section--alt">
     <div class="l-container">
-      <div class="l-section__header u-flex u-justify-between u-items-center">
+      <div class="l-section__header l-section__header--split">
         <div>
           <div class="l-section__subtitle">Frontend Tips</div>
           <h2 class="l-section__title">Code Snippets</h2>

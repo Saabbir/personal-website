@@ -89,5 +89,19 @@
       height: 44px;
       color: var(--color-text-main);
     }
+
+    &-icon--close {
+      display: none;
+    }
+
+    &[aria-expanded='true'] {
+      .c-nav__toggle-icon--open {
+        display: none;
+      }
+
+      .c-nav__toggle-icon--close {
+        display: block;
+      }
+    }
   }
 }
