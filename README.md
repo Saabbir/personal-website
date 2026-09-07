@@ -1,17 +1,17 @@
-# Saabbir's Personal Website (Nuxt 3)
+# Saabbir Hossain — Personal Website
 
-![screenshot](screenshot.png)
+Astro 4 portfolio and engineering blog. Live at [https://saabbir.com](https://saabbir.com).
 
-Live demo: [https://saabbir.github.io/](https://saabbir.github.io/)
+The previous Nuxt 3 site is archived at [https://v1.saabbir.com](https://v1.saabbir.com).
 
 ---
 
 ## Tech stack
 
-- **Nuxt 3** (Vue 3) with static preset for GitHub Pages
-- **@nuxt/content v2** – file-based content (articles, snippets, work) from `content/`
-- **Prism.js** – code highlighting in markdown (custom `ProseCode` component, theme: prism-material-oceanic)
-- **SCSS** – global styles; content typography scoped under `.nuxt-content`
+- **Astro 4** static site generation for GitHub Pages
+- **MDX Content Collections** — articles, snippets, and case studies in `src/content/`
+- **SCSS** with strict BEM (`c-block__element--modifier`)
+- Dark/light theme with a zero-FOUC inline script
 
 ---
 
@@ -31,8 +31,8 @@ npm -v
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/Saabbir/saabbir.github.io.git
-   cd saabbir.github.io
+   git clone git@github.com-personal:Saabbir/personal-website.git
+   cd personal-website
    ```
 
 2. **Install dependencies:**
@@ -44,44 +44,30 @@ npm -v
    ```sh
    npm run dev
    ```
-   The site will be available at [http://localhost:3000](http://localhost:3000)
+   The site will be available at [http://localhost:4321](http://localhost:4321)
 
 ---
 
 ## Build & Deployment
 
-- **Generate static site** (for GitHub Pages):
+- **Production build:**
   ```sh
-  npm run generate
+  npm run build
   ```
-  This copies `assets/images` to `public/images` and outputs the site to `.output/public`.
+  Type-checks and writes static HTML to `dist/`.
 
 - **Preview the generated site:**
   ```sh
   npm run preview
   ```
 
-- **Deploy to GitHub Pages:**
-  ```sh
-  npm run deploy
-  ```
-  Builds the static site and pushes `.output/public` to the `gh-pages` branch.
+GitHub Actions deploys `main` to GitHub Pages with the custom domain `saabbir.com`.
 
 ---
 
-## Troubleshooting
+## Versioning
 
-- **Dependency or build errors?**  
-  Delete `node_modules` and `package-lock.json`, then run `npm install` again.
-
-- **Images missing on generated site?**  
-  Run `npm run copy:assets` once to copy `assets/images` into `public/images`, or run `npm run generate` (it runs the copy step automatically).
-
----
-
-## References
-
-- [Nuxt 3 Documentation](https://nuxt.com/docs)
-- [Nuxt Content v2](https://v2.content.nuxt.com/)
-- [PROJECT_GUIDE.md](PROJECT_GUIDE.md) – project structure and content workflow
-- [MIGRATION.md](MIGRATION.md) – Nuxt 2 → 3 migration notes
+| URL | Stack | Repository |
+|-----|--------|------------|
+| [saabbir.com](https://saabbir.com) | Astro (current) | `Saabbir/personal-website` |
+| [v1.saabbir.com](https://v1.saabbir.com) | Nuxt 3 archive | `Saabbir/personal-website-v1` |

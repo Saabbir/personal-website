@@ -3,9 +3,8 @@ name: Deploy Portfolio to GitHub Pages
 on:
   push:
     branches:
-      - v2-astro
       - main
-      - master
+      - v2-astro
 
 permissions:
   contents: read

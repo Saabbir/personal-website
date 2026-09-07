@@ -1,6 +1,6 @@
 # Project Rules & Architecture Guidelines
 
-This repository (`Saabbir/saabbir.github.io`) is the personal portfolio and engineering blog for **Saabbir Hossain** (Sr. Software Engineer at EchoLogyx Ltd, CRO-driven Shopify Plus Developer & Optimizely Certified A/B Testing Expert).
+This repository (`Saabbir/personal-website`) is the personal portfolio and engineering blog for **Saabbir Hossain** (Sr. Software Engineer at EchoLogyx Ltd, CRO-driven Shopify Plus Developer & Optimizely Certified A/B Testing Expert).
 
 All AI assistants (Antigravity, Cursor, GitHub Copilot, Claude, Windsurf) working on this codebase MUST follow the strict rules below to maintain code quality, design consistency, and performance.
 
@@ -8,7 +8,7 @@ All AI assistants (Antigravity, Cursor, GitHub Copilot, Claude, Windsurf) workin
 
 ## 1. Core Framework & Architecture
 - **Framework**: **Astro 4+** configured for Static Site Generation (`output: 'static'`).
-- **Deployment Target**: GitHub Pages (`https://saabbir.github.io`). All URLs must support static HTML rendering.
+- **Deployment Target**: GitHub Pages with custom domain (`https://saabbir.com`). All URLs must support static HTML rendering. The previous Nuxt 3 site is archived at `https://v1.saabbir.com`.
 - **Islands Architecture**: Do not send client-side JavaScript unless necessary for interactive components (`client:visible` or `client:load` for ThemeToggle, Mobile Nav, Giscus Comments, ChatWidget).
 
 ---
@@ -42,7 +42,7 @@ All AI assistants (Antigravity, Cursor, GitHub Copilot, Claude, Windsurf) workin
   - `tags`: string[]
   - `publish`: boolean
   - `layout`: optional string (allows per-post custom layouts like `case-study` or `article`)
-- **"Edit on GitHub" Link**: Every blog post page MUST render a direct GitHub edit link pointing to `https://github.com/Saabbir/saabbir.github.io/edit/v2-astro/src/content/articles/{slug}.mdx`.
+- **"Edit on GitHub" Link**: Every blog post page MUST render a direct GitHub edit link pointing to `https://github.com/Saabbir/personal-website/edit/main/src/content/articles/{slug}.mdx`.
 
 ---
 

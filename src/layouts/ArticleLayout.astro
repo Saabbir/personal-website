@@ -15,7 +15,7 @@ interface Props {
 
 const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read" } = Astro.props;
 const currentUrl = Astro.url.href;
-const githubEditUrl = `https://github.com/Saabbir/saabbir.github.io/edit/v2-astro/src/content/articles/${slug}.md`;
+const githubEditUrl = `https://github.com/Saabbir/personal-website/edit/main/src/content/articles/${slug}.md`;
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -25,7 +25,7 @@ const articleSchema = {
   "author": {
     "@type": "Person",
     "name": "Saabbir Hossain",
-    "url": "https://saabbir.github.io"
+    "url": "https://saabbir.com"
   },
   "datePublished": createdAt || "",
   "mainEntityOfPage": {

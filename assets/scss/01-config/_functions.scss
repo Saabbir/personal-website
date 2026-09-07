@@ -1,8 +1,0 @@
-/*
-Sass function to convert `px` value to `rem`
-https://gist.github.com/garystorey/5920051
-*/
-
-@function rem($sizeInPx) {
-  @return calc($sizeInPx / 16px) * 1rem;
-}

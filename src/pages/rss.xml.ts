@@ -10,7 +10,7 @@ export async function GET(context: { site: string }) {
   return rss({
     title: 'Saabbir Hossain — Blog & Articles',
     description: 'Articles on JavaScript, Web Performance, Shopify Plus, and A/B Testing by Saabbir Hossain.',
-    site: context.site || 'https://saabbir.github.io',
+    site: context.site || 'https://saabbir.com',
     items: publishedArticles.map((post) => ({
       title: post.data.title,
       description: post.data.description,

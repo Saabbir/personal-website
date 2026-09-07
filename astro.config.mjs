@@ -9,7 +9,7 @@ function customSitemapIntegration() {
     name: 'custom-sitemap',
     hooks: {
       'astro:build:done': async ({ dir, pages }) => {
-        const siteUrl = 'https://saabbir.github.io';
+        const siteUrl = 'https://saabbir.com';
         const pageUrls = pages.map((p) => {
           const pathname = p.pathname.startsWith('/') ? p.pathname.slice(1) : p.pathname;
           return `${siteUrl}/${pathname}`;
@@ -30,7 +30,7 @@ ${pageUrls.map((url) => `  <url><loc>${url}</loc><lastmod>${new Date().toISOStri
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://saabbir.github.io',
+  site: 'https://saabbir.com',
   output: 'static',
   integrations: [
     mdx(),
