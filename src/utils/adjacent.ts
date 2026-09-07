@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { contentDateValue } from './seo';
 
 export interface AdjacentItem {
   slug: string;
@@ -15,9 +16,7 @@ export function getAdjacentEntries<T extends DatedEntry>(
     .filter((entry) => entry.data.publish !== false)
     .filter((entry) => !('external' in entry.data && entry.data.external))
     .sort((a, b) => {
-      const dateDiff =
-        new Date(b.data.createdAt || '').getTime() -
-        new Date(a.data.createdAt || '').getTime();
+      const dateDiff = contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt);
       return dateDiff !== 0 ? dateDiff : a.slug.localeCompare(b.slug);
     });
 

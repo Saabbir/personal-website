@@ -36,3 +36,14 @@ export function toIsoDate(value?: string | null): string | undefined {
 
   return parsed.toISOString();
 }
+
+export function parseContentDate(value?: string | null): Date | undefined {
+  const iso = toIsoDate(value);
+  if (!iso) return undefined;
+  const parsed = new Date(iso);
+  return Number.isNaN(parsed.getTime()) ? undefined : parsed;
+}
+
+export function contentDateValue(value?: string | null): number {
+  return parseContentDate(value)?.getTime() ?? 0;
+}

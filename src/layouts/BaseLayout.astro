@@ -14,6 +14,7 @@ interface Props {
   canonicalUrl?: string;
   type?: string;
   publishedTime?: string;
+  robots?: string;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   canonicalUrl,
   type = "website",
   publishedTime,
+  robots,
 } = Astro.props;
 
 const resolvedCanonical = canonicalUrl || canonicalForPath(Astro.url.pathname);
@@ -67,6 +69,7 @@ const personSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{siteTitle}</title>
     <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
     <link rel="canonical" href={resolvedCanonical} />
 
     <!-- Favicon & PWA -->

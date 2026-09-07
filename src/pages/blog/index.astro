@@ -2,11 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { articleHref, articleLinkRel, isExternalArticle, slugifyTag } from '../../utils/article';
+import { contentDateValue } from '../../utils/seo';
 
 const allArticles = await getCollection('articles');
 const publishedArticles = allArticles
   .filter((a) => a.data.publish !== false)
-  .sort((a, b) => new Date(b.data.createdAt || '').getTime() - new Date(a.data.createdAt || '').getTime());
+  .sort((a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt));
 
 // Collect all unique tags
 const allTags = Array.from(

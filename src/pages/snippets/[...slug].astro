@@ -8,13 +8,15 @@ import { canonicalForPath } from '../../utils/seo';
 
 export async function getStaticPaths() {
   const snippets = await getCollection('snippets');
-  return snippets.map((entry) => {
-    const { prev, next } = getAdjacentEntries(snippets, entry.slug);
-    return {
-      params: { slug: entry.slug },
-      props: { entry, prev, next },
-    };
-  });
+  return snippets
+    .filter((entry) => entry.data.publish !== false)
+    .map((entry) => {
+      const { prev, next } = getAdjacentEntries(snippets, entry.slug);
+      return {
+        params: { slug: entry.slug },
+        props: { entry, prev, next },
+      };
+    });
 }
 
 const { entry, prev, next } = Astro.props;

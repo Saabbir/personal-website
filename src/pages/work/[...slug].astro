@@ -5,10 +5,12 @@ import { workCover } from '../../utils/work';
 
 export async function getStaticPaths() {
   const workEntries = await getCollection('work');
-  return workEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  return workEntries
+    .filter((entry) => entry.data.publish !== false)
+    .map((entry) => ({
+      params: { slug: entry.slug },
+      props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;

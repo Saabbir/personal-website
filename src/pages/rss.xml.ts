@@ -1,11 +1,12 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { contentDateValue, parseContentDate } from '../utils/seo';
 
 export async function GET(context: { site: string }) {
   const articles = await getCollection('articles');
   const publishedArticles = articles
     .filter((a) => a.data.publish !== false)
-    .sort((a, b) => new Date(b.data.createdAt || '').getTime() - new Date(a.data.createdAt || '').getTime());
+    .sort((a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt));
 
   return rss({
     title: 'Saabbir Hossain — Blog & Articles',
@@ -14,7 +15,7 @@ export async function GET(context: { site: string }) {
     items: publishedArticles.map((post) => ({
       title: post.data.title,
       description: post.data.description,
-      pubDate: new Date(post.data.createdAt || new Date()),
+      pubDate: parseContentDate(post.data.createdAt) || new Date(),
       link: post.data.external && post.data.externalUrl ? post.data.externalUrl : `/blog/${post.slug}/`,
     })),
     customData: `<language>en-us</language>`,

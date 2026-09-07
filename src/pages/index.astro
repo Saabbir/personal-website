@@ -3,12 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { getCollection } from 'astro:content';
 import { articleHref, articleLinkRel, isExternalArticle } from '../utils/article';
+import { contentDateValue } from '../utils/seo';
 import { workThumb } from '../utils/work';
 
 const allArticles = await getCollection('articles');
 const recentArticles = allArticles
   .filter(a => a.data.publish !== false)
-  .sort((a, b) => new Date(b.data.createdAt || '').getTime() - new Date(a.data.createdAt || '').getTime())
+  .sort((a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt))
   .slice(0, 3);
 
 const allWork = await getCollection('work');
