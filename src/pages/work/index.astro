@@ -1,10 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { contentDateValue } from '../../utils/seo';
 import { workThumb } from '../../utils/work';
 
 const allWork = await getCollection('work');
-const publishedWork = allWork.filter((w) => w.data.publish !== false);
+const publishedWork = allWork
+  .filter((w) => w.data.publish !== false)
+  .sort((a, b) => {
+    const featuredDiff = Number(b.data.featured) - Number(a.data.featured);
+    if (featuredDiff !== 0) return featuredDiff;
+    return contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt);
+  });
 ---
 
 <BaseLayout title="Work & Case Studies" description="Explore Shopify Plus, A/B Testing, and CRO case studies by Saabbir Hossain.">
@@ -30,6 +37,12 @@ const publishedWork = allWork.filter((w) => w.data.publish !== false);
                 width="414"
                 height="310"
               />
+            )}
+            {!workThumb(item.data.imgFolderName) && item.data.metric && (
+              <div class="c-card__metric-banner">
+                <div class="c-card__metric-value">{item.data.metric}</div>
+                <div class="c-card__metric-label">{item.data.metricLabel}</div>
+              </div>
             )}
             <div class="c-card__content">
               <div class="c-card__header">

@@ -15,17 +15,30 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const data = entry.data;
 ---
 
 <CaseStudyLayout
-  title={entry.data.title}
-  description={entry.data.description}
-  highlight={entry.data.highlight}
-  createdAt={entry.data.createdAt}
-  type={entry.data.type}
-  tools={entry.data.tools}
-  url={entry.data.url}
-  cover={workCover(entry.data.imgFolderName)}
+  title={data.title}
+  description={data.description}
+  highlight={data.highlight}
+  createdAt={data.createdAt}
+  type={data.type}
+  tools={data.tools}
+  url={data.url}
+  cover={workCover(data.imgFolderName)}
+  client={data.client}
+  eyebrow={data.eyebrow}
+  tool={data.tool}
+  duration={data.duration}
+  dateRange={data.dateRange}
+  visitors={data.visitors}
+  trafficSplit={data.trafficSplit}
+  caseLayout={data.caseLayout}
+  metric={data.metric}
+  metricLabel={data.metricLabel}
+  metrics={data.metrics}
+  download={data.download}
 >
   <Content />
 </CaseStudyLayout>

@@ -60,6 +60,8 @@ export default defineConfig({
     },
   },
   vite: {
+    // Avoid the root-owned leftover in node_modules/.vite that crashes Astro's logger.
+    cacheDir: 'node_modules/.astro-vite',
     css: {
       preprocessorOptions: {
         scss: {

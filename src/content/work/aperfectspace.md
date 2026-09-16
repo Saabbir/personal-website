@@ -4,6 +4,7 @@ title: A Perfect Space
 highlight: A PSD to HTML conversion project.
 description: A Perfect Space, a digital locations platform based in Melbourne, Australia, invited me via Upwork to build the HTML pages for both their admin and user interfaces. I subsequently built several public-facing pages, including About Us, How It Works, Contact Us, Team, and Privacy Policy.
 type: Contract
+client: A Perfect Space
 imgFolderName: aperfectspace
 featured: true
 publish: true

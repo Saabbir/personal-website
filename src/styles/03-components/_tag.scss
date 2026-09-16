@@ -37,4 +37,10 @@
     padding: 0.4rem 0.85rem;
     font-size: 0.9rem;
   }
+
+  &--accent {
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 28%, transparent);
+    color: var(--color-accent);
+  }
 }

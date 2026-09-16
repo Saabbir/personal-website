@@ -13,9 +13,15 @@ const recentArticles = allArticles
   .slice(0, 3);
 
 const allWork = await getCollection('work');
-const featuredWork = allWork
-  .filter(w => w.data.publish !== false)
-  .slice(0, 4);
+const publishedWork = allWork
+  .filter((w) => w.data.publish !== false)
+  .sort((a, b) => {
+    const featuredDiff = Number(b.data.featured) - Number(a.data.featured);
+    if (featuredDiff !== 0) return featuredDiff;
+    return contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt);
+  });
+const featuredHighlight = publishedWork.find((item) => item.data.metric) ?? publishedWork[0];
+const featuredRest = publishedWork.filter((item) => item.slug !== featuredHighlight?.slug).slice(0, 2);
 
 const allSnippets = await getCollection('snippets');
 const recentSnippets = allSnippets
@@ -128,6 +134,45 @@ const skillsCategories = [
     skills: ['Core Web Vitals (38%+ Speed Boost)', 'Lighthouse 90s+', 'Node.js / Express', 'MongoDB', 'Firebase', 'GraphQL', 'PHP']
   }
 ];
+
+const services = [
+  {
+    title: 'Shopify Theme Development & Customisation',
+    description: 'Custom and heavily modified Shopify themes built for speed, conversion, and long-term maintainability. Liquid, JavaScript, Shopify CLI — from greenfield builds to complex customisations on Dawn or bespoke themes.',
+    result: 'Sub-2s load times. Scalable architecture.',
+  },
+  {
+    title: 'Conversion Rate Optimisation & A/B Testing',
+    description: 'Data-driven experiments on PLPs, PDPs, checkout flows, and landing pages. I run the full cycle — hypothesis formation, variant design, implementation, statistical analysis, and iteration — using Convert, Optimizely, or VWO.',
+    result: 'Average 20–40% lift across experiments.',
+  },
+  {
+    title: 'Analytics, GA4 & Tag Management',
+    description: 'Full GA4 implementation, GTM container architecture, custom event tracking, enhanced ecommerce measurement, and reporting dashboards that surface actionable insight — not just data.',
+    result: 'Full funnel visibility. No blind spots.',
+  },
+  {
+    title: 'Frontend Development (React, Next.js)',
+    description: 'Modern, performant frontend builds using React, Next.js, TypeScript, and Tailwind CSS. From Shopify headless storefronts to analytics dashboards and custom web applications.',
+    result: 'Performant. Accessible. Production-ready.',
+  },
+];
+
+const processSteps = [
+  { num: '01', title: 'Discovery & Research', desc: 'Audit your analytics, heatmaps, and session recordings. Understand where users drop off and why — before writing a single line of code.' },
+  { num: '02', title: 'Hypothesis & Design', desc: 'Prioritise opportunities using ICE scoring. Design variations that test one clear change with a measurable, meaningful impact.' },
+  { num: '03', title: 'Build & Implement', desc: 'Develop the experiment with clean code and proper tracking baked in from day one. QA across devices and browsers before launch.' },
+  { num: '04', title: 'Analyse & Iterate', desc: 'Evaluate results with statistical rigour. Ship winners, document learnings, and feed insights into the next experiment cycle.' },
+];
+
+const whyMe = [
+  { title: 'CRO mindset in every line of code', desc: "I don't just build features; I build for conversion. Every decision is evaluated through a performance lens — not just engineering elegance." },
+  { title: 'End-to-end capability', desc: 'Discovery → Design → Dev → Tracking → Optimisation. One person, full funnel. No handoff gaps, no misaligned priorities between teams.' },
+  { title: 'Deep experimentation expertise', desc: 'Not just setting up tests. Designing experiments with proper statistical rigour using ICE scoring, segmentation, and rigorous post-test analysis.' },
+  { title: 'Shopify-native', desc: 'Liquid, Shopify CLI, Dawn, Metafields, custom apps. I live and breathe the Shopify ecosystem — and know its quirks inside out.' },
+  { title: 'Data-literate', desc: 'I can read a GA4 funnel report, interpret a confidence interval, and build a Looker Studio dashboard. Data shapes every decision.' },
+  { title: 'Fast, responsive, reliable', desc: 'Clear communication. Deadlines met. I operate with the accountability of an agency and the agility of a specialist. No surprises.' },
+];
 ---
 
 <BaseLayout>
@@ -139,15 +184,15 @@ const skillsCategories = [
         <div class="c-hero__content">
           <div class="c-hero__badge">
             <span class="c-hero__badge-dot"></span>
-            Optimizely Certified CRO Specialist & Shopify Lead
+            Senior Frontend Developer · CRO Expert · Shopify Specialist
           </div>
 
           <h1 class="c-hero__title">
-            Senior Frontend Engineer & <span class="c-hero__title-highlight">Shopify CRO Specialist</span>.
+            I build Shopify stores that <span class="c-hero__title-highlight">convert</span>.
           </h1>
 
           <p class="c-hero__bio">
-            Hi, I'm <strong>Saabbir Hossain</strong> — Sr. Software Engineer at <strong>EchoLogyx Ltd</strong> with 8+ years of experience leading Shopify Plus storefront development, 200+ Optimizely, A/B experiments, and high-performance frontend architecture.
+            Hi, I'm <strong>Saabbir Hossain</strong> — Sr. Software Engineer at <strong>EchoLogyx Ltd</strong>. 8+ years in frontend, 5+ years in Shopify CRO and A/B testing. I combine engineering precision with data-driven optimisation to turn traffic into revenue.
           </p>
 
           <div class="c-hero__actions">
@@ -156,7 +201,7 @@ const skillsCategories = [
                 Get in Touch
               </a>
               <a href="/work" class="c-btn c-btn--secondary c-btn--lg">
-                Explore Portfolio
+                See My Work
               </a>
             </div>
             <a
@@ -182,12 +227,12 @@ const skillsCategories = [
             <div class="c-hero__visual-label">A/B Tests Executed</div>
           </div>
           <div class="c-hero__visual-card">
-            <div class="c-hero__visual-number">+14%</div>
-            <div class="c-hero__visual-label">Average Order Value Uplift</div>
+            <div class="c-hero__visual-number">+50%</div>
+            <div class="c-hero__visual-label">Revenue per Visitor Lift</div>
           </div>
           <div class="c-hero__visual-card">
-            <div class="c-hero__visual-number">90s+</div>
-            <div class="c-hero__visual-label">Lighthouse Performance Gains</div>
+            <div class="c-hero__visual-number">+24%</div>
+            <div class="c-hero__visual-label">Average Order Value Uplift</div>
           </div>
         </div>
       </div>
@@ -214,19 +259,76 @@ const skillsCategories = [
     </div>
   </section>
 
-  <!-- Featured Case Studies -->
+  <!-- What I Do -->
   <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header">
+        <div class="l-section__subtitle">What I Do</div>
+        <h2 class="l-section__title">End-to-end expertise, from pixels to profit</h2>
+        <p class="u-text-muted" style="max-width: 620px;">
+          Not just a developer. Not just a CRO specialist. Both — and the combination makes the difference.
+        </p>
+      </div>
+
+      <div class="l-grid l-grid--2col">
+        {services.map((service) => (
+          <article class="c-card c-card--glass c-service-card">
+            <h3 class="c-card__title">{service.title}</h3>
+            <p class="c-card__body">{service.description}</p>
+            <p class="c-service-card__result">{service.result}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Case Studies -->
+  <section class="l-section l-section--alt" id="work">
     <div class="l-container">
       <div class="l-section__header l-section__header--split">
         <div>
           <div class="l-section__subtitle">Selected Work</div>
-          <h2 class="l-section__title">Case Studies & Projects</h2>
+          <h2 class="l-section__title">Real results. Real clients.</h2>
         </div>
         <a href="/work" class="c-btn c-btn--ghost">View All Work →</a>
       </div>
 
+      {featuredHighlight && (
+        <article class="c-card c-card--glass c-card--hoverable c-card--work c-card--work-metric u-mb-32">
+          <div class="c-card__metric-main">
+            <div class="c-card__header">
+              <span class="c-tag c-tag--accent">{featuredHighlight.data.type || 'Project'}</span>
+              {featuredHighlight.data.createdAt && <span style="font-size:0.85rem; color:var(--color-text-dim);">{featuredHighlight.data.createdAt}</span>}
+            </div>
+            {featuredHighlight.data.metric && (
+              <>
+                <div class="c-card__metric-value">{featuredHighlight.data.metric}</div>
+                <div class="c-card__metric-label">{featuredHighlight.data.metricLabel}</div>
+              </>
+            )}
+            <h3 class="c-card__title">
+              <a href={`/work/${featuredHighlight.slug}`}>{featuredHighlight.data.title}</a>
+            </h3>
+            <p class="c-card__body">
+              {featuredHighlight.data.highlight || featuredHighlight.data.description}
+            </p>
+            <span class="c-btn c-btn--ghost">Read Full Case Study →</span>
+          </div>
+          {featuredHighlight.data.metrics?.length > 0 && (
+            <div class="c-card__metric-aside">
+              {featuredHighlight.data.metrics.map((item) => (
+                <div class="c-card__metric-row">
+                  <div class="c-card__metric-row-value">{item.value}</div>
+                  <div class="c-card__metric-row-label">{item.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </article>
+      )}
+
       <div class="l-grid l-grid--2col">
-        {featuredWork.map((item) => (
+        {featuredRest.map((item) => (
           <article class="c-card c-card--glass c-card--hoverable c-card--work c-card--work-stack">
             {workThumb(item.data.imgFolderName) && (
               <img
@@ -268,6 +370,51 @@ const skillsCategories = [
                 </span>
               </div>
             </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header">
+        <div class="l-section__subtitle">How I Work</div>
+        <h2 class="l-section__title">A structured process. Predictable results.</h2>
+        <p class="u-text-muted" style="max-width: 620px;">
+          Here's exactly how every engagement runs — from first conversation to shipped winner.
+        </p>
+      </div>
+
+      <div class="c-process">
+        {processSteps.map((step) => (
+          <div class="c-process__item">
+            <span class="c-process__num">{step.num}</span>
+            <h3 class="c-process__title">{step.title}</h3>
+            <p class="c-process__desc">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Me -->
+  <section class="l-section l-section--alt">
+    <div class="l-container">
+      <div class="l-section__header">
+        <div class="l-section__subtitle">Why Work With Me</div>
+        <h2 class="l-section__title">Developer, analyst, and optimiser</h2>
+        <p class="u-text-muted" style="max-width: 620px;">
+          Most developers write code. Most CRO specialists run tests. I do both — and connect them with data.
+        </p>
+      </div>
+
+      <div class="l-grid l-grid--3col">
+        {whyMe.map((item) => (
+          <article class="c-card c-card--glass">
+            <h3 class="c-card__title">{item.title}</h3>
+            <p class="c-card__body" style="margin-bottom: 0;">{item.desc}</p>
           </article>
         ))}
       </div>
@@ -464,7 +611,7 @@ const skillsCategories = [
         <div class="l-section__subtitle">Get In Touch</div>
         <h2 class="l-section__title">Let's Work Together</h2>
         <p class="u-text-muted u-mt-16">
-          Have an eCommerce project, Shopify Plus optimization, or A/B testing campaign in mind? Send me a message directly below.
+          Have a Shopify build, CRO programme, or analytics overhaul in mind? Send a message below.
         </p>
       </div>
 

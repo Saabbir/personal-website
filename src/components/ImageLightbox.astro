@@ -1,0 +1,207 @@
+---
+---
+
+<dialog class="c-lightbox" data-lightbox aria-labelledby="lightbox-title">
+  <header class="c-lightbox__header">
+    <div class="c-lightbox__heading">
+      <h2 class="c-lightbox__title" id="lightbox-title">Image</h2>
+      <p class="c-lightbox__kicker" data-lightbox-kicker hidden></p>
+    </div>
+    <div class="c-lightbox__tools">
+      <p class="c-lightbox__count" data-lightbox-count>1 of 1</p>
+      <button class="c-lightbox__icon" type="button" data-lightbox-close aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="c-lightbox__main" data-lightbox-stage>
+    <button class="c-lightbox__nav c-lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Previous image">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+    </button>
+    <img class="c-lightbox__image" data-lightbox-image alt="">
+    <button class="c-lightbox__nav c-lightbox__nav--next" type="button" data-lightbox-next aria-label="Next image">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m9 18 6-6-6-6"></path>
+      </svg>
+    </button>
+  </div>
+
+  <footer class="c-lightbox__footer">
+    <p class="c-lightbox__caption" data-lightbox-caption></p>
+    <p class="c-lightbox__meta" data-lightbox-meta></p>
+  </footer>
+</dialog>
+
+<script>
+  type Slide = { src: string; alt: string; title: string; kicker: string; caption: string; meta: string };
+
+  function clean(raw: string | null | undefined) {
+    return (raw || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function captionParts(raw: string) {
+    const text = clean(raw);
+    if (!text) return { title: 'Image', meta: '' };
+    const parts = text.split('·').map((part) => part.trim()).filter(Boolean);
+    return { title: parts[0] || 'Image', meta: parts.slice(1).join(' · ') };
+  }
+
+  function labelFor(img: HTMLImageElement): Omit<Slide, 'src' | 'alt'> {
+    const card = img.closest('.c-case-variants__card');
+    if (card) {
+      const { title, meta } = captionParts(card.querySelector('.c-case-variants__label')?.textContent || '');
+      const caption = clean(card.querySelector('.c-case-variants__title')?.textContent);
+      const extra = clean(card.querySelector('.c-case-variants__meta')?.textContent);
+      return {
+        title,
+        kicker: meta,
+        caption,
+        meta: extra,
+      };
+    }
+
+    const figcaption = clean(img.closest('figure')?.querySelector('figcaption')?.textContent);
+    if (figcaption) {
+      const { title, meta } = captionParts(figcaption);
+      return { title, kicker: meta, caption: meta || title, meta: '' };
+    }
+
+    if (img.classList.contains('c-case__cover')) return { title: 'Cover', kicker: '', caption: clean(img.alt), meta: '' };
+
+    return { title: 'Image', kicker: '', caption: clean(img.alt) || 'Image', meta: '' };
+  }
+
+  function collectImages(root: ParentNode) {
+    return [...root.querySelectorAll<HTMLImageElement>('.c-case__main img')];
+  }
+
+  function initLightbox() {
+    const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const root = document.querySelector('.c-case');
+    if (!dialog || !root || dialog.dataset.ready === 'true') return;
+    dialog.dataset.ready = 'true';
+
+    const titleEl = dialog.querySelector('#lightbox-title');
+    const kickerEl = dialog.querySelector<HTMLElement>('[data-lightbox-kicker]');
+    const captionEl = dialog.querySelector<HTMLElement>('[data-lightbox-caption]');
+    const metaEl = dialog.querySelector<HTMLElement>('[data-lightbox-meta]');
+    const countEl = dialog.querySelector('[data-lightbox-count]');
+    const imageEl = dialog.querySelector<HTMLImageElement>('[data-lightbox-image]');
+    const prevBtn = dialog.querySelector<HTMLButtonElement>('[data-lightbox-prev]');
+    const nextBtn = dialog.querySelector<HTMLButtonElement>('[data-lightbox-next]');
+    const closeBtn = dialog.querySelector<HTMLButtonElement>('[data-lightbox-close]');
+    const stage = dialog.querySelector<HTMLElement>('[data-lightbox-stage]');
+    if (!titleEl || !kickerEl || !captionEl || !metaEl || !countEl || !imageEl || !prevBtn || !nextBtn || !closeBtn || !stage) return;
+
+    const slides: Slide[] = [];
+    let index = 0;
+    let lastTrigger: HTMLElement | null = null;
+
+    collectImages(root).forEach((img) => {
+      if (img.closest('.c-zoom')) return;
+      const { title, kicker, caption, meta } = labelFor(img);
+      const slideIndex = slides.push({ src: img.currentSrc || img.src, alt: img.alt, title, kicker, caption, meta }) - 1;
+
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'c-zoom';
+      trigger.setAttribute('aria-haspopup', 'dialog');
+      trigger.setAttribute('aria-label', `View ${title} larger`);
+      img.replaceWith(trigger);
+      trigger.append(img);
+
+      const hint = document.createElement('span');
+      hint.className = 'c-zoom__hint';
+      hint.setAttribute('aria-hidden', 'true');
+      hint.textContent = 'Click to zoom';
+      trigger.append(hint);
+
+      trigger.addEventListener('click', () => openAt(slideIndex, trigger));
+    });
+
+    if (!slides.length) return;
+
+    function render() {
+      const slide = slides[index];
+      imageEl.src = slide.src;
+      imageEl.alt = slide.alt;
+      titleEl.textContent = slide.title;
+      kickerEl.textContent = slide.kicker;
+      kickerEl.hidden = !slide.kicker;
+      captionEl.textContent = slide.caption;
+      captionEl.hidden = !slide.caption;
+      metaEl.textContent = slide.meta;
+      metaEl.hidden = !slide.meta;
+      countEl.textContent = `${index + 1} of ${slides.length}`;
+      const many = slides.length > 1;
+      prevBtn.hidden = !many;
+      nextBtn.hidden = !many;
+      const next = slides[(index + 1) % slides.length];
+      const prev = slides[(index - 1 + slides.length) % slides.length];
+      if (many) {
+        const preloadNext = new Image();
+        preloadNext.src = next.src;
+        const preloadPrev = new Image();
+        preloadPrev.src = prev.src;
+      }
+    }
+
+    function openAt(nextIndex: number, trigger?: HTMLElement) {
+      index = nextIndex;
+      lastTrigger = trigger || lastTrigger;
+      render();
+      if (!dialog.open) dialog.showModal();
+    }
+
+    function close() {
+      if (dialog.open) dialog.close();
+    }
+
+    function step(delta: number) {
+      if (slides.length < 2) return;
+      index = (index + delta + slides.length) % slides.length;
+      render();
+    }
+
+    prevBtn.addEventListener('click', () => step(-1));
+    nextBtn.addEventListener('click', () => step(1));
+    closeBtn.addEventListener('click', close);
+
+    stage.addEventListener('click', (event) => {
+      if (event.target === stage) close();
+    });
+
+    dialog.addEventListener('close', () => {
+      lastTrigger?.focus();
+    });
+
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        step(1);
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        step(-1);
+      }
+    });
+
+    let startX = 0;
+    stage.addEventListener('pointerdown', (event) => {
+      startX = event.clientX;
+    });
+    stage.addEventListener('pointerup', (event) => {
+      const delta = event.clientX - startX;
+      if (Math.abs(delta) < 50) return;
+      step(delta < 0 ? 1 : -1);
+    });
+  }
+
+  initLightbox();
+  document.addEventListener('astro:after-swap', initLightbox);
+</script>

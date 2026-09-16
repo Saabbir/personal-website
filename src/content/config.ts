@@ -33,6 +33,28 @@ const workCollection = defineCollection({
     category: z.array(z.string()).optional().default([]),
     tools: z.array(z.string()).optional().default([]),
     layout: z.union([z.string(), z.null()]).optional(),
+    client: z.string().optional(),
+    eyebrow: z.string().optional(),
+    tool: z.string().optional(),
+    duration: z.string().optional(),
+    dateRange: z.string().optional(),
+    visitors: z.union([z.string(), z.number()]).optional(),
+    trafficSplit: z.string().optional(),
+    caseLayout: z.enum(['ab-test', 'shopify', 'analytics', 'other']).optional(),
+    metric: z.string().optional(),
+    metricLabel: z.string().optional(),
+    metrics: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+      baseline: z.string().optional(),
+      variation: z.string().optional(),
+      featured: z.boolean().optional(),
+    })).optional().default([]),
+    download: z.object({
+      href: z.string(),
+      filename: z.string().optional(),
+      label: z.string().optional(),
+    }).optional(),
   }),
 });
 

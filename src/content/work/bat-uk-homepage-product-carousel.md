@@ -4,6 +4,9 @@ title: Homepage Product Carousel
 highlight: An A/B test hypothesis to perform on BAT UK site
 description:
 type: A/B Testing
+client: BAT UK
+tool: Adobe Target
+dateRange: Sep 2023
 imgFolderName: bat-uk-homepage-product-carousel
 featured: true
 pagination: false
@@ -18,6 +21,18 @@ tools:
   - SCSS
   - JavaScript
   - Adobe Target
+metric: "+35%"
+metricLabel: Add to basket
+metrics:
+  - label: Add to basket
+    value: "+35%"
+    featured: true
+  - label: Product page views
+    value: "+12.3%"
+  - label: Checkout visits
+    value: "+18%"
+  - label: Transactions
+    value: "+11.6%"
 ---
 
 ## The Problem

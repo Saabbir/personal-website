@@ -16,6 +16,7 @@
 @use '03-components/button';
 @use '03-components/card';
 @use '03-components/case';
+@use '03-components/case-body';
 @use '03-components/feature';
 @use '03-components/nav';
 @use '03-components/hero';
@@ -30,6 +31,8 @@
 @use '03-components/tag';
 @use '03-components/clients';
 @use '03-components/testimonial';
+@use '03-components/process';
+@use '03-components/lightbox';
 
 // 04-Layout
 @use '04-layout/grid';
