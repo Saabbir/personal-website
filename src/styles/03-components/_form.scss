@@ -44,6 +44,31 @@
     resize: vertical;
   }
 
+  &__submit {
+    position: relative;
+
+    &[data-sending='true'] {
+      cursor: progress;
+    }
+  }
+
+  // Hidden until the button is in its sending state, so it doesn't take up
+  // space or get announced at rest.
+  &__spinner {
+    display: none;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.6rem;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: c-form-spin 0.7s linear infinite;
+
+    .c-form__submit[data-sending='true'] & {
+      display: inline-block;
+    }
+  }
+
   &__feedback {
     padding: 1rem;
     border-radius: $radius-md;
@@ -61,5 +86,20 @@
       border: 1px solid rgba(239, 68, 68, 0.3);
       color: #ef4444;
     }
+  }
+}
+
+@keyframes c-form-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// The global prefers-reduced-motion rule flattens animation-duration to
+// 0.01ms, which would leave a frozen ring. Hide it instead — the button
+// label already changes to "Sending…", so the state is still communicated.
+@media (prefers-reduced-motion: reduce) {
+  .c-form__submit[data-sending='true'] .c-form__spinner {
+    display: none;
   }
 }

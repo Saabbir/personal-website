@@ -42,14 +42,20 @@ const CONTACT_EMAIL = 'thesaabbir@gmail.com';
   <!-- Honeypot anti-spam field -->
   <input type="text" name="_gotcha" style="display:none !important;" tabindex="-1" autocomplete="off" />
 
-  <div id="form-feedback" class="c-form__feedback" role="status" aria-live="polite" style="display:none;"></div>
-
-  <button type="submit" class="c-btn c-btn--primary c-btn--lg" id="submit-btn">
-    Send message
+  <button type="submit" class="c-btn c-btn--primary c-btn--lg c-form__submit" id="submit-btn">
+    <span class="c-form__spinner" aria-hidden="true"></span>
+    <span class="c-form__submit-label">Send message</span>
   </button>
+
+  <div id="form-feedback" class="c-form__feedback" role="status" aria-live="polite" style="display:none;"></div>
 </form>
 
 <script>
+  // Capture phase on purpose. Astro's ViewTransitions router also listens for
+  // 'submit' on document, and with no action attribute it navigates to
+  // location.pathname — which reloaded the page and jumped to the top before
+  // this handler ever ran. Its listener is bubble-phase and bails on
+  // e.defaultPrevented, so preventDefault() during capture stops it.
   document.addEventListener('submit', async (e) => {
     const form = (e.target as Element).closest('#contact-form') as HTMLFormElement | null;
     if (!form) return;
@@ -81,8 +87,15 @@ const CONTACT_EMAIL = 'thesaabbir@gmail.com';
       return;
     }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
+    const label = submitBtn.querySelector('.c-form__submit-label');
+    const setSending = (sending: boolean) => {
+      submitBtn.disabled = sending;
+      submitBtn.dataset.sending = sending ? 'true' : 'false';
+      submitBtn.setAttribute('aria-busy', String(sending));
+      if (label) label.textContent = sending ? 'Sending…' : 'Send message';
+    };
+
+    setSending(true);
     feedback.style.display = 'none';
 
     const formData = new FormData(form);
@@ -111,8 +124,7 @@ const CONTACT_EMAIL = 'thesaabbir@gmail.com';
     } catch (err) {
       failed();
     } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send message';
+      setSending(false);
     }
-  });
+  }, true);
 </script>
