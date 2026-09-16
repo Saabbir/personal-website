@@ -106,13 +106,9 @@ handles both and renders "May 2026", but new content should be ISO.
 
 ---
 
-## 4. Known state
+## 4. Why things are the way they are
 
-- **Contact form** — live and verified working (Formspree `mkjgnwva`, returns
-  `{"ok":true}`). Was completely broken before Sep 2026: it posted to
-  `formspree.io/f/thesaabbir@gmail.com`, which 404s, and showed a success
-  message anyway. Every enquiry was lost.
-- **Testimonials** — 2 on the homepage. A third ("A Perfect Space Team") was
-  dropped as the weakest and its role was overstated.
-- **Client logo row** — Optimizely and Shopify Plus were removed. They're tools
-  you use, not companies that hired you, and mixing them undermines the row.
+Non-obvious choices — why Optimizely isn't in the client logo row, why the
+contact form listener uses the capture phase, why older work is unpublished —
+are recorded in [decisions.md](decisions.md). Read it before "fixing"
+something that looks like an oversight.

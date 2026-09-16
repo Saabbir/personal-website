@@ -28,7 +28,9 @@ Non-negotiables:
 - **Case studies follow the Wax London shape**, including the
   "What this does not prove" section. Don't drop the caveats.
 
-Outstanding work and project state: [`docs/backlog.md`](docs/backlog.md).
+Outstanding work: [`docs/backlog.md`](docs/backlog.md).
+Why non-obvious things are the way they are — read before "fixing" something
+that looks like an oversight: [`docs/decisions.md`](docs/decisions.md).
 
 ---
 
