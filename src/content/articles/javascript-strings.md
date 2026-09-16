@@ -1,7 +1,6 @@
 ---
 title: JavaScript Strings
 description: Learn how to work with text in JavaScript.
-featuredImg: js-strings.jpg
 createdAt: 01/01/2021
 publish: false
 tags:
