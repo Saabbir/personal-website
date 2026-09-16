@@ -81,23 +81,28 @@
     return [...root.querySelectorAll<HTMLImageElement>('.c-case__main img')];
   }
 
+  function must<T>(el: T | null, name: string): T {
+    if (!el) throw new Error(`Lightbox missing ${name}`);
+    return el;
+  }
+
   function initLightbox() {
-    const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const dialogNode = document.querySelector<HTMLDialogElement>('[data-lightbox]');
     const root = document.querySelector('.c-case');
-    if (!dialog || !root || dialog.dataset.ready === 'true') return;
+    if (!dialogNode || !root || dialogNode.dataset.ready === 'true') return;
+    const dialog = dialogNode;
     dialog.dataset.ready = 'true';
 
-    const titleEl = dialog.querySelector('#lightbox-title');
-    const kickerEl = dialog.querySelector<HTMLElement>('[data-lightbox-kicker]');
-    const captionEl = dialog.querySelector<HTMLElement>('[data-lightbox-caption]');
-    const metaEl = dialog.querySelector<HTMLElement>('[data-lightbox-meta]');
-    const countEl = dialog.querySelector('[data-lightbox-count]');
-    const imageEl = dialog.querySelector<HTMLImageElement>('[data-lightbox-image]');
-    const prevBtn = dialog.querySelector<HTMLButtonElement>('[data-lightbox-prev]');
-    const nextBtn = dialog.querySelector<HTMLButtonElement>('[data-lightbox-next]');
-    const closeBtn = dialog.querySelector<HTMLButtonElement>('[data-lightbox-close]');
-    const stage = dialog.querySelector<HTMLElement>('[data-lightbox-stage]');
-    if (!titleEl || !kickerEl || !captionEl || !metaEl || !countEl || !imageEl || !prevBtn || !nextBtn || !closeBtn || !stage) return;
+    const titleEl = must(dialog.querySelector('#lightbox-title'), 'title');
+    const kickerEl = must(dialog.querySelector<HTMLElement>('[data-lightbox-kicker]'), 'kicker');
+    const captionEl = must(dialog.querySelector<HTMLElement>('[data-lightbox-caption]'), 'caption');
+    const metaEl = must(dialog.querySelector<HTMLElement>('[data-lightbox-meta]'), 'meta');
+    const countEl = must(dialog.querySelector('[data-lightbox-count]'), 'count');
+    const imageEl = must(dialog.querySelector<HTMLImageElement>('[data-lightbox-image]'), 'image');
+    const prevBtn = must(dialog.querySelector<HTMLButtonElement>('[data-lightbox-prev]'), 'prev');
+    const nextBtn = must(dialog.querySelector<HTMLButtonElement>('[data-lightbox-next]'), 'next');
+    const closeBtn = must(dialog.querySelector<HTMLButtonElement>('[data-lightbox-close]'), 'close');
+    const stage = must(dialog.querySelector<HTMLElement>('[data-lightbox-stage]'), 'stage');
 
     const slides: Slide[] = [];
     let index = 0;
