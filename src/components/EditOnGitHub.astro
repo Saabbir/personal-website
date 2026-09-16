@@ -1,0 +1,25 @@
+---
+// "Edit on GitHub" link, shared by articles and snippets.
+//
+// `path` is the file's path under src/content/, including its extension —
+// pass a content entry's `id` (e.g. "detect-horizontal-swipe.md") rather than
+// its slug, so the link doesn't 404 the first time something is written
+// as .mdx instead of .md.
+interface Props {
+  path: string;
+  label?: string;
+}
+
+const { path, label = 'Edit on GitHub' } = Astro.props;
+const href = `https://github.com/Saabbir/personal-website/edit/main/src/content/${path}`;
+---
+
+<div class="c-edit-link">
+  <a href={href} target="_blank" rel="noopener noreferrer" class="c-edit-link__anchor">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 20h9"></path>
+      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+    </svg>
+    {label}
+  </a>
+</div>

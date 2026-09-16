@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import Pager from '../../components/Pager.astro';
 import GiscusComments from '../../components/GiscusComments.astro';
+import EditOnGitHub from '../../components/EditOnGitHub.astro';
 import { getAdjacentEntries } from '../../utils/adjacent';
 import { canonicalForPath } from '../../utils/seo';
 
@@ -54,6 +55,7 @@ const pageUrl = canonicalForPath(Astro.url.pathname);
             ))}
           </div>
         )}
+        <EditOnGitHub path={`snippets/${entry.id}`} label="Improve this snippet on GitHub" />
       </header>
 
       <div class="c-prose">

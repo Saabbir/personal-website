@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import GiscusComments from '../components/GiscusComments.astro';
 import Pager from '../components/Pager.astro';
+import EditOnGitHub from '../components/EditOnGitHub.astro';
 import type { AdjacentItem } from '../utils/adjacent';
 import { articleCanonicalUrl, canonicalForPath, formatDisplayDate, toIsoDate } from '../utils/seo';
 import { slugifyTag } from '../utils/article';
@@ -20,13 +21,14 @@ interface Props {
   originalSource?: string;
   originalUrl?: string;
   ogImage?: string;
+  /** Content entry id, e.g. "my-post.md" — includes the extension. */
+  fileId?: string;
 }
 
-const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read", prev = null, next = null, originalSource, originalUrl, ogImage = '/images/og/writing.png' } = Astro.props;
+const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read", prev = null, next = null, originalSource, originalUrl, ogImage = '/images/og/writing.png', fileId } = Astro.props;
 const pageUrl = canonicalForPath(Astro.url.pathname);
 const canonicalUrl = articleCanonicalUrl(Astro.url.pathname, originalUrl);
 const publishedTime = toIsoDate(createdAt);
-const githubEditUrl = `https://github.com/Saabbir/personal-website/edit/main/src/content/articles/${slug}.md`;
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -104,18 +106,7 @@ const articleSchema = {
           </div>
         )}
 
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-top:1rem; border-top:1px solid var(--color-border-subtle); font-size:0.85rem;">
-          <a
-            href={githubEditUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="u-text-muted"
-            style="display:inline-flex; align-items:center; gap:0.4rem;"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-            Edit on GitHub
-          </a>
-        </div>
+        <EditOnGitHub path={`articles/${fileId || `${slug}.md`}`} />
       </header>
 
       <!-- Table of Contents -->
