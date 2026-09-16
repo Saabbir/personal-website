@@ -296,6 +296,13 @@ declare module 'astro:content' {
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
+"raab-vital-theme-build.md": {
+	id: "raab-vital-theme-build.md";
+  slug: "raab-vital-theme-build";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
 "wax-london-homepage-performance.md": {
 	id: "wax-london-homepage-performance.md";
   slug: "wax-london-homepage-performance";

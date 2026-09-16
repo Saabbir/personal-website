@@ -17,6 +17,13 @@
     text-align: center;
   }
 
+  &__note {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+    text-align: center;
+  }
+
   &__marquee {
     display: flex;
     width: 100%;

@@ -2,18 +2,35 @@
 import { getCollection } from 'astro:content';
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import { workCover } from '../../utils/work';
+import { ogImageFor } from '../../utils/seo';
 
 export async function getStaticPaths() {
-  const workEntries = await getCollection('work');
-  return workEntries
-    .filter((entry) => entry.data.publish !== false)
-    .map((entry) => ({
+  const workEntries = (await getCollection('work')).filter(
+    (entry) => entry.data.publish !== false,
+  );
+
+  return workEntries.map((entry) => {
+    // Same client first, then anything of the same type. The three Wax London
+    // studies used to be dead ends — nothing linked them to each other.
+    const others = workEntries.filter((item) => item.slug !== entry.slug);
+    const sameClient = others.filter(
+      (item) => entry.data.client && item.data.client === entry.data.client,
+    );
+    const sameType = others.filter(
+      (item) => !sameClient.includes(item) && item.data.type === entry.data.type,
+    );
+    const rest = others.filter(
+      (item) => !sameClient.includes(item) && !sameType.includes(item),
+    );
+
+    return {
       params: { slug: entry.slug },
-      props: { entry },
-    }));
+      props: { entry, related: [...sameClient, ...sameType, ...rest].slice(0, 2) },
+    };
+  });
 }
 
-const { entry } = Astro.props;
+const { entry, related } = Astro.props;
 const { Content } = await entry.render();
 const data = entry.data;
 ---
@@ -40,6 +57,15 @@ const data = entry.data;
   metricLabel={data.metricLabel}
   metrics={data.metrics}
   download={data.download}
+  ogImage={ogImageFor(entry.slug, data.ogImage)}
+  related={related.map((item) => ({
+    slug: item.slug,
+    title: item.data.title,
+    highlight: item.data.highlight || item.data.description,
+    type: item.data.type,
+    metric: item.data.metric,
+    metricLabel: item.data.metricLabel,
+  }))}
 >
   <Content />
 </CaseStudyLayout>

@@ -1,5 +1,11 @@
 // Main SCSS Entry File - Saabbir Portfolio & Blog
 
+// Fonts, self-hosted. These used to come from fonts.googleapis.com as a
+// render-blocking stylesheet on a third-party origin — and since the hero
+// LCP is text, the font request was the LCP. Variable files, one each.
+@use '@fontsource-variable/plus-jakarta-sans/index.css' as font-body;
+@use '@fontsource-variable/outfit/index.css' as font-heading;
+
 // 01-Config
 @use '01-config/tokens';
 @use '01-config/variables';
@@ -33,6 +39,7 @@
 @use '03-components/testimonial';
 @use '03-components/process';
 @use '03-components/lightbox';
+@use '03-components/about';
 
 // 04-Layout
 @use '04-layout/grid';

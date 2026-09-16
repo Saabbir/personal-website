@@ -22,9 +22,11 @@ $color-light-text: #0f172a;
 $color-light-muted: #64748b;
 
 // Typography Tokens
-$font-family-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-$font-family-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-$font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
+$font-family-heading: 'Outfit Variable', 'Plus Jakarta Sans Variable', system-ui, -apple-system, sans-serif;
+$font-family-body: 'Plus Jakarta Sans Variable', system-ui, -apple-system, sans-serif;
+// System mono: a whole extra webfont for the handful of pages with code
+// blocks wasn't worth the bytes on every other page.
+$font-family-code: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
 
 // Spacing Tokens
 $space-xs: 0.25rem; // 4px

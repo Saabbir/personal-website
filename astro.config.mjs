@@ -4,6 +4,53 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// astro:content isn't importable from the config, so read the frontmatter
+// dates straight off disk to give each content URL a real <lastmod>.
+function contentLastmods(siteUrl) {
+  const map = new Map();
+  const collections = [
+    ['articles', 'blog'],
+    ['work', 'work'],
+    ['snippets', 'snippets'],
+  ];
+
+  for (const [collection, prefix] of collections) {
+    const dir = path.join('src', 'content', collection);
+    if (!fs.existsSync(dir)) continue;
+
+    for (const file of fs.readdirSync(dir)) {
+      if (!/\.mdx?$/.test(file)) continue;
+      const raw = fs.readFileSync(path.join(dir, file), 'utf8');
+      const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      if (!match) continue;
+
+      const dateLine = match[1].match(/^createdAt:\s*(.+)$/m);
+      if (!dateLine) continue;
+
+      const iso = frontmatterDateToIso(dateLine[1].trim().replace(/^['"]|['"]$/g, ''));
+      if (!iso) continue;
+
+      const slug = file.replace(/\.mdx?$/, '');
+      map.set(`${siteUrl}/${prefix}/${slug}/`, iso);
+    }
+  }
+
+  return map;
+}
+
+// Frontmatter dates come in three shapes: "01/09/2021", "12 January 2026"
+// and ISO. Mirrors toIsoDate() in src/utils/seo.ts.
+function frontmatterDateToIso(value) {
+  const dmy = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (dmy) {
+    const [, day, month, year] = dmy;
+    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  }
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toISOString().slice(0, 10);
+}
+
 function isIndexablePathname(pathname) {
   const normalized = pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
   if (normalized === '404' || normalized === '404.html') return false;
@@ -24,6 +71,9 @@ function customSitemapIntegration() {
     hooks: {
       'astro:build:done': async ({ dir, pages }) => {
         const siteUrl = 'https://saabbir.com';
+
+        const lastmods = contentLastmods(siteUrl);
+
         const pageUrls = [...new Set(
           pages
             .map((p) => p.pathname || '')
@@ -33,7 +83,12 @@ function customSitemapIntegration() {
 
         const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pageUrls.map((url) => `  <url><loc>${url}</loc></url>`).join('\n')}
+${pageUrls.map((url) => {
+  const lastmod = lastmods.get(url);
+  return lastmod
+    ? `  <url><loc>${url}</loc><lastmod>${lastmod}</lastmod></url>`
+    : `  <url><loc>${url}</loc></url>`;
+}).join('\n')}
 </urlset>
 `;
 

@@ -4,7 +4,7 @@ import ShareButtons from '../components/ShareButtons.astro';
 import GiscusComments from '../components/GiscusComments.astro';
 import Pager from '../components/Pager.astro';
 import type { AdjacentItem } from '../utils/adjacent';
-import { articleCanonicalUrl, canonicalForPath, toIsoDate } from '../utils/seo';
+import { articleCanonicalUrl, canonicalForPath, formatDisplayDate, toIsoDate } from '../utils/seo';
 import { slugifyTag } from '../utils/article';
 
 interface Props {
@@ -19,9 +19,10 @@ interface Props {
   next?: AdjacentItem | null;
   originalSource?: string;
   originalUrl?: string;
+  ogImage?: string;
 }
 
-const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read", prev = null, next = null, originalSource, originalUrl } = Astro.props;
+const { title, description, createdAt, tags = [], slug, headings = [], readTime = "3 min read", prev = null, next = null, originalSource, originalUrl, ogImage = '/images/og/writing.png' } = Astro.props;
 const pageUrl = canonicalForPath(Astro.url.pathname);
 const canonicalUrl = articleCanonicalUrl(Astro.url.pathname, originalUrl);
 const publishedTime = toIsoDate(createdAt);
@@ -33,7 +34,7 @@ const articleSchema = {
   "headline": title,
   "description": description || "",
   "url": canonicalUrl,
-  "image": "https://saabbir.com/images/cv-headshot.png",
+  "image": new URL(ogImage, 'https://saabbir.com').href,
   "author": {
     "@type": "Person",
     "name": "Saabbir Hossain",
@@ -53,7 +54,15 @@ const articleSchema = {
 };
 ---
 
-<BaseLayout title={title} description={description || undefined} type="article" canonicalUrl={canonicalUrl} publishedTime={publishedTime}>
+<BaseLayout
+  title={title}
+  description={description || undefined}
+  type="article"
+  canonicalUrl={canonicalUrl}
+  publishedTime={publishedTime}
+  image={ogImage}
+  imageAlt={title}
+>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   
   <article class="l-section">
@@ -61,7 +70,7 @@ const articleSchema = {
       <!-- Article Header -->
       <header class="u-mb-32">
         <div style="display:flex; align-items:center; gap:0.75rem; font-size:0.85rem; color:var(--color-text-dim); margin-bottom:1rem;">
-          {createdAt && <span>{createdAt}</span>}
+          {createdAt && <span>{formatDisplayDate(createdAt)}</span>}
           <span>•</span>
           <span style="color:var(--color-accent); font-weight:600;">{readTime}</span>
         </div>
@@ -139,15 +148,19 @@ const articleSchema = {
       <div class="c-card c-card--glass c-author">
         <img
           class="c-author__photo"
-          src="/images/cv-headshot.png"
-          alt="Saabbir Hossain"
+          src="/images/cv-headshot-160.webp"
+          alt=""
           width="80"
           height="80"
+          loading="lazy"
+          decoding="async"
         />
         <div class="c-author__body">
-          <h4 class="c-author__name">Written by Saabbir Hossain</h4>
+          <p class="c-author__name">Written by Saabbir Hossain</p>
           <p class="c-author__bio">
-            Sr. Software Engineer at EchoLogyx Ltd, CRO-driven Shopify Plus Developer and Optimizely Certified A/B Testing Expert based in Bangladesh.
+            I build Shopify storefronts from Dhaka, make them faster, and run
+            A/B tests. I mostly write about things that broke and what fixed them.
+            <a href="/about">More about me →</a>
           </p>
         </div>
       </div>

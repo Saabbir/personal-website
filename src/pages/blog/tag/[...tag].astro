@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { formatDisplayDate } from '../../../utils/seo';
 import { articleHref, articleLinkRel, isExternalArticle, slugifyTag } from '../../../utils/article';
 
 export async function getStaticPaths() {
@@ -46,7 +47,7 @@ const { tag, articles } = Astro.props;
         {articles.map((article) => (
           <article class="c-card c-card--glass c-card--hoverable c-card--article">
             <div class="c-card__meta">
-              {article.data.createdAt && <span>{article.data.createdAt}</span>}
+              {article.data.createdAt && <span>{formatDisplayDate(article.data.createdAt)}</span>}
             </div>
 
             <div class="c-card__main">

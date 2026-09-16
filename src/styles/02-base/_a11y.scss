@@ -11,6 +11,25 @@
   border: 0 !important;
 }
 
+// Skip link: first thing in the tab order, visible only when focused.
+.u-skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  padding: 0.85rem 1.35rem;
+  background: var(--color-accent);
+  color: #0a0f1d;
+  font-weight: 700;
+  border-bottom-right-radius: 8px;
+  transform: translateY(-120%);
+  transition: transform 0.15s ease;
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
 // Focus Visible Styles for WCAG 2.1 AA Compliance
 :focus-visible {
   outline: 2px solid var(--color-accent) !important;

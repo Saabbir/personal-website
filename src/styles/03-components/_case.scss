@@ -491,3 +491,81 @@
     }
   }
 }
+
+// "More work" block above the case-study CTA. The three Wax London studies
+// were previously dead ends with nothing linking them together.
+.c-case-related {
+  // Bottom padding matches .c-case__body so the cards don't butt straight
+  // up against the dark CTA band below.
+  padding: 4rem 0 4.5rem;
+
+  @media (min-width: 768px) {
+    padding-bottom: 6.5rem;
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1.75rem;
+    color: var(--color-text-main);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 1.5rem;
+    border-radius: $radius-lg;
+    border: 1px solid var(--color-border-glass);
+    background: var(--color-surface-glass);
+    text-decoration: none;
+    transition: border-color $transition-base, transform $transition-base;
+
+    &:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__metric {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: $font-family-heading;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  &__metric-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-dim);
+  }
+
+  &__name {
+    font-family: $font-family-heading;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+  }
+
+  &__copy {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+}

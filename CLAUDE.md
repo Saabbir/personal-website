@@ -3,6 +3,8 @@
 This is an Astro 4+ portfolio and blog project using SCSS (BEM) and MDX Content Collections.
 
 - Read `AGENTS.md` before making any code modifications.
+- Read `docs/content-guide.md` before writing or editing any user-facing copy.
+- `docs/backlog.md` has outstanding work and current project state.
 - Commands:
   - Development server: `npm run dev`
   - Production build: `npm run build`

@@ -20,6 +20,43 @@
     }
   }
 
+  &__bio {
+    max-width: 42ch;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  &__heading {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-text-main);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    span {
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    gap: 1.5rem;
+  }
+
   &__bottom {
     display: flex;
     flex-wrap: wrap;

@@ -6,6 +6,32 @@ All AI assistants (Antigravity, Cursor, GitHub Copilot, Claude, Windsurf) workin
 
 ---
 
+## 0. Content & Voice (read this first)
+
+**Before writing or editing ANY user-facing text, read [`docs/content-guide.md`](docs/content-guide.md).**
+
+The site was rewritten in Sep 2026 to remove agency-brochure English. The voice
+is: *a senior developer explaining something to a smart friend over coffee.*
+First person, plain words, specific numbers, honest caveats.
+
+Non-negotiables:
+- **First person.** "I build Shopify themes", never "Saabbir Hossain builds…"
+- **No marketing language.** There's a banned-words list in the content guide,
+  with a grep to check against. Run it before finishing.
+- **Every number is attributed.** A figure with no client, sample size and date
+  range reads as invented. Never state aggregate performance claims.
+- **Never invent biography.** Job history, certifications and education are in
+  the repo — use those. Anything personal (why he moved into CRO, what he got
+  wrong, what he's learning) must come from him. If it isn't in the repo and he
+  hasn't said it, leave a `TODO(saabbir)` comment with a specific question
+  rather than writing plausible filler.
+- **Case studies follow the Wax London shape**, including the
+  "What this does not prove" section. Don't drop the caveats.
+
+Outstanding work and project state: [`docs/backlog.md`](docs/backlog.md).
+
+---
+
 ## 1. Core Framework & Architecture
 - **Framework**: **Astro 4+** configured for Static Site Generation (`output: 'static'`).
 - **Deployment Target**: GitHub Pages with custom domain (`https://saabbir.com`). All URLs must support static HTML rendering. The previous Nuxt 3 site is archived at `https://v1.saabbir.com`.

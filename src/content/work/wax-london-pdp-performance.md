@@ -138,19 +138,19 @@ I could not fix Largest Contentful Paint in this pass. The main photo still depe
           <div class="c-case-metrics__metric" role="cell">First Contentful Paint</div>
           <div class="c-case-metrics__value" role="cell">2.572s</div>
           <div class="c-case-metrics__value" role="cell">2.460s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−4.35%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−4.35%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Largest Contentful Paint</div>
           <div class="c-case-metrics__value" role="cell">3.772s</div>
           <div class="c-case-metrics__value" role="cell">3.661s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−2.94%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−2.94%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Speed Index</div>
           <div class="c-case-metrics__value" role="cell">8.008s</div>
           <div class="c-case-metrics__value" role="cell">6.633s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−17.17%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−17.17%<span class="u-sr-only"> (better)</span></span></div>
         </div>
       </div>
     </div>
@@ -209,31 +209,31 @@ I could not fix Largest Contentful Paint in this pass. The main photo still depe
           <div class="c-case-metrics__metric" role="cell">Start render</div>
           <div class="c-case-metrics__value" role="cell">1.600s</div>
           <div class="c-case-metrics__value" role="cell">1.200s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−25.0%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−25.0%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">First Contentful Paint</div>
           <div class="c-case-metrics__value" role="cell">1.609s</div>
           <div class="c-case-metrics__value" role="cell">1.268s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−21.2%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−21.2%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Largest Contentful Paint</div>
           <div class="c-case-metrics__value" role="cell">4.148s</div>
           <div class="c-case-metrics__value" role="cell">4.374s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--down">+5.4%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--down">+5.4%<span class="u-sr-only"> (worse)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Speed Index</div>
           <div class="c-case-metrics__value" role="cell">8.526s</div>
           <div class="c-case-metrics__value" role="cell">8.161s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−4.3%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−4.3%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Total Blocking Time</div>
           <div class="c-case-metrics__value" role="cell">0.330s</div>
           <div class="c-case-metrics__value" role="cell">0.278s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−15.8%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−15.8%<span class="u-sr-only"> (better)</span></span></div>
         </div>
       </div>
     </div>

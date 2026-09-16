@@ -86,6 +86,12 @@
     display: inline-block;
   }
 
+  &__lede {
+    max-width: 62ch;
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
   &__title {
     font-size: clamp(2.25rem, 4vw, 3.25rem);
     font-weight: 800;

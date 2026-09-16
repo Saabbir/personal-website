@@ -134,13 +134,13 @@ This was not a theme rewrite. I went after the first screen.
           <div class="c-case-metrics__metric" role="cell">Mobile Largest Contentful Paint</div>
           <div class="c-case-metrics__value" role="cell">3.0s</div>
           <div class="c-case-metrics__value" role="cell">2.2s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−26.7%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−26.7%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Desktop Largest Contentful Paint</div>
           <div class="c-case-metrics__value" role="cell">3.2s</div>
           <div class="c-case-metrics__value" role="cell">2.8s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−12.5%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−12.5%<span class="u-sr-only"> (better)</span></span></div>
         </div>
       </div>
     </div>
@@ -187,13 +187,13 @@ This was not a theme rewrite. I went after the first screen.
           <div class="c-case-metrics__metric" role="cell">Mobile Cumulative Layout Shift</div>
           <div class="c-case-metrics__value" role="cell">0.003</div>
           <div class="c-case-metrics__value" role="cell">0</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">Resolved</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">Resolved<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Desktop Cumulative Layout Shift</div>
           <div class="c-case-metrics__value" role="cell">0.002</div>
           <div class="c-case-metrics__value" role="cell">0.002</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--flat">No change</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--flat">No change<span class="u-sr-only"> (no real change)</span></span></div>
         </div>
       </div>
     </div>
@@ -234,25 +234,25 @@ This was not a theme rewrite. I went after the first screen.
           <div class="c-case-metrics__metric" role="cell">Speed Index</div>
           <div class="c-case-metrics__value" role="cell">6.603s</div>
           <div class="c-case-metrics__value" role="cell">2.838s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−57.0%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−57.0%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Largest Contentful Paint</div>
           <div class="c-case-metrics__value" role="cell">3.129s</div>
           <div class="c-case-metrics__value" role="cell">2.375s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−24.1%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−24.1%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Cumulative Layout Shift</div>
           <div class="c-case-metrics__value" role="cell">0.002</div>
           <div class="c-case-metrics__value" role="cell">0</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">Resolved</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">Resolved<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Total Blocking Time</div>
           <div class="c-case-metrics__value" role="cell">0.387s</div>
           <div class="c-case-metrics__value" role="cell">0.352s</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−9.0%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">−9.0%<span class="u-sr-only"> (better)</span></span></div>
         </div>
       </div>
     </div>

@@ -53,6 +53,20 @@
     }
   }
 
+  // Replaces the inline font-size/colour that used to sit on card dates.
+  &__date {
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+  }
+
+  // The one-line result summary above a case study's description.
+  &__highlight {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin-bottom: 0.75rem;
+  }
+
   &__meta {
     display: flex;
     align-items: center;
@@ -60,6 +74,11 @@
     font-size: 0.85rem;
     color: var(--color-text-dim);
     margin-bottom: 0.75rem;
+  }
+
+  &__meta-source {
+    color: var(--color-accent);
+    font-weight: 600;
   }
 
   &__body {

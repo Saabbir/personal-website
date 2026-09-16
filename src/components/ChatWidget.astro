@@ -33,19 +33,33 @@
 </div>
 
 <script>
-  document.addEventListener('click', (e) => {
-    const target = e.target as Element;
+  const setChatState = (open: boolean, returnFocus = false) => {
     const chatTrigger = document.getElementById('chat-trigger');
     const chatMenu = document.getElementById('chat-menu');
     if (!chatTrigger || !chatMenu) return;
 
+    chatMenu.classList.toggle('c-chat-widget__menu--open', open);
+    chatTrigger.setAttribute('aria-expanded', String(open));
+    chatTrigger.setAttribute('aria-label', open ? 'Close contact options' : 'Open contact options');
+    if (returnFocus) chatTrigger.focus();
+  };
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element;
+    const chatMenu = document.getElementById('chat-menu');
+    if (!chatMenu) return;
+
     if (target.closest('#chat-trigger')) {
-      chatMenu.classList.toggle('c-chat-widget__menu--open');
+      setChatState(!chatMenu.classList.contains('c-chat-widget__menu--open'));
       return;
     }
 
-    if (!target.closest('.c-chat-widget')) {
-      chatMenu.classList.remove('c-chat-widget__menu--open');
-    }
+    if (!target.closest('.c-chat-widget')) setChatState(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const chatMenu = document.getElementById('chat-menu');
+    if (chatMenu?.classList.contains('c-chat-widget__menu--open')) setChatState(false, true);
   });
 </script>

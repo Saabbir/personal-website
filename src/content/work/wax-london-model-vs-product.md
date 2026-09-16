@@ -76,6 +76,7 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
 <section class="c-case-variants">
   <h2 id="test-setup"><span class="c-case-kicker">Test setup</span> What I changed</h2>
   <p>Two versions. Same six pages. Traffic split evenly. Convert sent all visitors into the test. The only change was the first image on the product tile, using Wax London's Model view toggle. Off for control. On for the variation. Same products, same layout, same copy.</p>
+  <p>If you want the setup rather than the result, I wrote up <a href="https://www.echologyx.com/blog/how-to-integrate-convert-a-b-testing-with-shopify-using-the-convert-shopify-app" target="_blank" rel="noopener noreferrer">how to wire Convert into Shopify</a> separately.</p>
   <article class="c-case-variants__card">
     <figure class="c-case-variants__shot">
       <img src="/images/work/wax-london-model-vs-product/control.png" alt="Wax London suiting category page with Model view off. Two Fintry linen blazers shown as hanger shots, each priced at $420." width="964" height="706" loading="lazy" decoding="async">
@@ -116,67 +117,67 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
           <div class="c-case-metrics__metric" role="cell">Revenue per visitor</div>
           <div class="c-case-metrics__value" role="cell">$10.56</div>
           <div class="c-case-metrics__value" role="cell">$15.87</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+50.28%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+50.28%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Total revenue</div>
           <div class="c-case-metrics__value" role="cell">$73,847</div>
           <div class="c-case-metrics__value" role="cell">$112,992</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+$39,145</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+$39,145<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Purchase rate</div>
           <div class="c-case-metrics__value" role="cell">3.36%</div>
           <div class="c-case-metrics__value" role="cell">3.97%</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+18.28%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+18.28%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Average order value</div>
           <div class="c-case-metrics__value" role="cell">$315.59</div>
           <div class="c-case-metrics__value" role="cell">$390.98</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+23.89%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+23.89%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Products per visitor</div>
           <div class="c-case-metrics__value" role="cell">0.08</div>
           <div class="c-case-metrics__value" role="cell">0.12</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+54.44%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+54.44%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Products per order</div>
           <div class="c-case-metrics__value" role="cell">2.33</div>
           <div class="c-case-metrics__value" role="cell">2.97</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+27.32%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+27.32%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Add to cart</div>
           <div class="c-case-metrics__value" role="cell">4.82%</div>
           <div class="c-case-metrics__value" role="cell">5.20%</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+7.83%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+7.83%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Begin checkout</div>
           <div class="c-case-metrics__value" role="cell">1.99%</div>
           <div class="c-case-metrics__value" role="cell">2.42%</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+21.53%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--up">+21.53%<span class="u-sr-only"> (better)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Category tile clicks</div>
           <div class="c-case-metrics__value" role="cell">43.22%</div>
           <div class="c-case-metrics__value" role="cell">42.93%</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--flat">−0.68%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--flat">−0.68%<span class="u-sr-only"> (no real change)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Product page views</div>
           <div class="c-case-metrics__value" role="cell">49.76%</div>
           <div class="c-case-metrics__value" role="cell">48.81%</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--down">−1.9%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--down">−1.9%<span class="u-sr-only"> (worse)</span></span></div>
         </div>
         <div class="c-case-metrics__row" role="row">
           <div class="c-case-metrics__metric" role="cell">Bounce rate</div>
           <div class="c-case-metrics__value" role="cell">88.69%</div>
           <div class="c-case-metrics__value" role="cell">88.20%</div>
-          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--flat">−0.55%</span></div>
+          <div role="cell"><span class="c-case-metrics__badge c-case-metrics__badge--flat">−0.55%<span class="u-sr-only"> (no real change)</span></span></div>
         </div>
       </div>
     </div>

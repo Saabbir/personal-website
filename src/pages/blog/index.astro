@@ -2,7 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { articleHref, articleLinkRel, isExternalArticle, slugifyTag } from '../../utils/article';
-import { contentDateValue } from '../../utils/seo';
+import { contentDateValue, formatDisplayDate } from '../../utils/seo';
+
+const allSnippets = await getCollection('snippets');
+const recentSnippets = allSnippets.filter((s) => s.data.publish !== false).slice(0, 3);
 
 const allArticles = await getCollection('articles');
 const publishedArticles = allArticles
@@ -15,14 +18,18 @@ const allTags = Array.from(
 ).sort();
 ---
 
-<BaseLayout title="Blog & Knowledge Base" description="Articles on JavaScript, Web Performance, A/B Testing, and Frontend Architecture by Saabbir Hossain.">
+<BaseLayout
+  title="Writing"
+  description="Notes on Shopify, frontend performance, A/B testing and JavaScript — mostly things that broke and what fixed them."
+  image="/images/og/writing.png"
+>
   <section class="l-section">
     <div class="l-container">
       <div class="l-section__header u-text-center" style="max-width:700px; margin-left:auto; margin-right:auto;">
-        <div class="l-section__subtitle">Knowledge Base</div>
-        <h1 class="l-section__title">Blog & Articles</h1>
+        <h1 class="l-section__title">Writing</h1>
         <p class="u-text-muted u-mt-16">
-          Insights on JavaScript, web performance engineering, experiment design, and front-end development.
+          Notes on Shopify, frontend performance, testing and JavaScript. Mostly
+          things that broke, and what it took to work out why.
         </p>
 
         <!-- Search Bar -->
@@ -31,7 +38,7 @@ const allTags = Array.from(
             type="text"
             id="blog-search"
             class="c-form__input"
-            placeholder="Search articles by title or keyword..."
+            placeholder="Search by title or keyword"
             aria-label="Search articles"
           />
         </div>
@@ -57,7 +64,7 @@ const allTags = Array.from(
             data-tags={JSON.stringify(article.data.tags || [])}
           >
             <div class="c-card__meta">
-              {article.data.createdAt && <span>{article.data.createdAt}</span>}
+              {article.data.createdAt && <span>{formatDisplayDate(article.data.createdAt)}</span>}
               <span>•</span>
               <span style="color:var(--color-accent); font-weight:600;">
                 {article.data.externalSource || (isExternalArticle(article) ? 'External' : 'Article')}
@@ -83,7 +90,7 @@ const allTags = Array.from(
                 ))}
               </div>
               <a href={articleHref(article)} class="c-btn c-btn--ghost c-btn--sm" {...articleLinkRel(article)}>
-                {isExternalArticle(article) ? `Read on ${article.data.externalSource || 'EchoLogyx'} ↗` : 'Read Article →'}
+                {isExternalArticle(article) ? `Read on ${article.data.externalSource || 'EchoLogyx'} ↗` : 'Read →'}
               </a>
             </div>
           </article>
@@ -91,6 +98,33 @@ const allTags = Array.from(
       </div>
     </div>
   </section>
+
+  {recentSnippets.length > 0 && (
+    <section class="l-section l-section--alt">
+      <div class="l-container">
+        <div class="l-section__header l-section__header--split">
+          <div>
+            <h2 class="l-section__title">Snippets</h2>
+            <p class="u-text-muted l-section__lede">
+              Shorter than an article. Small fixes I keep needing.
+            </p>
+          </div>
+          <a href="/snippets" class="c-btn c-btn--ghost">All snippets →</a>
+        </div>
+
+        <div class="l-grid l-grid--3col">
+          {recentSnippets.map((snippet) => (
+            <article class="c-card c-card--glass c-card--hoverable">
+              <h3 class="c-card__title">
+                <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
+              </h3>
+              <p class="c-card__body">{snippet.data.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>
 
 <script>

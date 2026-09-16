@@ -12,27 +12,32 @@ const socialLinks = [
 ];
 ---
 
-<BaseLayout title="Contact Saabbir Hossain" description="Get in touch with Saabbir Hossain for Shopify Plus development, Optimizely CRO A/B testing consulting, and software engineering.">
+<BaseLayout
+  title="Contact"
+  description="Get in touch about a Shopify build, a slow page, or an A/B test. Email, WhatsApp, or the form — whichever you prefer."
+>
   <section class="l-section">
     <div class="l-container l-container--narrow">
       <div class="l-section__header u-text-center">
-        <div class="l-section__subtitle">Get In Touch</div>
-        <h1 class="l-section__title">Let's Connect</h1>
+        <h1 class="l-section__title">Get in touch</h1>
         <p class="u-text-muted u-mt-16" style="font-size:1.15rem; line-height:1.7;">
-          Have a project in mind, an A/B testing strategy to discuss, or want to collaborate? Send me a message below or email me directly at <a href="mailto:thesaabbir@gmail.com" style="color:var(--color-accent); font-weight:600;">thesaabbir@gmail.com</a>.
+          A Shopify build, a page that's slow, a test you're not sure how to run —
+          or just a question. Use the form, or email me at
+          <a href="mailto:thesaabbir@gmail.com" style="color:var(--color-accent); font-weight:600;">thesaabbir@gmail.com</a>.
+          I reply within a day or two.
         </p>
       </div>
 
       <!-- Quick Action Cards -->
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem; margin-bottom:3rem;">
         <div class="c-card c-card--glass" style="text-align:center;">
-          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Email Directly</h3>
+          <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Email</h2>
           <a href="mailto:thesaabbir@gmail.com" class="c-btn c-btn--ghost c-btn--sm" style="color:var(--color-accent);">
             thesaabbir@gmail.com
           </a>
         </div>
         <div class="c-card c-card--glass" style="text-align:center;">
-          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Call / WhatsApp</h3>
+          <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Call or WhatsApp</h2>
           <a href="tel:+8801789243439" class="c-btn c-btn--ghost c-btn--sm" style="color:var(--color-accent);">
             +8801789243439
           </a>
@@ -41,13 +46,13 @@ const socialLinks = [
 
       <!-- Contact Form Card -->
       <div class="c-card c-card--glass">
-        <h2 style="font-size:1.5rem; font-weight:700; margin-bottom:1.5rem; text-align:center;">Send a Message</h2>
+        <h2 style="font-size:1.5rem; font-weight:700; margin-bottom:1.5rem; text-align:center;">Send me a note</h2>
         <ContactForm />
       </div>
 
       <!-- Social Media Grid -->
       <div style="margin-top:4.5rem;">
-        <h3 class="u-text-center u-mb-24" style="font-size:1.35rem; font-weight:700;">Social Media Profiles</h3>
+        <h2 class="u-text-center u-mb-24" style="font-size:1.35rem; font-weight:700;">Elsewhere</h2>
         <div class="l-grid l-grid--3col">
           {socialLinks.map((s) => (
             <a

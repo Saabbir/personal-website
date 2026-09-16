@@ -1,19 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { formatDisplayDate } from '../../utils/seo';
 
 const allSnippets = await getCollection('snippets');
 const publishedSnippets = allSnippets.filter((s) => s.data.publish !== false);
 ---
 
-<BaseLayout title="Developer Code Snippets" description="Practical frontend development tips, tricks, and code snippets by Saabbir Hossain.">
+<BaseLayout
+  title="Snippets"
+  description="Small frontend fixes I keep needing — mostly CSS and browser quirks, saved here so I stop re-solving them."
+>
   <section class="l-section">
     <div class="l-container">
       <div class="l-section__header u-text-center" style="max-width:700px; margin-left:auto; margin-right:auto;">
-        <div class="l-section__subtitle">Developer Library</div>
-        <h1 class="l-section__title">Code Snippets & Tips</h1>
+        <h1 class="l-section__title">Snippets</h1>
         <p class="u-text-muted u-mt-16">
-          Reusable utilities, quick frontend fixes, and practical code solutions.
+          Small fixes I keep needing. Saved here mostly so I stop solving the
+          same browser quirk twice.
         </p>
       </div>
 
@@ -21,7 +25,7 @@ const publishedSnippets = allSnippets.filter((s) => s.data.publish !== false);
         {publishedSnippets.map((snippet) => (
           <article class="c-card c-card--glass c-card--hoverable c-card--article">
             <div class="c-card__meta">
-              {snippet.data.createdAt && <span>{snippet.data.createdAt}</span>}
+              {snippet.data.createdAt && <span>{formatDisplayDate(snippet.data.createdAt)}</span>}
               <span>•</span>
               <span style="color:var(--color-accent); font-weight:600;">Snippet</span>
             </div>

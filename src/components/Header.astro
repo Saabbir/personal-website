@@ -2,12 +2,12 @@
 import ThemeToggle from './ThemeToggle.astro';
 
 const currentPath = Astro.url.pathname;
+// Work first: someone deciding whether to hire me wants proof before
+// biography. Snippets live under /blog rather than taking a nav slot.
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
   { name: 'Work', href: '/work' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Snippets', href: '/snippets' },
+  { name: 'Writing', href: '/blog' },
+  { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
 ---
@@ -61,6 +61,17 @@ const navItems = [
 </header>
 
 <script>
+  const closeMenu = (returnFocus = false) => {
+    const navMenu = document.getElementById('nav-menu');
+    const menuToggle = document.getElementById('menu-toggle');
+    if (!navMenu || !menuToggle) return;
+
+    navMenu.classList.remove('c-nav__menu--open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open menu');
+    if (returnFocus) menuToggle.focus();
+  };
+
   document.addEventListener('click', (e) => {
     const target = e.target as Element;
     const navMenu = document.getElementById('nav-menu');
@@ -73,10 +84,13 @@ const navItems = [
       return;
     }
 
-    if (target.closest('.c-nav__link') && navMenu && menuToggle) {
-      navMenu.classList.remove('c-nav__menu--open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open menu');
-    }
+    if (target.closest('.c-nav__link')) closeMenu();
+  });
+
+  // Escape closes the menu and puts focus back where it started.
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const navMenu = document.getElementById('nav-menu');
+    if (navMenu?.classList.contains('c-nav__menu--open')) closeMenu(true);
   });
 </script>

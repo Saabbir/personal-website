@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import ImageLightbox from '../components/ImageLightbox.astro';
+import { SITE_ORIGIN, canonicalForPath, formatDisplayDate, toIsoDate } from '../utils/seo';
 import {
   caseCtaCopy,
   caseEyebrow,
@@ -15,6 +16,15 @@ interface Metric {
   baseline?: string;
   variation?: string;
   featured?: boolean;
+}
+
+interface RelatedItem {
+  slug: string;
+  title: string;
+  highlight?: string | null;
+  type?: string | null;
+  metric?: string | null;
+  metricLabel?: string | null;
 }
 
 interface MetaItem {
@@ -44,11 +54,13 @@ interface Props {
   metric?: string | null;
   metricLabel?: string | null;
   metrics?: Metric[];
+  ogImage?: string;
   download?: {
     href: string;
     filename?: string;
     label?: string;
   } | null;
+  related?: RelatedItem[];
 }
 
 const {
@@ -73,6 +85,8 @@ const {
   metricLabel,
   metrics = [],
   download = null,
+  ogImage,
+  related = [],
 } = Astro.props;
 
 const kind = caseLayoutKind(type, caseLayout);
@@ -90,9 +104,35 @@ const heroMetrics = [
   ...sourcedMetrics.filter((item) => !item.featured),
 ].slice(0, 4);
 
-const dates = dateRange || createdAt || '';
+const dates = dateRange || formatDisplayDate(createdAt) || '';
 const primaryTool = tool || tools[0] || '';
 const visitorLabel = formatVisitors(visitors);
+
+const pageUrl = canonicalForPath(Astro.url.pathname);
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_ORIGIN}/` },
+    { "@type": "ListItem", "position": 2, "name": "Work", "item": `${SITE_ORIGIN}/work/` },
+    { "@type": "ListItem", "position": 3, "name": title, "item": pageUrl },
+  ],
+};
+
+const caseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description || highlight || "",
+  "url": pageUrl,
+  "image": new URL(ogImage || '/images/og/default.png', SITE_ORIGIN).href,
+  "author": { "@type": "Person", "name": "Saabbir Hossain", "url": SITE_ORIGIN },
+  "publisher": { "@type": "Person", "name": "Saabbir Hossain", "url": SITE_ORIGIN },
+  "datePublished": toIsoDate(createdAt),
+  "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
+  ...(client ? { about: { "@type": "Organization", name: client } } : {}),
+};
 
 const metaItems: MetaItem[] = [];
 
@@ -123,7 +163,15 @@ if (kind === 'ab-test') {
 }
 ---
 
-<BaseLayout title={`Case Study: ${title}`} description={description || highlight || undefined}>
+<BaseLayout
+  title={title}
+  description={description || highlight || undefined}
+  image={ogImage}
+  imageAlt={highlight || title}
+  type="article"
+  publishedTime={toIsoDate(createdAt)}
+  schema={[breadcrumbSchema, caseSchema]}
+>
   <article class={`c-case c-case--${kind}`}>
     <header class="c-case-hero">
       <div class="l-container">
@@ -247,6 +295,29 @@ if (kind === 'ab-test') {
         </div>
       </div>
     </div>
+
+    {related.length > 0 && (
+      <section class="c-case-related" aria-labelledby="case-related-title">
+        <div class="l-container">
+          <h2 class="c-case-related__title" id="case-related-title">More work</h2>
+          <div class="c-case-related__grid">
+            {related.map((item) => (
+              <a class="c-case-related__card" href={`/work/${item.slug}`}>
+                <span class="c-tag c-tag--accent">{item.type || 'Project'}</span>
+                {item.metric && (
+                  <span class="c-case-related__metric">
+                    {item.metric}
+                    <span class="c-case-related__metric-label">{item.metricLabel}</span>
+                  </span>
+                )}
+                <span class="c-case-related__name">{item.title}</span>
+                {item.highlight && <span class="c-case-related__copy">{item.highlight}</span>}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
 
     <section class="c-case-cta" aria-labelledby="case-cta-title">
       <div class="l-container">

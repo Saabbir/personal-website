@@ -42,5 +42,11 @@
     color: var(--color-text-muted);
     margin: 0;
     line-height: 1.6;
+
+    a {
+      color: var(--color-accent);
+      font-weight: 600;
+      white-space: nowrap;
+    }
   }
 }

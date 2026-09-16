@@ -1,0 +1,123 @@
+@use '../01-config/tokens' as *;
+
+// Page-level h1 used on standalone pages (About). Replaces the inline
+// clamp/font-weight that used to sit on the element.
+.c-page-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.c-about {
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  &__figure {
+    margin: 3.5rem 0 0;
+
+    figcaption {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--color-text-dim);
+      text-align: center;
+    }
+  }
+
+  &__figure-frame {
+    padding: 0.75rem;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: $radius-md;
+    }
+  }
+
+  &__more {
+    margin-top: 2rem;
+    font-size: 0.95rem;
+
+    a {
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+  }
+}
+
+// Plain "Shopify — Liquid, theme architecture, …" rows. Deliberately not
+// a tag cloud: a wall of chips reads as a claim, a sentence reads as a fact.
+.c-toollist {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    @media (min-width: 640px) {
+      grid-template-columns: 10rem 1fr;
+      gap: 1.5rem;
+      align-items: baseline;
+    }
+  }
+
+  &__name {
+    font-family: $font-family-heading;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  &__items {
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+}
+
+.c-credlist {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 0.2rem;
+  }
+
+  &__meta {
+    font-size: 0.9rem;
+    color: var(--color-text-dim);
+  }
+}

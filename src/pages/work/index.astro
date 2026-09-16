@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { contentDateValue } from '../../utils/seo';
+import { contentDateValue, formatDisplayDate } from '../../utils/seo';
 import { workThumb } from '../../utils/work';
 
 const allWork = await getCollection('work');
@@ -14,14 +14,20 @@ const publishedWork = allWork
   });
 ---
 
-<BaseLayout title="Work & Case Studies" description="Shopify Plus, A/B tests, and speed work by Saabbir Hossain. Each case study shows the problem, what I changed, and what it did for the business.">
+<BaseLayout
+  title="Work"
+  description="Shopify builds, A/B tests and speed work. Each case study shows the problem, what I changed, what the numbers did, and what they don't prove."
+  image="/images/og/work.png"
+>
   <section class="l-section">
     <div class="l-container">
       <div class="l-section__header u-text-center" style="max-width:700px; margin-left:auto; margin-right:auto;">
-        <div class="l-section__subtitle">Portfolio Showcase</div>
-        <h1 class="l-section__title">Work & Case Studies</h1>
+        <h1 class="l-section__title">Work</h1>
         <p class="u-text-muted u-mt-16">
-          Shopify Plus, A/B tests, and speed work from the last 8+ years. Each case study shows the problem, what I changed, and what it did for the business.
+          Shopify builds, A/B tests and speed work. Each one shows the problem,
+          exactly what I changed, what the numbers did — and what the numbers
+          don't prove. That last part matters: most tests don't win, and a
+          write-up that never says so isn't worth much.
         </p>
       </div>
 
@@ -36,6 +42,8 @@ const publishedWork = allWork
                 alt=""
                 width="414"
                 height="310"
+                loading="lazy"
+                decoding="async"
               />
             )}
             {!workThumb(item.data.imgFolderName) && item.data.metric && (
@@ -47,7 +55,7 @@ const publishedWork = allWork
             <div class="c-card__content">
               <div class="c-card__header">
                 <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
-                {item.data.createdAt && <span style="font-size:0.85rem; color:var(--color-text-dim);">{item.data.createdAt}</span>}
+                {item.data.createdAt && <span class="c-card__date">{formatDisplayDate(item.data.createdAt)}</span>}
               </div>
 
               <h2 class="c-card__title">
@@ -55,9 +63,7 @@ const publishedWork = allWork
               </h2>
 
               {item.data.highlight && (
-                <p style="font-size:0.95rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.75rem;">
-                  {item.data.highlight}
-                </p>
+                <p class="c-card__highlight">{item.data.highlight}</p>
               )}
 
               <div class="c-card__body">
