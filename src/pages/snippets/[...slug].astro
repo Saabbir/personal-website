@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import Pager from '../../components/Pager.astro';
+import GiscusComments from '../../components/GiscusComments.astro';
 import { getAdjacentEntries } from '../../utils/adjacent';
 import { canonicalForPath } from '../../utils/seo';
 
@@ -24,7 +25,11 @@ const { Content } = await entry.render();
 const pageUrl = canonicalForPath(Astro.url.pathname);
 ---
 
-<BaseLayout title={`Snippet: ${entry.data.title}`} description={entry.data.description}>
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  image="/images/og/writing.png"
+>
   <article class="l-section">
     <div class="l-container l-container--narrow">
       <header class="u-mb-32">
@@ -57,10 +62,12 @@ const pageUrl = canonicalForPath(Astro.url.pathname);
 
       <ShareButtons title={entry.data.title} url={pageUrl} />
 
+      <GiscusComments />
+
       <Pager collection="snippets" prev={prev} next={next} />
 
       <div class="u-text-center u-mt-32">
-        <a href="/snippets" class="c-btn c-btn--secondary">← Back to All Snippets</a>
+        <a href="/snippets" class="c-btn c-btn--secondary">← All snippets</a>
       </div>
     </div>
   </article>
