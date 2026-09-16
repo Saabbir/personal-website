@@ -4,7 +4,7 @@
 <dialog class="c-lightbox" data-lightbox aria-labelledby="lightbox-title">
   <header class="c-lightbox__header">
     <div class="c-lightbox__heading">
-      <h2 class="c-lightbox__title" id="lightbox-title">Image</h2>
+        <h2 class="c-lightbox__title" id="lightbox-title"></h2>
       <p class="c-lightbox__kicker" data-lightbox-kicker hidden></p>
     </div>
     <div class="c-lightbox__tools">
@@ -47,21 +47,49 @@
 
   function captionParts(raw: string) {
     const text = clean(raw);
-    if (!text) return { title: 'Image', meta: '' };
+    if (!text) return { title: '', meta: '' };
     const parts = text.split('·').map((part) => part.trim()).filter(Boolean);
-    return { title: parts[0] || 'Image', meta: parts.slice(1).join(' · ') };
+    return { title: parts[0] || '', meta: parts.slice(1).join(' · ') };
+  }
+
+  function nearbyHeading(img: HTMLImageElement) {
+    let node: HTMLElement | null = img.parentElement;
+    while (node && !node.classList.contains('c-case__main')) {
+      let prev = node.previousElementSibling;
+      while (prev) {
+        if (/^H[1-6]$/.test(prev.tagName)) return clean(prev.textContent);
+        const heading = prev.querySelector('h1, h2, h3, h4, h5, h6');
+        if (heading) return clean(heading.textContent);
+        prev = prev.previousElementSibling;
+      }
+      node = node.parentElement;
+    }
+    return '';
+  }
+
+  function pageTitle() {
+    return clean(document.querySelector('.c-case-hero__title')?.textContent);
+  }
+
+  function displayTitle(...parts: Array<string | null | undefined>) {
+    for (const part of parts) {
+      const value = clean(part);
+      if (value && !/^(image|cover)$/i.test(value)) return value;
+    }
+    return pageTitle() || 'Screenshot';
   }
 
   function labelFor(img: HTMLImageElement): Omit<Slide, 'src' | 'alt'> {
+    const alt = clean(img.alt);
     const card = img.closest('.c-case-variants__card');
     if (card) {
       const { title, meta } = captionParts(card.querySelector('.c-case-variants__label')?.textContent || '');
       const caption = clean(card.querySelector('.c-case-variants__title')?.textContent);
       const extra = clean(card.querySelector('.c-case-variants__meta')?.textContent);
       return {
-        title,
+        title: displayTitle(title, nearbyHeading(img), alt),
         kicker: meta,
-        caption,
+        caption: caption || alt,
         meta: extra,
       };
     }
@@ -69,16 +97,42 @@
     const figcaption = clean(img.closest('figure')?.querySelector('figcaption')?.textContent);
     if (figcaption) {
       const { title, meta } = captionParts(figcaption);
-      return { title, kicker: meta, caption: meta || title, meta: '' };
+      return {
+        title: displayTitle(title, nearbyHeading(img), alt),
+        kicker: meta,
+        caption: meta || alt || title,
+        meta: '',
+      };
     }
 
-    if (img.classList.contains('c-case__cover')) return { title: 'Cover', kicker: '', caption: clean(img.alt), meta: '' };
+    const heading = nearbyHeading(img);
+    if (img.classList.contains('c-case__cover')) {
+      return {
+        title: displayTitle(pageTitle(), alt.replace(/\s+cover$/i, ''), heading),
+        kicker: '',
+        caption: alt || pageTitle(),
+        meta: '',
+      };
+    }
 
-    return { title: 'Image', kicker: '', caption: clean(img.alt) || 'Image', meta: '' };
+    return {
+      title: displayTitle(heading, alt),
+      kicker: '',
+      caption: alt && alt !== heading ? alt : '',
+      meta: '',
+    };
+  }
+
+  function skipImage(img: HTMLImageElement) {
+    if (img.classList.contains('c-case__logo')) return true;
+    if (img.closest('.c-feature__media')) return true;
+    const width = img.naturalWidth || img.width || Number(img.getAttribute('width')) || 0;
+    const height = img.naturalHeight || img.height || Number(img.getAttribute('height')) || 0;
+    return width > 0 && height > 0 && width <= 120 && height <= 120;
   }
 
   function collectImages(root: ParentNode) {
-    return [...root.querySelectorAll<HTMLImageElement>('.c-case__main img')];
+    return [...root.querySelectorAll<HTMLImageElement>('.c-case__main img')].filter((img) => !skipImage(img));
   }
 
   function must<T>(el: T | null, name: string): T {

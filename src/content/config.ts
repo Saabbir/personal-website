@@ -40,7 +40,8 @@ const workCollection = defineCollection({
     dateRange: z.string().optional(),
     visitors: z.union([z.string(), z.number()]).optional(),
     trafficSplit: z.string().optional(),
-    caseLayout: z.enum(['ab-test', 'shopify', 'analytics', 'other']).optional(),
+    scope: z.string().optional(),
+    caseLayout: z.enum(['ab-test', 'performance', 'shopify', 'analytics', 'other']).optional(),
     metric: z.string().optional(),
     metricLabel: z.string().optional(),
     metrics: z.array(z.object({

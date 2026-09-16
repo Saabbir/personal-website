@@ -1,8 +1,8 @@
 ---
 createdAt: 22/09/2023
-title: Homepage Product Carousel
-highlight: An A/B test hypothesis to perform on BAT UK site
-description:
+title: Putting bestsellers on the BAT UK homepage
+highlight: A homepage carousel lifted add to basket by 35% on BAT UK.
+description: Most traffic on BAT UK landed on the homepage, but bestsellers sat one click away. I added a product carousel so people could shop those items without leaving the first page.
 type: A/B Testing
 client: BAT UK
 tool: Adobe Target
@@ -35,23 +35,25 @@ metrics:
     value: "+11.6%"
 ---
 
-## The Problem
+## The problem
 
-The current website structure presents a discoverability challenge for users seeking best-selling products. While most traffic lands on the homepage, finding these products requires an additional step of navigating to a dedicated "collection" page. This extra step can lead to user frustration and abandonment, as some visitors may not be willing to invest the additional effort.
+I worked with BAT UK on a homepage that was missing an easy path to bestsellers. Most traffic landed there first. Finding the products people already wanted meant an extra click to a collection page. Some visitors did not take that step.
 
-## The Solution
+## What I changed
 
-To address the discoverability challenge and improve user experience, we implemented a strategic product carousel on the homepage. This carousel showcases a curated selection of best-selling products, allowing users to browse and interact with these high-performing items directly from the landing page.
+I added a product carousel to the homepage. It showed a short list of best-selling items, so people could browse and add from the first screen. Layout and the rest of the page stayed in place. The test ran in Adobe Target.
 
-## The Results
+## The results
 
-The final winning design resulted in:
+The winning design lifted:
 
-- 35% increase in add to basket
-- 12.3% uplift in product page views
-- 18% increase in checkout page visits
-- 11.6% increase in transactions
-- 5.2% increase in average order value
+- 35% more add to basket
+- 12.3% more product page views
+- 18% more checkout visits
+- 11.6% more transactions
+- 5.2% higher average order value
+
+This is the kind of homepage test I run when bestsellers are buried. Put the products where the traffic already is, then measure basket and checkout, not just clicks.
 
 <div class="c-case__compare">
 <div>

@@ -6,8 +6,8 @@ description: A Perfect Space, a digital locations platform based in Melbourne, A
 type: Contract
 client: A Perfect Space
 imgFolderName: aperfectspace
-featured: true
-publish: true
+featured: false
+publish: false
 url: https://aperfectspace-html.netlify.app/
 category:
   - Site Templates

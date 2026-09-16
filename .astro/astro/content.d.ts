@@ -296,9 +296,23 @@ declare module 'astro:content' {
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
+"wax-london-homepage-performance.md": {
+	id: "wax-london-homepage-performance.md";
+  slug: "wax-london-homepage-performance";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
 "wax-london-model-vs-product.md": {
 	id: "wax-london-model-vs-product.md";
   slug: "wax-london-model-vs-product";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
+"wax-london-pdp-performance.md": {
+	id: "wax-london-pdp-performance.md";
+  slug: "wax-london-pdp-performance";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">

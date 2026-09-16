@@ -39,7 +39,8 @@ interface Props {
   dateRange?: string | null;
   visitors?: string | number | null;
   trafficSplit?: string | null;
-  caseLayout?: 'ab-test' | 'shopify' | 'analytics' | 'other' | null;
+  scope?: string | null;
+  caseLayout?: 'ab-test' | 'performance' | 'shopify' | 'analytics' | 'other' | null;
   metric?: string | null;
   metricLabel?: string | null;
   metrics?: Metric[];
@@ -66,6 +67,7 @@ const {
   dateRange,
   visitors,
   trafficSplit,
+  scope,
   caseLayout,
   metric,
   metricLabel,
@@ -77,7 +79,7 @@ const kind = caseLayoutKind(type, caseLayout);
 const eyebrowText = caseEyebrow(kind, type, eyebrow);
 const crumbLabel = client || title;
 const cta = caseCtaCopy(kind);
-const showCover = Boolean(cover) && kind !== 'ab-test';
+const showCover = Boolean(cover) && kind === 'shopify';
 const sourcedMetrics = metrics.length > 0
   ? metrics
   : metric
@@ -102,6 +104,11 @@ if (kind === 'ab-test') {
   if (dates) metaItems.push({ label: 'Dates', value: dates });
   if (visitorLabel) metaItems.push({ label: 'Visitors', value: visitorLabel });
   if (trafficSplit) metaItems.push({ label: 'Split', value: trafficSplit });
+} else if (kind === 'performance') {
+  metaItems.push({ label: 'Lab', value: primaryTool || 'WebPageTest' });
+  if (scope) metaItems.push({ label: 'Page', value: scope });
+  if (dates) metaItems.push({ label: 'Dates', value: dates });
+  if (url) metaItems.push({ label: 'Live site', value: liveLabel(url), href: url });
 } else if (kind === 'shopify') {
   metaItems.push({ label: 'Platform', value: primaryTool || 'Shopify' });
   if (dates) metaItems.push({ label: 'Date', value: dates });

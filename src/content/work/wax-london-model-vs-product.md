@@ -1,8 +1,8 @@
 ---
 createdAt: 15/05/2026
 title: Does seeing the model sell the suit?
-highlight: Model photos on suiting category pages lifted revenue per visitor by 50%.
-description: A 29-day Convert test on Wax London suiting pages. Showing the jacket on a person, not on a hanger, lifted revenue per visitor by 50%. Order value and items per order went up too. Clicks on the listing barely moved.
+highlight: For Wax London, model photos on suiting pages lifted revenue per visitor by 50%.
+description: I ran a 29-day Convert test on Wax London suiting pages. Showing the jacket on a person, not on a hanger, lifted revenue per visitor by 50%. Order value and items per order went up too. Clicks on the listing barely moved.
 type: A/B Testing
 client: Wax London
 tool: Convert A/B Testing
@@ -50,17 +50,17 @@ download:
 
 <h2 id="overview"><span class="c-case-kicker">Overview</span> The short version</h2>
 
-Wax London showed hanger shots as the first image on suiting category pages. Most fashion sites do the same. We thought suits were different. Fit, shoulder line, and how the cloth hangs are hard to judge from a flat photo. Seeing the jacket on a person might help.
+I worked with Wax London on a fashion listing problem a lot of clothing stores have. Suiting category pages led with hanger shots. Most fashion sites do the same. Suits are harder to judge that way. Fit, shoulder line, and how the cloth hangs are hard to see from a flat photo.
 
-So we ran an A/B test on six suiting collections. Convert called it Model vs Product Image on suiting category pages. Variation 1 turned on Wax London's Model view toggle. The first tile image became a model shot. Copy, layout, and everything else stayed the same. One change: the photo.
+I ran an A/B test on six suiting collections. Convert called it Model vs Product Image. Variation 1 turned on Wax London's Model view toggle. The first tile image became a model shot. Copy, layout, and everything else stayed the same. One change: the photo.
 
-The test ran for 29 days, from 17 April to 15 May 2026. 14,115 people saw it, split 50/50. Then we stopped it in Convert.
+The test ran for 29 days, from 17 April to 15 May 2026. 14,115 people saw it, split 50/50.
 
-<h2 id="objective"><span class="c-case-kicker">Hypothesis</span> Why we ran this test</h2>
+<h2 id="objective"><span class="c-case-kicker">Hypothesis</span> Why I ran this test</h2>
 
-We wanted a straight answer. On suiting pages, does a model photo as the first image beat a product-only photo?
+I wanted a straight answer. On suiting pages, does a model photo as the first image beat a product-only photo?
 
-> If we show a model wearing the suit as the first image, more people will look and buy, because they can see the fit and how it looks on a body.
+> If a model wearing the suit is the first image, more people will look and buy, because they can see the fit and how it looks on a body.
 
 A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a jacket sits on the shoulders, or how the trousers break at the ankle. A model photo answers that in a second.
 
@@ -74,7 +74,7 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
 - <a href="https://www.waxlondon.com/collections/double-breasted-suits" target="_blank" rel="noopener noreferrer">waxlondon.com/collections/double-breasted-suits</a>
 
 <section class="c-case-variants">
-  <h2 id="test-setup"><span class="c-case-kicker">Test setup</span> What we changed</h2>
+  <h2 id="test-setup"><span class="c-case-kicker">Test setup</span> What I changed</h2>
   <p>Two versions. Same six pages. Traffic split evenly. Convert sent all visitors into the test. The only change was the first image on the product tile, using Wax London's Model view toggle. Off for control. On for the variation. Same products, same layout, same copy.</p>
   <article class="c-case-variants__card">
     <figure class="c-case-variants__shot">
@@ -249,7 +249,7 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
 </section>
 
 <section class="c-case-insights">
-  <h2 id="interpretation"><span class="c-case-kicker">Insights</span> What this tells us</h2>
+  <h2 id="interpretation"><span class="c-case-kicker">Insights</span> What this tells a fashion store</h2>
   <article class="c-case-insights__card">
     <span class="c-case-insights__icon" aria-hidden="true">👔</span>
     <h3 class="c-case-insights__title">Seeing the fit helped people buy</h3>
@@ -262,7 +262,7 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
   </article>
   <article class="c-case-insights__card">
     <span class="c-case-insights__icon" aria-hidden="true">🎯</span>
-    <h3 class="c-case-insights__title">We did not win with more listing clicks</h3>
+    <h3 class="c-case-insights__title">The win was not more listing clicks</h3>
     <p class="c-case-insights__copy">Tile clicks were flat. Product page views were slightly down. The extra money did not come from more people opening products. It came from what they did after they arrived: more checkout, more items, more spend. Those who opened a product also scrolled further.</p>
   </article>
   <article class="c-case-insights__card">
@@ -280,11 +280,11 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
   </article>
   <article class="c-case-notes__item">
     <div class="c-case-notes__index">02</div>
-    <p class="c-case-notes__copy"><strong>This is suiting only.</strong> 14,115 visitors is a fair sample for this category. It does not mean the same photo swap will work on t-shirts, knitwear, or belts, where fit is less of a question.</p>
+    <p class="c-case-notes__copy"><strong>This is suiting only.</strong> 14,115 visitors is a fair sample for this category. The same photo swap may not work on t-shirts, knitwear, or belts, where fit is less of a question.</p>
   </article>
   <article class="c-case-notes__item">
     <div class="c-case-notes__index">03</div>
-    <p class="c-case-notes__copy"><strong>It ran in spring.</strong> 17 April to 15 May 2026 sits in suiting and linen season. Do not scale the $39,145 gap to a full year. The percentage lifts are the part that should travel.</p>
+    <p class="c-case-notes__copy"><strong>It ran in spring.</strong> 17 April to 15 May 2026 sits in suiting and linen season. The $39,145 gap is not a yearly forecast. The percentage lifts are the part that should travel.</p>
   </article>
   <article class="c-case-notes__item">
     <div class="c-case-notes__index">04</div>
@@ -293,20 +293,20 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
 </section>
 
 <section class="c-case-next">
-  <h2 id="conclusion"><span class="c-case-kicker">Conclusion</span> What this means</h2>
+  <h2 id="conclusion"><span class="c-case-kicker">Takeaway</span> What this means</h2>
   <div class="c-case-next__summary">
-    <p class="c-case-next__headline">Turn model photos on for suiting pages</p>
-    <p>The test is done. Revenue per visitor, products per visitor, and 100% product-page scroll all cleared 95% confidence for Variation 1. Purchase rate and begin checkout move the same way. Listing clicks did not need to rise for revenue to rise.</p>
-    <p>Set Model view on as the default for suiting and tailoring collections. Then run the same one-change test on shirts. Do not switch the whole catalogue at once.</p>
+    <p class="c-case-next__headline">A one-photo change made suiting pages more valuable</p>
+    <p>Revenue per visitor, products per visitor, and 100% product-page scroll all cleared 95% confidence for the model photo. Purchase rate and begin checkout move the same way. Listing clicks did not need to rise for revenue to rise.</p>
+    <p>This is the kind of test I run for fashion stores. One change. Clear money numbers. Honest limits. If your listing photos hide the fit, this is a problem I can help you measure.</p>
   </div>
   <div class="c-case-next__actions">
     <article class="c-case-next__card">
-      <h3 class="c-case-next__card-title">Do this now</h3>
-      <p>Roll out Variation 1 on the six tested suiting collections. Watch revenue per visitor and order value in your live analytics for a few weeks after launch.</p>
+      <h3 class="c-case-next__card-title">Who this helps</h3>
+      <p>Fashion stores that lead with hanger shots on clothes where fit, drape, and styling matter. Suiting is the clear example. Shirts and tailoring often have the same question.</p>
     </article>
     <article class="c-case-next__card">
-      <h3 class="c-case-next__card-title">Test this next</h3>
-      <p>Try model-first tiles on shirts and formal extras. Keep the photo as the only change. Do not assume you need more listing clicks to make it worth doing.</p>
+      <h3 class="c-case-next__card-title">How I can help</h3>
+      <p>I set up and read A/B tests like this on Shopify. One change, a clean split, and a write-up you can stand behind when you decide what to ship.</p>
     </article>
   </div>
 </section>

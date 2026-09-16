@@ -22,6 +22,19 @@
     }
   }
 
+  &--performance &__body {
+    padding-top: 3rem;
+
+    @media (min-width: 768px) {
+      padding-top: 4rem;
+    }
+  }
+
+  &--shopify &__cover {
+    margin-bottom: 3.5rem;
+    box-shadow: 0 24px 48px rgba(10, 15, 29, 0.12);
+  }
+
   &__cover {
     display: block;
     width: 100%;
