@@ -1,4 +1,11 @@
 ---
+// Comments are GitHub Discussions via giscus. Three things must all be true
+// or the widget errors: the repo is public, Discussions is enabled, and the
+// giscus app (https://github.com/apps/giscus) is installed on the repo.
+//
+// data-repo-id and data-category-id must belong to THIS repo. They previously
+// pointed at repo 103450777 (the old v1 site), which would never have worked.
+// Regenerate them at https://giscus.app if the repo ever moves.
 ---
 <section class="c-comments">
   <h3 class="c-comments__title">Discussion & Comments</h3>
@@ -13,9 +20,9 @@
     const script = document.createElement('script');
     script.src = 'https://giscus.app/client.js';
     script.setAttribute('data-repo', 'Saabbir/personal-website');
-    script.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnkxMDM0NTA3Nzc=');
-    script.setAttribute('data-category', 'General');
-    script.setAttribute('data-category-id', 'DIC_kwDOBjBGuc4Cg3tO');
+    script.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnkzMjU4NDY5MjY=');
+    script.setAttribute('data-category', 'Announcements');
+    script.setAttribute('data-category-id', 'DIC_kwDOE2wHjs4DFweX');
     script.setAttribute('data-mapping', 'pathname');
     script.setAttribute('data-strict', '0');
     script.setAttribute('data-reactions-enabled', '1');

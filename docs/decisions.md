@@ -138,3 +138,26 @@ as that endpoint was in place.
 
 Now `mkjgnwva`, verified live. The failure path shows a distinct error state
 pointing at the mailto link. **Never style a failed send as success.**
+
+---
+
+## Giscus points at repo 325846926, category Announcements
+**Sep 2026 · [GiscusComments.astro](../src/components/GiscusComments.astro)**
+
+Comments were erroring with "giscus is not installed on this repository".
+Three separate things were wrong:
+
+1. GitHub Discussions wasn't enabled on the repo (now enabled).
+2. The giscus app wasn't installed on the repo.
+3. `data-repo-id` and `data-category-id` pointed at repo **103450777** — the
+   old v1 site — not this repo (**325846926**). Copied config that could never
+   have worked here.
+
+Category is **Announcements**, not General, on giscus's own recommendation:
+only maintainers and the giscus app can open threads there, so visitors
+comment on existing discussions instead of being able to create arbitrary
+ones. Swap `data-category` / `data-category-id` to the General pair if you
+ever want it open.
+
+Regenerate both IDs at <https://giscus.app> if the repo is ever renamed,
+transferred, or replaced — they are not portable between repos.
