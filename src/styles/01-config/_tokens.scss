@@ -13,13 +13,13 @@ $color-neon-emerald-dark: #059669;
 $color-neon-cyan: #00d2ff;
 $color-neon-purple: #a855f7;
 
-// Light Mode Neutral Palette
-$color-light-bg: #f8fafc;
-$color-light-surface: #ffffff;
-$color-light-surface-alt: #f1f5f9;
-$color-light-border: #e2e8f0;
-$color-light-text: #0f172a;
-$color-light-muted: #64748b;
+// Light Mode Neutral Palette — warm paper, not cool slate
+$color-light-bg: #f8f7f4;
+$color-light-surface: #fffefb;
+$color-light-surface-alt: #f1efe9;
+$color-light-border: rgba(28, 25, 23, 0.1);
+$color-light-text: #1c1917;
+$color-light-muted: #57534e;
 
 // Typography Tokens
 $font-family-heading: 'Outfit Variable', 'Plus Jakarta Sans Variable', system-ui, -apple-system, sans-serif;
