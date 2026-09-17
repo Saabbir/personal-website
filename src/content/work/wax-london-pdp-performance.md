@@ -8,7 +8,7 @@ client: Wax London
 eyebrow: Performance
 tool: WebPageTest
 scope: Product page
-dateRange: Apr to May 2025
+dateRange: Apr - May 2025
 featured: true
 publish: true
 url: https://www.waxlondon.com/products/whiting-coral-and-pale-blue-pike-check-overshirt

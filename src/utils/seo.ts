@@ -48,22 +48,25 @@ export function contentDateValue(value?: string | null): number {
   return parseContentDate(value)?.getTime() ?? 0;
 }
 
-const DISPLAY_DATE = new Intl.DateTimeFormat('en-GB', {
-  month: 'long',
-  year: 'numeric',
-  timeZone: 'UTC',
-});
+const SHORT_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
  * Turns whatever a frontmatter date happens to be ("01/09/2021",
- * "12 January 2026", "2026-05-15") into one readable label: "May 2026".
+ * "12 January 2026", "2026-05-15") into one readable label: "15 May 2026".
  * Falls back to the raw string if it can't be parsed, so nothing disappears.
  */
 export function formatDisplayDate(value?: string | null): string {
   if (!value) return '';
   const parsed = parseContentDate(value);
   if (!parsed) return value;
-  return DISPLAY_DATE.format(parsed);
+  return `${parsed.getUTCDate()} ${SHORT_MONTHS[parsed.getUTCMonth()]} ${parsed.getUTCFullYear()}`;
+}
+
+/** Prefers an authored range ("17 Apr - 15 May 2026") over a single date. */
+export function formatWorkDate(dateRange?: string | null, createdAt?: string | null): string {
+  const range = dateRange?.trim();
+  if (range) return range;
+  return formatDisplayDate(createdAt);
 }
 
 /**

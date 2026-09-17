@@ -7,7 +7,7 @@ type: A/B Testing
 client: Wax London
 tool: Convert A/B Testing
 duration: 29 days
-dateRange: 17 Apr to 15 May 2026
+dateRange: 17 Apr - 15 May 2026
 visitors: 14115
 trafficSplit: 50/50
 featured: true
@@ -54,7 +54,7 @@ I worked with Wax London on a fashion listing problem a lot of clothing stores h
 
 I ran an A/B test on six suiting collections. Convert called it Model vs Product Image. Variation 1 turned on Wax London's Model view toggle. The first tile image became a model shot. Copy, layout, and everything else stayed the same. One change: the photo.
 
-The test ran for 29 days, from 17 April to 15 May 2026. 14,115 people saw it, split 50/50.
+The test ran for 29 days, 17 Apr - 15 May 2026. 14,115 people saw it, split 50/50.
 
 <h2 id="objective"><span class="c-case-kicker">Hypothesis</span> Why I ran this test</h2>
 
@@ -90,6 +90,7 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
   </article>
   <article class="c-case-variants__card c-case-variants__card--winner">
     <figure class="c-case-variants__shot">
+      <span class="c-case-variants__badge">Winner</span>
       <img src="/images/work/wax-london-model-vs-product/variation.png" alt="Wax London suiting category page with Model view on. The same two Fintry linen blazers shown on a model, each priced at $420." width="964" height="717" loading="lazy" decoding="async">
     </figure>
     <div class="c-case-variants__body">
@@ -285,7 +286,7 @@ A t-shirt is easy to guess. A suit is not. You cannot tell from a hanger how a j
   </article>
   <article class="c-case-notes__item">
     <div class="c-case-notes__index">03</div>
-    <p class="c-case-notes__copy"><strong>It ran in spring.</strong> 17 April to 15 May 2026 sits in suiting and linen season. The $39,145 gap is not a yearly forecast. The percentage lifts are the part that should travel.</p>
+    <p class="c-case-notes__copy"><strong>It ran in spring.</strong> 17 Apr - 15 May 2026 sits in suiting and linen season. The $39,145 gap is not a yearly forecast. The percentage lifts are the part that should travel.</p>
   </article>
   <article class="c-case-notes__item">
     <div class="c-case-notes__index">04</div>

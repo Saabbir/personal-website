@@ -18,7 +18,7 @@ client: Raab Vital
 eyebrow: Shopify build
 tool: Shopify
 scope: Full theme
-dateRange: "" # TODO(saabbir): e.g. Sep to Nov 2024
+dateRange: "" # TODO(saabbir): e.g. Sep - Nov 2024
 caseLayout: shopify
 featured: true
 publish: false

@@ -102,7 +102,7 @@ node scripts/optimize-images.mjs --write  # apply
 
 **Dates:** use `YYYY-MM-DD` in frontmatter. Older entries use `dd/mm/yyyy`,
 which is ambiguous — `02/03/2026` could be either month. `formatDisplayDate()`
-handles both and renders "May 2026", but new content should be ISO.
+handles both and renders "15 May 2026", but new content should be ISO.
 
 ---
 

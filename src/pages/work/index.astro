@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { contentDateValue, formatDisplayDate } from '../../utils/seo';
+import { contentDateValue, formatWorkDate } from '../../utils/seo';
 import { workThumb } from '../../utils/work';
 
 const allWork = await getCollection('work');
@@ -55,7 +55,9 @@ const publishedWork = allWork
             <div class="c-card__content">
               <div class="c-card__header">
                 <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
-                {item.data.createdAt && <span class="c-card__date">{formatDisplayDate(item.data.createdAt)}</span>}
+                {(item.data.dateRange || item.data.createdAt) && (
+                  <span class="c-card__date">{formatWorkDate(item.data.dateRange, item.data.createdAt)}</span>
+                )}
               </div>
 
               <h2 class="c-card__title">

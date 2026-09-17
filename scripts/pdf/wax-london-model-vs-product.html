@@ -93,6 +93,20 @@
       overflow: hidden;
     }
     figure.winner { border-color: #047857; }
+    figure .frame { position: relative; }
+    figure .badge {
+      position: absolute;
+      top: 7pt;
+      right: 7pt;
+      padding: 3pt 7pt;
+      border-radius: 999px;
+      background: #047857;
+      color: #fbf6ee;
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
     figcaption {
       padding: 7pt 8pt 6pt;
       background: #f8fafc;
@@ -167,7 +181,7 @@
     <div><dt>Client</dt><dd>Wax London</dd></div>
     <div><dt>Tool</dt><dd>Convert</dd></div>
     <div><dt>Duration</dt><dd>29 days</dd></div>
-    <div><dt>Dates</dt><dd class="dates">17 Apr to 15 May 2026</dd></div>
+    <div><dt>Dates</dt><dd class="dates">17 Apr - 15 May 2026</dd></div>
     <div><dt>Visitors</dt><dd>14,115</dd></div>
     <div><dt>Split</dt><dd>50/50</dd></div>
   </dl>
@@ -183,7 +197,7 @@
   <p class="kicker">Overview</p>
   <h2>The short version</h2>
   <p>I worked with Wax London on a fashion listing problem a lot of clothing stores have. Suiting category pages led with hanger shots. Most fashion sites do the same. Suits are harder to judge that way. Fit, shoulder line, and how the cloth hangs are hard to see from a flat photo.</p>
-  <p>I ran an A/B test on six suiting collections. Convert called it Model vs Product Image. Variation 1 turned on Wax London's Model view toggle. The first tile image became a model shot. Copy, layout, and everything else stayed the same. One change: the photo. The test ran for 29 days, from 17 April to 15 May 2026. 14,115 people saw it, split 50/50.</p>
+  <p>I ran an A/B test on six suiting collections. Convert called it Model vs Product Image. Variation 1 turned on Wax London's Model view toggle. The first tile image became a model shot. Copy, layout, and everything else stayed the same. One change: the photo. The test ran for 29 days, 17 Apr - 15 May 2026. 14,115 people saw it, split 50/50.</p>
   </section>
 
   <section class="block">
@@ -206,7 +220,10 @@
     </figure>
     <figure class="winner">
       <figcaption><strong>Variation 1 · Model view on</strong> The same products on a model · 7,121 visitors</figcaption>
-      <img src="../../public/images/work/wax-london-model-vs-product/variation.png" alt="Variation: Model view on, blazers on a model">
+      <div class="frame">
+        <span class="badge">Winner</span>
+        <img src="../../public/images/work/wax-london-model-vs-product/variation.png" alt="Variation: Model view on, blazers on a model">
+      </div>
     </figure>
   </div>
   </section>
@@ -280,7 +297,7 @@
   <h2>What this does not prove</h2>
   <p class="limit"><b class="index">01</b> <strong>Purchase rate is not at 95% confidence.</strong> Convert gives purchase rate 92.55%, revenue per visitor 98.18%, and products per visitor 99.29%. The money story lines up, but 235 vs 283 purchases is still the noisier number.</p>
   <p class="limit"><b class="index">02</b> <strong>This is suiting only.</strong> 14,115 visitors is a fair sample for this category. The same photo swap may not work on t-shirts, knitwear, or belts, where fit is less of a question.</p>
-  <p class="limit"><b class="index">03</b> <strong>It ran in spring.</strong> 17 April to 15 May 2026 sits in suiting and linen season. The $39,145 gap is not a yearly forecast. The percentage lifts are the part that should travel.</p>
+  <p class="limit"><b class="index">03</b> <strong>It ran in spring.</strong> 17 Apr - 15 May 2026 sits in suiting and linen season. The $39,145 gap is not a yearly forecast. The percentage lifts are the part that should travel.</p>
   <p class="limit"><b class="index">04</b> <strong>Convert had two purchase goals.</strong> The main Purchase goal shows revenue per visitor up 50.28%. A manual purchase goal shows a smaller lift, 19.45% at 81.49% confidence. Both favour Variation 1. This write-up uses the main goal.</p>
   </section>
 

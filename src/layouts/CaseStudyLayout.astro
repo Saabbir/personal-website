@@ -1,7 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import ImageLightbox from '../components/ImageLightbox.astro';
-import { SITE_ORIGIN, canonicalForPath, formatDisplayDate, toIsoDate } from '../utils/seo';
+import { SITE_ORIGIN, canonicalForPath, formatWorkDate, toIsoDate } from '../utils/seo';
 import {
   caseCtaCopy,
   caseEyebrow,
@@ -104,7 +104,7 @@ const heroMetrics = [
   ...sourcedMetrics.filter((item) => !item.featured),
 ].slice(0, 4);
 
-const dates = dateRange || formatDisplayDate(createdAt) || '';
+const dates = formatWorkDate(dateRange, createdAt);
 const primaryTool = tool || tools[0] || '';
 const visitorLabel = formatVisitors(visitors);
 

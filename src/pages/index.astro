@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { getCollection } from 'astro:content';
 import { articleHref, articleLinkRel, isExternalArticle } from '../utils/article';
-import { contentDateValue, formatDisplayDate } from '../utils/seo';
+import { contentDateValue, formatDisplayDate, formatWorkDate } from '../utils/seo';
 import { workThumb } from '../utils/work';
 
 const allArticles = await getCollection('articles');
@@ -171,8 +171,8 @@ const services = [
           <div class="c-card__metric-main">
             <div class="c-card__header">
               <span class="c-tag c-tag--accent">{featuredHighlight.data.type || 'Project'}</span>
-              {featuredHighlight.data.createdAt && (
-                <span class="c-card__date">{formatDisplayDate(featuredHighlight.data.createdAt)}</span>
+              {(featuredHighlight.data.dateRange || featuredHighlight.data.createdAt) && (
+                <span class="c-card__date">{formatWorkDate(featuredHighlight.data.dateRange, featuredHighlight.data.createdAt)}</span>
               )}
             </div>
             {featuredHighlight.data.metric && (
@@ -219,8 +219,8 @@ const services = [
             <div class="c-card__content">
               <div class="c-card__header">
                 <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
-                {item.data.createdAt && (
-                  <span class="c-card__date">{formatDisplayDate(item.data.createdAt)}</span>
+                {(item.data.dateRange || item.data.createdAt) && (
+                  <span class="c-card__date">{formatWorkDate(item.data.dateRange, item.data.createdAt)}</span>
                 )}
               </div>
 

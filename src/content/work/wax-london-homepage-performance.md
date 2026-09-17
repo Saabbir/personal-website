@@ -8,7 +8,7 @@ client: Wax London
 eyebrow: Performance
 tool: WebPageTest
 scope: Homepage
-dateRange: Mar to May 2025
+dateRange: Mar - May 2025
 featured: true
 publish: true
 url: https://www.waxlondon.com/
