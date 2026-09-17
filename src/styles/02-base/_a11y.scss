@@ -1,3 +1,5 @@
+@use '../01-config/tokens' as *;
+
 // Screen reader only utility class
 .u-sr-only {
   position: absolute !important;
@@ -28,6 +30,10 @@
   &:focus {
     transform: translateY(0);
   }
+}
+
+[data-theme='light'] .u-skip-link {
+  color: #{$color-light-surface};
 }
 
 // Focus Visible Styles for WCAG 2.1 AA Compliance

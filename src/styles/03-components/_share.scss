@@ -40,6 +40,12 @@
   }
 }
 
+[data-theme='light'] {
+  .c-share__btn:hover {
+    color: #{$color-light-surface};
+  }
+}
+
 // "Edit on GitHub" link under articles and snippets.
 .c-edit-link {
   display: flex;

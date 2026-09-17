@@ -31,22 +31,22 @@
   --color-bg-base: #{$color-light-bg};
   --color-bg-surface: #{$color-light-surface};
   --color-bg-surface-alt: #{$color-light-surface-alt};
-  --color-surface-glass: rgba(248, 247, 244, 0.88);
-  --color-border-glass: rgba(28, 25, 23, 0.1);
-  --color-border-subtle: rgba(28, 25, 23, 0.06);
+  --color-surface-glass: rgba(244, 239, 230, 0.9);
+  --color-border-glass: rgba(20, 20, 18, 0.12);
+  --color-border-subtle: rgba(20, 20, 18, 0.08);
 
   --color-text-main: #{$color-light-text};
   --color-text-muted: #{$color-light-muted};
-  --color-text-dim: #8a8680;
+  --color-text-dim: #{$color-light-dim};
 
-  --color-accent: #059669;
-  --color-accent-hover: #047857;
-  --color-accent-glow: rgba(5, 150, 105, 0.15);
-  --color-accent-cyan: #0284c7;
-  --color-accent-purple: #7e22ce;
+  --color-accent: #{$color-light-accent};
+  --color-accent-hover: #{$color-light-accent-hover};
+  --color-accent-glow: rgba(4, 108, 78, 0.16);
+  --color-accent-cyan: #2a6b4e;
+  --color-accent-purple: #7a5a32;
 
-  --shadow-glass-card: 0 10px 30px rgba(28, 25, 23, 0.06);
-  --shadow-neon-glow: 0 0 20px rgba(5, 150, 105, 0.15);
+  --shadow-glass-card: 0 10px 30px rgba(20, 20, 18, 0.07);
+  --shadow-neon-glow: 0 0 20px rgba(4, 108, 78, 0.14);
 }
 
 body {

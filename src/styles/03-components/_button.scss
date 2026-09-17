@@ -70,3 +70,14 @@
     height: 1.25rem;
   }
 }
+
+[data-theme='light'] {
+  .c-btn--primary {
+    background: linear-gradient(135deg, #059669, #00c58e);
+    color: #040711;
+
+    &:hover {
+      color: #040711;
+    }
+  }
+}

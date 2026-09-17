@@ -13,13 +13,16 @@ $color-neon-emerald-dark: #059669;
 $color-neon-cyan: #00d2ff;
 $color-neon-purple: #a855f7;
 
-// Light Mode Neutral Palette — warm paper, not cool slate
-$color-light-bg: #f8f7f4;
-$color-light-surface: #fffefb;
-$color-light-surface-alt: #f1efe9;
-$color-light-border: rgba(28, 25, 23, 0.1);
-$color-light-text: #1c1917;
-$color-light-muted: #57534e;
+// Light Mode Neutral Palette — same cream/ink paper as the 4323 experiment
+$color-light-bg: #f4efe6;
+$color-light-surface: #fbf6ee;
+$color-light-surface-alt: #ebe4d6;
+$color-light-border: rgba(20, 20, 18, 0.12);
+$color-light-text: #141412;
+$color-light-muted: #4a4845;
+$color-light-dim: #5c5853;
+$color-light-accent: #046c4e;
+$color-light-accent-hover: #065f46;
 
 // Typography Tokens
 $font-family-heading: 'Outfit Variable', 'Plus Jakarta Sans Variable', system-ui, -apple-system, sans-serif;

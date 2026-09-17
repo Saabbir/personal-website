@@ -688,8 +688,8 @@
   .c-case-rail {
     --color-accent: #065f46;
     --color-accent-hover: #064e3b;
-    --color-text-muted: #44403c;
-    --color-text-dim: #57534e;
+    --color-text-muted: #4a4845;
+    --color-text-dim: #{$color-light-dim};
   }
 
   .c-case-kicker,
@@ -712,14 +712,14 @@
   }
 
   .c-case-leftover {
-    background: #{$color-light-bg};
+    background: #{$color-light-surface-alt};
   }
 
   .c-prose--case {
-    color: #44403c;
+    color: #4a4845;
 
     > p {
-      color: #44403c;
+      color: #4a4845;
     }
   }
 }

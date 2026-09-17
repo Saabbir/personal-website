@@ -89,6 +89,17 @@
   }
 }
 
+[data-theme='light'] {
+  .c-form__input,
+  .c-form__textarea {
+    border-color: rgba(20, 20, 18, 0.5);
+  }
+
+  .c-form__feedback--error {
+    color: #b91c1c;
+  }
+}
+
 @keyframes c-form-spin {
   to {
     transform: rotate(360deg);
