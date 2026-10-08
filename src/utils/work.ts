@@ -70,34 +70,3 @@ export function caseEyebrow(
   if (kind === 'analytics') return 'Analytics';
   return type || 'Case study';
 }
-
-export function caseCtaCopy(kind: CaseLayoutKind) {
-  if (kind === 'ab-test') {
-    return {
-      title: 'Need a test like this on your store?',
-      lede: 'I design A/B tests that answer a money question, then help you decide what to ship.',
-    };
-  }
-  if (kind === 'performance') {
-    return {
-      title: 'Is your first screen late too?',
-      lede: 'I audit Shopify pages and ship loading work that makes the first screen usable.',
-    };
-  }
-  if (kind === 'shopify') {
-    return {
-      title: 'Need a Shopify build that holds up?',
-      lede: 'Theme, Plus, and custom work that ships clean and stays easy to maintain.',
-    };
-  }
-  if (kind === 'analytics') {
-    return {
-      title: 'Want tracking you can trust?',
-      lede: 'GA4, tagging, and reporting that teams can actually use.',
-    };
-  }
-  return {
-    title: 'Want to work together?',
-    lede: 'I take on focused frontend, testing, and performance work with clear delivery.',
-  };
-}

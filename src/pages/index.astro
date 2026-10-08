@@ -38,21 +38,6 @@ const featuredRest = featuredWork.slice(1);
 
 const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7.pdf";
 
-// Brands I've built or tested on. Tools I use (Optimizely, Shopify) don't
-// belong here — a logo row that mixes clients and software isn't honest.
-const clientLogos = [
-  { name: 'Wax London', logo: '/images/clients/wax-london.svg' },
-  { name: 'BAT UK', logo: '/images/clients/bat-uk.svg' },
-  { name: 'Raab Vital', logo: '/images/clients/raab-vital.svg' },
-  { name: 'Inspectiv', logo: '/images/clients/inspectiv.svg' },
-  { name: 'Pragmatic Works', logo: '/images/clients/pragmaticworks.png' },
-  { name: 'A Perfect Space', logo: '/images/clients/aperfectspace.png' }
-];
-
-// Duplicated so the marquee can loop seamlessly. The duplicate track is
-// hidden from screen readers; the names are read once from the list below.
-const marqueeLogos = [...clientLogos, ...clientLogos];
-
 const testimonials = [
   {
     name: 'Haley Carpenter',
@@ -103,7 +88,7 @@ const services = [
           </h1>
 
           <p class="c-hero__bio">
-            I'm <strong>Saabbir</strong>. I've been building for the web since 2016. These days most of my work is Shopify themes, frontend performance, and A/B testing. I'm a senior engineer at EchoLogyx in Dhaka.
+            I'm <strong>Saabbir</strong>. I've been building for the web since 2016. These days most of my work is Shopify themes, frontend performance, and A/B testing. I'm a senior engineer at <strong>EchoLogyx</strong> in Dhaka.
           </p>
 
           <p class="c-hero__bio">
@@ -133,7 +118,7 @@ const services = [
         <!-- One real result, attributed, with its limits stated -->
         <aside class="c-hero__feature" aria-labelledby="hero-feature-title">
           <p class="c-hero__feature-label">Most recent test</p>
-          <p class="c-hero__feature-client" id="hero-feature-title">Wax London — suiting pages</p>
+          <p class="c-hero__feature-client" id="hero-feature-title">EchoLogyx — UK fashion retailer, suiting pages</p>
 
           <p class="c-hero__feature-metric">
             <span class="c-hero__feature-value">+50%</span>
@@ -148,7 +133,7 @@ const services = [
             Purchase rate moved the same way but stopped at 92.6% confidence, so I don't count that part as proven.
           </p>
 
-          <a href="/work/wax-london-model-vs-product" class="c-hero__feature-link">
+          <a href="/work/suiting-model-vs-product" class="c-hero__feature-link">
             Read the full test →
           </a>
         </aside>
@@ -253,24 +238,34 @@ const services = [
     </div>
   </section>
 
-  <!-- Clients -->
-  <section class="l-section l-section--brands">
+  <!-- Agency -->
+  <section class="l-section l-section--brands" aria-labelledby="agency-title">
     <div class="l-container">
       <div class="c-clients">
-        <p class="c-clients__label">Brands I've built or tested on</p>
-        <div class="c-clients__marquee" aria-hidden="true">
-          <div class="c-clients__marquee-track">
-            {marqueeLogos.map((item) => (
-              <div class="c-clients__item">
-                <img src={item.logo} alt="" width="140" height="36" loading="lazy" decoding="async" />
-              </div>
-            ))}
-          </div>
+        <a
+          class="c-clients__brand"
+          href="https://echologyx.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/images/clients/echologyx.svg" alt="EchoLogyx" width="162" height="13" />
+        </a>
+        <div class="c-clients__body">
+          <h2 class="c-clients__label" id="agency-title">Where I work</h2>
+          <p class="c-clients__copy">
+            I've been at EchoLogyx since 2021. I lead the Shopify frontend team —
+            themes, A/B tests, and the speed work that comes after. Client names
+            on this site are withheld.
+          </p>
+          <a
+            class="c-btn c-btn--primary"
+            href="https://echologyx.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit EchoLogyx
+          </a>
         </div>
-        <p class="u-sr-only">
-          Brands I've built or tested on: {clientLogos.map((c) => c.name).join(', ')}.
-        </p>
-        <p class="c-clients__note">Most of this was through EchoLogyx, where I work.</p>
       </div>
     </div>
   </section>
@@ -380,7 +375,7 @@ const services = [
       <div class="u-mb-32">
         <h2 class="l-section__title">Want to talk?</h2>
         <p class="u-text-muted">
-          If you've got a Shopify build, a page that's slow, or a test you're not sure how to run — send me a note. I read everything and reply within a day or two.
+          I work at EchoLogyx. Questions about a write-up can come to me. For project work, <a class="u-text-accent" href="https://echologyx.com/contact-us" target="_blank" rel="noopener noreferrer">contact EchoLogyx</a>. I reply within a day or two.
         </p>
       </div>
 

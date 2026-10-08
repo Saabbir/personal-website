@@ -1,7 +1,7 @@
 ---
 createdAt: 01/09/2021
-title: Pragmaticworks Redesign
-highlight: A complete redesign of pragmaticworks.com
+title: Training company site redesign
+highlight: A complete HTML redesign of a training company's marketing site
 type: Contract
 imgFolderName: pragmaticworks-redesign
 featured: true

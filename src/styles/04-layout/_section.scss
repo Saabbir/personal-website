@@ -20,15 +20,15 @@
 
   // Always dark so light brand marks stay visible in both themes.
   &--brands {
-    padding: 2.25rem 0;
+    padding: 3.25rem 0;
     overflow: hidden;
     background: $color-obsidian-900;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     color-scheme: dark;
 
-    .c-clients__label {
-      color: #94a3b8;
+    @media (min-width: 768px) {
+      padding: 4rem 0;
     }
   }
 

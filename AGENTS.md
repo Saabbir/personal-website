@@ -25,7 +25,7 @@ Non-negotiables:
   wrong, what he's learning) must come from him. If it isn't in the repo and he
   hasn't said it, leave a `TODO(saabbir)` comment with a specific question
   rather than writing plausible filler.
-- **Case studies follow the Wax London shape**, including the
+- **Case studies follow the suiting-study shape**, including the
   "What this does not prove" section. Don't drop the caveats.
 
 Outstanding work: [`docs/backlog.md`](docs/backlog.md).

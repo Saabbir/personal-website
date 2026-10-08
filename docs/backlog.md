@@ -21,10 +21,10 @@ They're additive.
 | [about.astro:132](../src/pages/about.astro#L132) | **"What I got wrong"** and **"What I'm learning right now"**. Two sections. The first is the single highest-value thing you could add to the site. |
 | [about.astro:175](../src/pages/about.astro#L175) | Bandarban photo caption, in your voice. Currently a photo credit. |
 
-### Raab Vital case study — highest priority
+### Supplements theme-build case study — highest priority
 
-[raab-vital-theme-build.md](../src/content/work/raab-vital-theme-build.md),
-currently `publish: false` so it builds nothing.
+[supplements-theme-build.md](../src/content/work/supplements-theme-build.md),
+currently `publish: false` so it builds nothing. Do not name the live client.
 
 **Why it matters:** "Shopify themes" is the first thing listed under what you
 do, and there is no build case study on the site. Every published study is a
@@ -32,22 +32,21 @@ test or a speed audit. A client who wants a theme built has nothing to look at.
 
 The file has the full section skeleton with specific questions. It needs:
 - the 5 frontmatter fields (dates, URL, description)
-- screenshots in `public/images/work/raab-vital/` — `thumbnail.jpg` (414×310)
+- screenshots in `public/images/work/supplements-theme-build/` — `thumbnail.jpg` (414×310)
   and `cover.jpg` (1600×1200) at minimum
 - an entry added to `scripts/generate-og-images.py`, then re-run it
 - `publish: true`
 
 ### The portfolio is thin
 
-4 published case studies, 3 of them Wax London. Five older projects
-(CESPPA ×2, Jump Work, PersonX, A Perfect Space, Pragmatic Works) sit at
-`publish: false`. Options, in order of preference:
+4 published case studies, 3 of them for the same UK fashion retailer. Five older
+projects sit at `publish: false`. Options, in order of preference:
 
-1. Ship Raab Vital — fixes the one-client wall on its own
+1. Ship the supplements theme build — fixes the missing Shopify-build case
 2. Republish the older work as short honest entries: *"2017, Invision to HTML,
    here's what I built and what I'd do differently now."* Group the Work page
    into "Recent" and "Earlier work"
-3. Write up something recent that isn't Wax London
+3. Write up something recent that isn't the fashion retailer
 
 ### The blog is nearly empty
 
@@ -59,7 +58,7 @@ current voice and publish, or delete them so they stop being a decision.
 Article ideas that fit the voice (lessons, not tutorials):
 - Why the Convert setup had two purchase goals reporting different lifts
 - What a Figma file doesn't tell you about building a Shopify theme
-- The third-party script that cost Wax London two seconds
+- The third-party script that cost a fashion homepage two seconds
 
 ---
 

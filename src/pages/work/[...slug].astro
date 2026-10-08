@@ -10,8 +10,8 @@ export async function getStaticPaths() {
   );
 
   return workEntries.map((entry) => {
-    // Same client first, then anything of the same type. The three Wax London
-    // studies used to be dead ends — nothing linked them to each other.
+    // Same client first, then anything of the same type. The three fashion
+    // retailer studies used to be dead ends — nothing linked them to each other.
     const others = workEntries.filter((item) => item.slug !== entry.slug);
     const sameClient = others.filter(
       (item) => entry.data.client && item.data.client === entry.data.client,
@@ -44,6 +44,7 @@ const data = entry.data;
   tools={data.tools}
   url={data.url}
   cover={workCover(data.imgFolderName)}
+  agency={data.agency}
   client={data.client}
   eyebrow={data.eyebrow}
   tool={data.tool}

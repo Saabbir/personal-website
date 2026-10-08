@@ -1,27 +1,57 @@
 @use '../01-config/tokens' as *;
 
 .c-clients {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
   align-items: center;
   width: 100%;
-  overflow: hidden;
+
+  @media (min-width: 768px) {
+    grid-template-columns: auto minmax(0, 36rem);
+    justify-content: center;
+    gap: 3.5rem;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 44px;
+    min-width: 44px;
+
+    img {
+      display: block;
+      width: clamp(200px, 32vw, 320px);
+      height: auto;
+      max-width: 100%;
+      // Official wordmark is near-black; this band is always dark.
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
 
   &__label {
     font-size: 0.78rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--color-text-dim);
-    margin-bottom: 1.75rem;
-    text-align: center;
+    color: #94a3b8;
+    margin: 0 0 0.75rem;
   }
 
-  &__note {
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--color-text-dim);
-    text-align: center;
+  &__copy {
+    margin: 0 0 1.25rem;
+    max-width: 38rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(248, 250, 252, 0.86);
   }
 
   &__marquee {

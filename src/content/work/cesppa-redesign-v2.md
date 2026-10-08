@@ -1,7 +1,7 @@
 ---
 createdAt: 01/09/2021
-title: CESPPA Redesign
-highlight: Second version of CESPPA homepage
+title: Security product homepage redesign
+highlight: Second version of a security product homepage
 description:
 type: Contract
 imgFolderName: cesppa-redesign-v2

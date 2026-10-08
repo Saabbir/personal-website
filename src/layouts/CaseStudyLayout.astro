@@ -3,7 +3,6 @@ import BaseLayout from './BaseLayout.astro';
 import ImageLightbox from '../components/ImageLightbox.astro';
 import { SITE_ORIGIN, canonicalForPath, formatWorkDate, toIsoDate } from '../utils/seo';
 import {
-  caseCtaCopy,
   caseEyebrow,
   caseLayoutKind,
   formatVisitors,
@@ -42,6 +41,7 @@ interface Props {
   tools?: string[];
   url?: string | null;
   cover?: string | null;
+  agency?: string | null;
   client?: string | null;
   eyebrow?: string | null;
   tool?: string | null;
@@ -72,6 +72,7 @@ const {
   tools = [],
   url,
   cover,
+  agency,
   client,
   eyebrow,
   tool,
@@ -92,7 +93,6 @@ const {
 const kind = caseLayoutKind(type, caseLayout);
 const eyebrowText = caseEyebrow(kind, type, eyebrow);
 const crumbLabel = client || title;
-const cta = caseCtaCopy(kind);
 const showCover = Boolean(cover) && kind === 'shopify';
 const sourcedMetrics = metrics.length > 0
   ? metrics
@@ -132,10 +132,12 @@ const caseSchema = {
   "datePublished": toIsoDate(createdAt),
   "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
   ...(client ? { about: { "@type": "Organization", name: client } } : {}),
+  ...(agency ? { contributor: { "@type": "Organization", name: agency, url: "https://echologyx.com/" } } : {}),
 };
 
 const metaItems: MetaItem[] = [];
 
+if (agency) metaItems.push({ label: 'Agency', value: agency });
 if (client) metaItems.push({ label: 'Client', value: client });
 
 if (kind === 'ab-test') {
@@ -321,11 +323,22 @@ if (kind === 'ab-test') {
 
     <section class="c-case-cta" aria-labelledby="case-cta-title">
       <div class="l-container">
-        <p class="c-case-cta__eyebrow">Work with me</p>
-        <h2 class="c-case-cta__title" id="case-cta-title">{cta.title}</h2>
-        <p class="c-case-cta__lede">{cta.lede}</p>
+        <p class="c-case-cta__eyebrow">Work with us</p>
+        <h2 class="c-case-cta__title" id="case-cta-title">Need help with something like this?</h2>
+        <p class="c-case-cta__lede">
+          Need help with A/B testing, Shopify development, or a performance audit?
+          Reach out to
+          <a href="https://echologyx.com/contact-us" target="_blank" rel="noopener noreferrer">EchoLogyx</a>.
+        </p>
         <div class="c-case-cta__actions">
-          <a href="/contact" class="c-btn c-btn--primary c-btn--lg">Start a project</a>
+          <a
+            href="https://echologyx.com/contact-us"
+            class="c-btn c-btn--primary c-btn--lg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Contact EchoLogyx
+          </a>
           <a href="/work" class="c-btn c-btn--secondary c-btn--lg">More case studies</a>
         </div>
       </div>

@@ -84,8 +84,8 @@ const OG_SLUGS = new Set([
   'work',
   'writing',
   'about',
-  'wax-london-model-vs-product',
-  'wax-london-homepage-performance',
-  'wax-london-pdp-performance',
-  'bat-uk-homepage-product-carousel',
+  'suiting-model-vs-product',
+  'fashion-homepage-performance',
+  'fashion-pdp-performance',
+  'homepage-bestsellers-carousel',
 ]);

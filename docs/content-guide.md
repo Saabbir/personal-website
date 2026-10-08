@@ -18,7 +18,7 @@ the test, the setup, the numbers, the caveat. Let the reader conclude it.
 **2. Specific beats impressive.** "I rebuilt the announcement bar so the header
 stopped jumping" lands harder than "delivered a high-performance experience."
 
-**3. Honest limits are the differentiator.** The Wax London study says
+**3. Honest limits are the differentiator.** The suiting study says
 *"Purchase rate is not at 95% confidence."* That one sentence does more for
 credibility than every superlative a homepage could carry. Keep doing that.
 
@@ -58,9 +58,11 @@ builds Shopify themes." The second sounds like someone else wrote the site.
 scannable before it's readable.
 
 **Numbers get attributed.** A figure with no source reads as invented. `+50%`
-belongs next to the client, the sample size and the date range, or it doesn't
-belong on the page. Aggregate claims across a test programme ("average 20–40%
-lift") are not credible to anyone who runs tests — most tests are flat or lose.
+belongs next to the sample size and the date range, or it doesn't belong on
+the page. Do not name EchoLogyx clients. Use a placeholder (`UK fashion
+retailer`) and credit EchoLogyx. Aggregate claims across a test programme
+("average 20–40% lift") are not credible to anyone who runs tests — most
+tests are flat or lose.
 
 **Admit what you don't know.** "I didn't measure this properly at the time" is
 more credible than a number you half-remember.
@@ -71,7 +73,7 @@ site and almost nobody writes it.
 
 ## Case study structure
 
-The three Wax London studies are the reference. Copy their shape:
+The three UK fashion retailer studies are the reference. Copy their shape:
 
 1. **Overview** — the short version, in plain words
 2. **Hypothesis / the brief** — why this, what question it answers

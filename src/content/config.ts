@@ -35,6 +35,7 @@ const workCollection = defineCollection({
     tools: z.array(z.string()).optional().default([]),
     layout: z.union([z.string(), z.null()]).optional(),
     ogImage: z.string().optional(),
+    agency: z.string().optional(),
     client: z.string().optional(),
     eyebrow: z.string().optional(),
     tool: z.string().optional(),

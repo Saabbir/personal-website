@@ -103,14 +103,14 @@ CARDS = [
     ("work.png", "Case studies", "Shopify builds, A/B tests and speed work — including what the numbers don't prove.", None),
     ("writing.png", "Writing", "Notes on Shopify, performance and testing. Mostly things that broke.", None),
     ("about.png", "About", "Frontend engineer in Dhaka. Shopify, performance, experiments.", None),
-    ("wax-london-model-vs-product.png", "A/B test · Wax London",
+    ("suiting-model-vs-product.png", "A/B test · EchoLogyx",
      "Does seeing the model sell the suit?", "+50%"),
-    ("wax-london-homepage-performance.png", "Performance · Wax London",
-     "How I got Wax London's homepage on screen sooner", "-27%"),
-    ("wax-london-pdp-performance.png", "Performance · Wax London",
-     "How I made a Wax London product page feel ready sooner", "-17%"),
-    ("bat-uk-homepage-product-carousel.png", "A/B test · BAT UK",
-     "Putting bestsellers on the BAT UK homepage", "+35%"),
+    ("fashion-homepage-performance.png", "Performance · EchoLogyx",
+     "How I got a fashion homepage on screen sooner", "-27%"),
+    ("fashion-pdp-performance.png", "Performance · EchoLogyx",
+     "How I made a fashion product page feel ready sooner", "-17%"),
+    ("homepage-bestsellers-carousel.png", "A/B test · EchoLogyx",
+     "Putting bestsellers on the homepage", "+35%"),
 ]
 
 for name, eyebrow, title, metric in CARDS:

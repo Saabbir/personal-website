@@ -460,11 +460,22 @@
   }
 
   &__lede {
-    max-width: 30rem;
+    max-width: 34rem;
     margin: 0 auto 2rem;
     font-size: 1.125rem;
     line-height: 1.7;
     color: rgba(248, 250, 252, 0.86);
+
+    a {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+
+      &:hover,
+      &:focus-visible {
+        color: #fff;
+      }
+    }
   }
 
   &__actions {
@@ -492,7 +503,7 @@
   }
 }
 
-// "More work" block above the case-study CTA. The three Wax London studies
+// "More work" block above the case-study CTA. The three fashion retailer studies
 // were previously dead ends with nothing linking them together.
 .c-case-related {
   // Bottom padding matches .c-case__body so the cards don't butt straight

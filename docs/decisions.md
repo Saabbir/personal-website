@@ -8,6 +8,25 @@ it doesn't need an entry. Append new ones at the top.
 
 ---
 
+## EchoLogyx clients are anonymised on the public site
+**Oct 2026**
+
+EchoLogyx asked not to name their clients on this personal site. Public copy
+uses a placeholder (`UK fashion retailer`, `UK consumer brand`,
+`Health retailer`) and credits EchoLogyx as the agency. Live store URLs,
+client logos, and client-named slugs are gone.
+
+Inspectiv stays named because it is a former employer, not an EchoLogyx
+client.
+
+Live-store screenshots were replaced with abstract diagrams
+(`scripts/generate-case-diagrams.py`). Currency totals from Convert are not
+published — only percentage lifts. Case-study CTAs point at EchoLogyx, not
+personal freelance work. Don't put client names back into alt text, titles,
+URLs, or frames.
+
+Don't reintroduce a client logo marquee.
+
 ## The contact form's submit listener uses the capture phase
 **Sep 2026 · [ContactForm.astro](../src/components/ContactForm.astro)**
 
@@ -34,23 +53,24 @@ The global reduced-motion rule flattens `animation-duration` to `0.01ms`,
 which would leave a frozen ring rather than no spinner. It's hidden instead,
 and the button label changing to "Sending…" carries the state.
 
-## Optimizely and Shopify Plus are not in the client logo row
-**Sep 2026 · [index.astro](../src/pages/index.astro)**
+## The homepage brands row is EchoLogyx only
+**Oct 2026 · [index.astro](../src/pages/index.astro)**
 
-They're tools, not companies that hired him. A reader who notices a client
-wall padded with software stops trusting the rest of the row. Tools belong in
-a text list — they're on the About page under "Tools I reach for".
+The old marquee named EchoLogyx clients. After the anonymisation request it
+shows only EchoLogyx. Tools (Optimizely, Shopify) still don't belong here —
+they're on the About page under "Tools I reach for".
 
 ## The hero shows one attributed result, not a stat grid
 **Sep 2026 · [index.astro](../src/pages/index.astro)**
 
 The old hero had four tiles including `+50% Revenue per Visitor Lift` and
-`+24% Average Order Value Uplift`. Both came from a *single* test (Wax London
-model-vs-product) but read as site-wide averages.
+`+24% Average Order Value Uplift`. Both came from a *single* test (the suiting
+model-vs-product study) but read as site-wide averages.
 
 Unattributed they look inflated; attributed they're credible. The hero card
-now names the client, the sample, the date range, and the fact that purchase
-rate stopped at 92.6% confidence. Don't reintroduce floating aggregate stats.
+now names EchoLogyx, a placeholder client, the sample, the date range, and
+the fact that purchase rate stopped at 92.6% confidence. Don't reintroduce
+floating aggregate stats or a live client name.
 
 ## "Average 20–40% lift across experiments" was deleted, not softened
 **Sep 2026**
@@ -106,7 +126,8 @@ change") because the meaning was otherwise in colour alone.
 
 CESPPA ×2, Jump Work, PersonX, A Perfect Space and Pragmatic Works are 2017–21
 PSD-to-HTML projects. Deliberate choice to keep the portfolio lean rather than
-pad it, revisited if the Work page still looks thin after Raab Vital ships.
+pad it, revisited if the Work page still looks thin after the supplements
+theme build ships.
 See [backlog.md](backlog.md).
 
 ## Missing personal content is a TODO comment, not placeholder prose
