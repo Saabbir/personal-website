@@ -7,7 +7,7 @@ type: Contract
 client: Locations platform
 imgFolderName: locations-platform-html
 featured: false
-publish: true
+publish: false
 category:
   - Site Templates
 tools:

@@ -247,20 +247,6 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "work": {
-"aperfectspace.md": {
-	id: "aperfectspace.md";
-  slug: "aperfectspace";
-  body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
-} & { render(): Render[".md"] };
-"bat-uk-homepage-product-carousel.md": {
-	id: "bat-uk-homepage-product-carousel.md";
-  slug: "bat-uk-homepage-product-carousel";
-  body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
-} & { render(): Render[".md"] };
 "cesppa-prototype.md": {
 	id: "cesppa-prototype.md";
   slug: "cesppa-prototype";
@@ -275,9 +261,37 @@ declare module 'astro:content' {
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
+"fashion-homepage-performance.md": {
+	id: "fashion-homepage-performance.md";
+  slug: "fashion-homepage-performance";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
+"fashion-pdp-performance.md": {
+	id: "fashion-pdp-performance.md";
+  slug: "fashion-pdp-performance";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
+"homepage-bestsellers-carousel.md": {
+	id: "homepage-bestsellers-carousel.md";
+  slug: "homepage-bestsellers-carousel";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
 "jump-work-html.md": {
 	id: "jump-work-html.md";
   slug: "jump-work-html";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
+"locations-platform-html.md": {
+	id: "locations-platform-html.md";
+  slug: "locations-platform-html";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
@@ -296,30 +310,16 @@ declare module 'astro:content' {
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
-"raab-vital-theme-build.md": {
-	id: "raab-vital-theme-build.md";
-  slug: "raab-vital-theme-build";
+"suiting-model-vs-product.md": {
+	id: "suiting-model-vs-product.md";
+  slug: "suiting-model-vs-product";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
-"wax-london-homepage-performance.md": {
-	id: "wax-london-homepage-performance.md";
-  slug: "wax-london-homepage-performance";
-  body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
-} & { render(): Render[".md"] };
-"wax-london-model-vs-product.md": {
-	id: "wax-london-model-vs-product.md";
-  slug: "wax-london-model-vs-product";
-  body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
-} & { render(): Render[".md"] };
-"wax-london-pdp-performance.md": {
-	id: "wax-london-pdp-performance.md";
-  slug: "wax-london-pdp-performance";
+"supplements-theme-build.md": {
+	id: "supplements-theme-build.md";
+  slug: "supplements-theme-build";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
