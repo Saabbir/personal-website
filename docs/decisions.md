@@ -8,6 +8,14 @@ it doesn't need an entry. Append new ones at the top.
 
 ---
 
+## Case-study Contents is rendered in HTML
+**Oct 2026 · [CaseStudyLayout.astro](../src/layouts/CaseStudyLayout.astro)**
+
+The Contents rail used to be filled by an inline script that ran once. After
+a View Transitions hop to another work page the new rail stayed `hidden`, so
+only the first case study showed "On this page". Headings are parsed at
+build time now. Don't put the list back in client-only JS.
+
 ## EchoLogyx clients are anonymised on the public site
 **Oct 2026**
 

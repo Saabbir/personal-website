@@ -7,6 +7,7 @@ import {
   caseLayoutKind,
   formatVisitors,
   liveLabel,
+  withCaseHeadingIds,
 } from '../utils/work';
 
 interface Metric {
@@ -109,6 +110,8 @@ const primaryTool = tool || tools[0] || '';
 const visitorLabel = formatVisitors(visitors);
 
 const pageUrl = canonicalForPath(Astro.url.pathname);
+const { html: caseBody, toc: tocItems } = withCaseHeadingIds(await Astro.slots.render('default'));
+const showRail = tocItems.length > 0 || Boolean(download);
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -268,16 +271,31 @@ if (kind === 'ab-test') {
               />
             )}
 
-            <div class="c-prose c-prose--case">
-              <slot />
-            </div>
+            <div class="c-prose c-prose--case" set:html={caseBody} />
           </div>
 
-          <aside class="c-case-rail" data-case-rail hidden>
-            <nav class="c-case-toc" aria-label="On this page">
-              <p class="c-case-toc__label">Contents</p>
-              <ul class="c-case-toc__list" data-case-toc></ul>
-            </nav>
+          <aside class="c-case-rail" data-case-rail hidden={!showRail}>
+            {tocItems.length > 0 && (
+              <nav class="c-case-toc" aria-label="On this page">
+                <p class="c-case-toc__label">Contents</p>
+                <ul class="c-case-toc__list" data-case-toc>
+                  {tocItems.map((item) => (
+                    <li>
+                      <a href={`#${item.id}`} class="c-case-toc__link">
+                        {item.kicker ? (
+                          <>
+                            <span class="c-case-toc__kicker">{item.kicker}</span>
+                            <span class="c-case-toc__title">{item.label}</span>
+                          </>
+                        ) : (
+                          item.label
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
             {download && (
               <a
                 class="c-btn c-btn--secondary c-case-rail__download"
@@ -344,69 +362,32 @@ if (kind === 'ab-test') {
       </div>
     </section>
   </article>
-  <script is:inline>
-    (function () {
+  <script>
+    let headingObserver: IntersectionObserver | null = null;
+
+    function bindCaseToc() {
+      headingObserver?.disconnect();
+      headingObserver = null;
+
       const article = document.querySelector('.c-prose--case');
-      const list = document.querySelector('[data-case-toc]');
-      const rail = document.querySelector('[data-case-rail]');
-      if (!article || !list || !rail) return;
+      const links = [...document.querySelectorAll('.c-case-toc__link')];
+      if (!article || !links.length) return;
 
-      const slugify = (value) =>
-        value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
+      const headings = links
+        .map((link) => {
+          const id = (link.getAttribute('href') || '').replace('#', '');
+          if (!id) return null;
+          return article.querySelector(`#${CSS.escape(id)}`);
+        })
+        .filter((node): node is HTMLElement => node instanceof HTMLElement);
 
-      const tocLabel = (heading) => {
-        const clone = heading.cloneNode(true);
-        clone.querySelectorAll('.c-case-kicker').forEach((node) => node.remove());
-        return (clone.textContent || '').replace(/\s+/g, ' ').trim();
-      };
-
-      const headings = [...article.querySelectorAll('h2')];
-      const usedIds = new Set();
-
-      headings.forEach((heading, index) => {
-        const kicker = (heading.querySelector('.c-case-kicker')?.textContent || '').replace(/\s+/g, ' ').trim();
-        const label = tocLabel(heading);
-        if (!label) return;
-
-        let id = heading.id || slugify(label);
-        while (usedIds.has(id)) id = `${id}-${index + 1}`;
-        usedIds.add(id);
-        heading.id = id;
-
-        const item = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = `#${id}`;
-        link.className = 'c-case-toc__link';
-
-        if (kicker) {
-          const kickerEl = document.createElement('span');
-          kickerEl.className = 'c-case-toc__kicker';
-          kickerEl.textContent = kicker;
-          const titleEl = document.createElement('span');
-          titleEl.className = 'c-case-toc__title';
-          titleEl.textContent = label;
-          link.append(kickerEl, titleEl);
-        } else {
-          link.textContent = label;
-        }
-
-        item.appendChild(link);
-        list.appendChild(item);
-      });
-
-      if (!list.children.length && !rail.querySelector('.c-case-rail__download')) return;
-      rail.hidden = false;
-
-      const links = [...list.querySelectorAll('.c-case-toc__link')];
-      if (!links.length) return;
-
-      const setActive = (id) => {
+      const setActive = (id: string) => {
         links.forEach((link) => {
           link.classList.toggle('c-case-toc__link--active', link.getAttribute('href') === `#${id}`);
         });
       };
 
-      const observer = new IntersectionObserver(
+      headingObserver = new IntersectionObserver(
         (entries) => {
           const visible = entries
             .filter((entry) => entry.isIntersecting)
@@ -416,9 +397,12 @@ if (kind === 'ab-test') {
         { rootMargin: '-20% 0px -65% 0px', threshold: [0, 0.25, 1] },
       );
 
-      headings.forEach((heading) => observer.observe(heading));
+      headings.forEach((heading) => headingObserver?.observe(heading));
       if (headings[0]?.id) setActive(headings[0].id);
-    })();
+    }
+
+    document.addEventListener('astro:page-load', bindCaseToc);
+    bindCaseToc();
   </script>
   <ImageLightbox />
 </BaseLayout>

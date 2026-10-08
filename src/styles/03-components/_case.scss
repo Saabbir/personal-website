@@ -2,7 +2,6 @@
 
 .c-case {
   min-width: 0;
-  overflow-x: clip;
 
   &__body {
     padding-top: 3.5rem;
@@ -83,14 +82,15 @@
     gap: 1.25rem;
     align-items: start;
 
-    @media (min-width: 64rem) {
-      grid-template-columns: minmax(0, 56rem) 15rem;
-      justify-content: space-between;
+    @media (min-width: 56rem) {
+      grid-template-columns: minmax(0, 1fr) 15rem;
+      column-gap: 2rem;
     }
   }
 
   &__main {
     min-width: 0;
+    overflow-x: clip;
   }
 }
 
@@ -99,22 +99,28 @@
   flex-direction: column;
   gap: 1rem;
   align-self: start;
-  justify-self: end;
-  width: 15rem;
+  width: 100%;
+  max-width: 28rem;
   min-width: 0;
 
-  @media (min-width: 64rem) {
-    &:not([hidden]) {
-      display: flex;
-      position: sticky;
-      top: 5.5rem;
-      z-index: 2;
-      overflow: hidden;
-    }
+  &:not([hidden]) {
+    display: flex;
+    order: -1;
+  }
+
+  @media (min-width: 56rem) {
+    justify-self: end;
+    order: 0;
+    width: 15rem;
+    max-width: none;
+    position: sticky;
+    top: 5.5rem;
+    z-index: 2;
   }
 }
 
 .c-case-rail__download {
+  display: none;
   width: 100%;
   justify-content: center;
   gap: 0.4rem;
@@ -122,6 +128,10 @@
   font-size: 0.875rem;
   white-space: nowrap;
   line-height: 1.2;
+
+  @media (min-width: 56rem) {
+    display: inline-flex;
+  }
 }
 
 .c-case-toc {

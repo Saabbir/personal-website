@@ -70,3 +70,50 @@ export function caseEyebrow(
   if (kind === 'analytics') return 'Analytics';
   return type || 'Case study';
 }
+
+export interface CaseTocItem {
+  id: string;
+  kicker: string;
+  label: string;
+}
+
+function slugifyHeading(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
+}
+
+function textFromHtml(html: string) {
+  return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+// Headings have to exist in the HTML. The old client-only TOC stayed empty
+// after a View Transitions visit to another case study.
+export function withCaseHeadingIds(html: string): { html: string; toc: CaseTocItem[] } {
+  const used = new Set<string>();
+  const toc: CaseTocItem[] = [];
+  let clash = 0;
+
+  const nextHtml = html.replace(/<h2\b([^>]*)>([\s\S]*?)<\/h2>/gi, (full, attrs: string, inner: string) => {
+    const kicker = textFromHtml(
+      (inner.match(/<span[^>]*class="[^"]*c-case-kicker[^"]*"[^>]*>([\s\S]*?)<\/span>/i) || [])[1] || '',
+    );
+    const label = textFromHtml(
+      inner.replace(/<span[^>]*class="[^"]*c-case-kicker[^"]*"[^>]*>[\s\S]*?<\/span>/i, ''),
+    );
+    if (!label) return full;
+
+    const existing = (attrs.match(/\bid=["']([^"']+)["']/i) || [])[1];
+    let id = existing || slugifyHeading(label);
+    while (used.has(id)) {
+      clash += 1;
+      id = `${slugifyHeading(label)}-${clash}`;
+    }
+    used.add(id);
+    toc.push({ id, kicker, label });
+
+    if (existing === id) return full;
+    const cleaned = attrs.replace(/\s*id=["'][^"']*["']/i, '');
+    return `<h2 id="${id}"${cleaned}>${inner}</h2>`;
+  });
+
+  return { html: nextHtml, toc };
+}
