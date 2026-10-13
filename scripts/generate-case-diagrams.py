@@ -12,7 +12,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / "public" / "images" / "work"
+WORK = ROOT / "held" / "work-assets" / "images" / "work"
 FONT = "/System/Library/Fonts/HelveticaNeue.ttc"
 
 BG = (10, 15, 29)

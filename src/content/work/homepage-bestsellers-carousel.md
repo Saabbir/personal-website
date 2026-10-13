@@ -10,7 +10,7 @@ tool: Adobe Target
 dateRange: Sep 2023
 imgFolderName: homepage-bestsellers-carousel
 featured: true
-publish: true
+publish: false
 category:
   - Site Templates
   - Landing Page

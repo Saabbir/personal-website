@@ -49,7 +49,7 @@ const pageUrl = canonicalForPath(Astro.url.pathname);
         )}
 
         {entry.data.tags && entry.data.tags.length > 0 && (
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom: 1.5rem;">
             {entry.data.tags.map((tag) => (
               <span class="c-tag">#{tag}</span>
             ))}

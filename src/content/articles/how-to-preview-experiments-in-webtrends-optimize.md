@@ -1,6 +1,7 @@
 ---
 title: How to preview experiments in Webtrends Optimize
-createdAt: 02/03/2026
+description: Three ways to preview a Webtrends Optimize experiment without waiting for it to go live — the preview panel, the force widget, and a query parameter.
+createdAt: 04/10/2021
 publish: true
 tags:
   - CRO

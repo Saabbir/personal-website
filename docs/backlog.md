@@ -1,6 +1,9 @@
 # Backlog
 
-What's outstanding, roughly in the order I'd do it. Last updated 17 Sep 2026.
+What's outstanding, roughly in the order I'd do it. Last updated 13 Oct 2026.
+
+The public site is a personal blog while Saabbir is at EchoLogyx. Case studies
+stay in the repo unpublished. Don't ship Work to saabbir.com unless he asks.
 
 ---
 
@@ -17,36 +20,9 @@ They're additive.
 
 | Where | What |
 |---|---|
-| [about.astro:110](../src/pages/about.astro#L110) | **How you ended up in CRO.** The story currently jumps from "moved to EchoLogyx" to "that's the short version of eight years". The part where testing became your thing is missing, and it's the hinge of the page. |
-| [about.astro:132](../src/pages/about.astro#L132) | **"What I got wrong"** and **"What I'm learning right now"**. Two sections. The first is the single highest-value thing you could add to the site. |
-| [about.astro:175](../src/pages/about.astro#L175) | Bandarban photo caption, in your voice. Currently a photo credit. |
-
-### Supplements theme-build case study — highest priority
-
-[supplements-theme-build.md](../src/content/work/supplements-theme-build.md),
-currently `publish: false` so it builds nothing. Do not name the live client.
-
-**Why it matters:** "Shopify themes" is the first thing listed under what you
-do, and there is no build case study on the site. Every published study is a
-test or a speed audit. A client who wants a theme built has nothing to look at.
-
-The file has the full section skeleton with specific questions. It needs:
-- the 5 frontmatter fields (dates, URL, description)
-- screenshots in `public/images/work/supplements-theme-build/` — `thumbnail.jpg` (414×310)
-  and `cover.jpg` (1600×1200) at minimum
-- an entry added to `scripts/generate-og-images.py`, then re-run it
-- `publish: true`
-
-### The portfolio is thin
-
-4 published case studies, 3 of them for the same UK fashion retailer. Five older
-projects sit at `publish: false`. Options, in order of preference:
-
-1. Ship the supplements theme build — fixes the missing Shopify-build case
-2. Republish the older work as short honest entries: *"2017, Invision to HTML,
-   here's what I built and what I'd do differently now."* Group the Work page
-   into "Recent" and "Earlier work"
-3. Write up something recent that isn't the fashion retailer
+| [about.astro](../src/pages/about.astro) | **How you ended up in CRO.** The story currently jumps from "moved to EchoLogyx" to "that's the short version of eight years". The part where testing became your thing is missing, and it's the hinge of the page. |
+| [about.astro](../src/pages/about.astro) | **"What I got wrong"** and **"What I'm learning right now"**. Two sections. The first is the single highest-value thing you could add to the site. |
+| [about.astro](../src/pages/about.astro) | Bandarban photo caption, in your voice. Currently a photo credit. |
 
 ### The blog is nearly empty
 
@@ -60,6 +36,19 @@ Article ideas that fit the voice (lessons, not tutorials):
 - What a Figma file doesn't tell you about building a Shopify theme
 - The third-party script that cost a fashion homepage two seconds
 
+### Resources / reading page — later
+
+A page of books and links. Don't invent a list. Wait until Saabbir writes it.
+
+### Case studies — not public
+
+[src/content/work/](../src/content/work/) is kept, all `publish: false`.
+Assets are in [held/work-assets/](../held/work-assets/), not `public/`.
+The supplements theme-build draft is the most complete unpublished Shopify
+build write-up. Leave it unpublished. If Work ever comes back, that file is
+the first one to finish — screenshots go in `held/work-assets/images/work/`,
+not `public/images/work/`, until publish is allowed.
+
 ---
 
 ## 2. Technical, not urgent
@@ -68,8 +57,8 @@ Article ideas that fit the voice (lessons, not tutorials):
 Every image is a raw file in `public/` referenced by absolute path, so Astro's
 `<Image>` optimisation never runs — no AVIF/WebP, no `srcset`. Files were
 recompressed in place (12MB → 4.8MB) which banked most of the win, but moving
-assets to `src/assets/` and co-locating case-study images with their markdown
-would unlock responsive images properly. Biggest remaining perf item.
+assets to `src/assets/` would unlock responsive images properly. Biggest
+remaining perf item.
 
 ### Inline styles
 Several hundred inline `style=` attributes across pages, fighting the BEM SCSS
@@ -87,11 +76,14 @@ design change roughly a tenth of the work. Slow, safe, no user-visible change.
 
 ## 3. Maintenance
 
-**After adding a case study or article:**
+**After adding an article:**
 ```bash
 python3 scripts/generate-og-images.py   # add the slug to CARDS first
 npm run build
 ```
+
+Do not add work slugs to that script. Work OG cards belong in
+`held/work-assets/images/og/`.
 
 **After adding images:**
 ```bash
@@ -103,11 +95,14 @@ node scripts/optimize-images.mjs --write  # apply
 which is ambiguous — `02/03/2026` could be either month. `formatDisplayDate()`
 handles both and renders "15 May 2026", but new content should be ISO.
 
+**After go-live of this branch:** ask Google Search Console to drop the old
+`/work/` URLs.
+
 ---
 
 ## 4. Why things are the way they are
 
-Non-obvious choices — why Optimizely isn't in the client logo row, why the
-contact form listener uses the capture phase, why older work is unpublished —
-are recorded in [decisions.md](decisions.md). Read it before "fixing"
-something that looks like an oversight.
+Non-obvious choices — why Work is unpublished, why the contact form listener
+uses the capture phase, why the hero has no metric card — are recorded in
+[decisions.md](decisions.md). Read it before "fixing" something that looks
+like an oversight.

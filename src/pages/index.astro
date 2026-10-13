@@ -3,82 +3,88 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { getCollection } from 'astro:content';
 import { articleHref, articleLinkRel, isExternalArticle } from '../utils/article';
-import { contentDateValue, formatDisplayDate, formatWorkDate } from '../utils/seo';
-import { workThumb } from '../utils/work';
+import { contentDateValue, formatDisplayDate, toIsoDate } from '../utils/seo';
 
 const allArticles = await getCollection('articles');
-const recentArticles = allArticles
+const publishedArticles = allArticles
   .filter(a => a.data.publish !== false)
+  .sort((a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt));
+const recentArticles = publishedArticles.slice(0, 3);
+const featuredArticle = publishedArticles[0];
+
+const allSnippets = await getCollection('snippets');
+const recentSnippets = allSnippets
+  .filter((s) => s.data.publish !== false)
   .sort((a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt))
   .slice(0, 3);
-
-const allWork = await getCollection('work');
-const publishedWork = allWork
-  .filter((w) => w.data.publish !== false)
-  .sort((a, b) => {
-    const featuredDiff = Number(b.data.featured) - Number(a.data.featured);
-    if (featuredDiff !== 0) return featuredDiff;
-    return contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt);
-  });
-
-// Show one study per client before repeating a client, so the homepage
-// doesn't read like a single-client portfolio. Backfill to three.
-const byClient = new Map<string, typeof publishedWork>();
-for (const item of publishedWork) {
-  const key = item.data.client || item.slug;
-  if (!byClient.has(key)) byClient.set(key, []);
-  byClient.get(key)!.push(item);
-}
-const onePerClient = [...byClient.values()].map((list) => list[0]);
-const backfill = publishedWork.filter((item) => !onePerClient.includes(item));
-const featuredWork = [...onePerClient, ...backfill].slice(0, 3);
-
-const featuredHighlight = featuredWork[0];
-const featuredRest = featuredWork.slice(1);
 
 const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7.pdf";
 
 const testimonials = [
   {
-    name: 'Haley Carpenter',
-    role: 'Managed me on an enterprise testing programme',
-    initials: 'HC',
-    date: 'June 2024',
-    quote: "Saabbir is one of the best, if not THE best, developers I have ever had the pleasure of working with in my career. I recently worked with him on a large enterprise client, and he was a MAJOR reason for their testing success. He's unbelievably fast, super knowledgable, proactive, lovely to work with, and always found solutions for anything that came up. Anyone that gets to have Saabbir on their team is very lucky!",
-    rating: 5
+    name: 'Avery',
+    role: 'React frontend for a financial planning app',
+    initials: 'A',
+    date: 'Upwork review · April – June 2021',
+    quote: 'Saabbir is an excellent and trustworthy frontend developer who I plan to continue to use for frontend projects in the future. Thanks for your great work!',
+    rating: 5,
   },
   {
     name: 'Joseph Melika',
     role: 'Founder & CEO at Discloze',
     initials: 'JM',
-    date: 'December 2019',
+    date: 'LinkedIn recommendation · December 2019',
     quote: "Saabbir has been an integral part of our development operations. Despite being remote with very different timezone, he's been very capable of adapting and integrating into our US-based operations. Very creative, prompt, and skilled.",
-    rating: 5
-  }
+    rating: 5,
+  },
 ];
 
-const services = [
+const week = [
   {
     title: 'Shopify themes',
-    description: "Built from scratch, or working inside a theme someone else wrote. Most of my time goes on the parts that are easy to get wrong and expensive to fix later: the product page, the cart, and whatever is making the first screen slow.",
+    description: "Built from scratch, or working inside a theme someone else wrote. Most of my time goes on the parts that are easy to get wrong: the product page, the cart, and whatever is making the first screen slow.",
+    tools: ['Liquid', 'Web Components', 'Shopify CLI', 'Claude Code'],
   },
   {
     title: 'A/B testing',
-    description: "I set up tests that answer one question at a time, then read the results honestly — including the ones that come back flat. Convert, Optimizely, VWO, Adobe Target, AB Tasty. Most of the value is in working out what's worth testing at all.",
+    description: "I set up tests that answer one question at a time, then read the results honestly — including the ones that come back flat.",
+    tools: ['Convert', 'Optimizely', 'AB Tasty'],
   },
   {
     title: 'Making pages faster',
-    description: "This starts with measuring the page properly instead of guessing. Then it's the unglamorous work: getting the hero image on screen sooner, stopping the header from jumping, and finding which third-party script is costing you two seconds.",
+    description: "This starts with measuring the page properly instead of guessing. Then it's getting the hero image on screen sooner, stopping the header from jumping, and finding which third-party script is costing two seconds.",
+    tools: ['WebPageTest', 'DebugBear', 'LCP', 'INP'],
   },
   {
     title: 'Tracking and analytics',
-    description: "GA4 and Tag Manager set up so the numbers mean something. If you can't trust the funnel, there's no point testing against it.",
+    description: "Set the tracking up so the numbers mean something. If you can't trust the funnel, there's no point testing against it.",
+    tools: ['GA4', 'GTM', 'Shopify Analytics'],
   },
+];
+
+const projects = [
+  {
+    name: 'ios-quirks',
+    desc: "A running list of the ways iOS Safari differs from every other browser, with fixes I've actually tested. Started because I kept solving the same problems and forgetting how.",
+    url: 'https://ios-quirks.netlify.app',
+    github: 'https://github.com/Saabbir/ios-quirks'
+  },
+  {
+    name: 'shopify-tab-extension',
+    desc: 'A Chrome extension that replaces the new-tab page with recent Shopify and web development videos. Built for myself, then left it public.',
+    url: 'https://github.com/Saabbir/shopify-tab-extension',
+    github: 'https://github.com/Saabbir/shopify-tab-extension'
+  },
+  {
+    name: 'school-finder-bangladesh',
+    desc: 'Find schools near you in Dhaka. A small thing, but the kind of problem that is genuinely annoying if you live here.',
+    url: 'https://school-finder-bangladesh.vercel.app/',
+    github: 'https://github.com/Saabbir/school-finder-bangladesh'
+  }
 ];
 ---
 
 <BaseLayout>
-  <!-- Hero -->
   <section class="l-section l-section--hero">
     <div class="l-container">
       <div class="c-hero">
@@ -97,11 +103,11 @@ const services = [
 
           <div class="c-hero__actions">
             <div class="c-hero__actions-row">
-              <a href="/work" class="c-btn c-btn--primary c-btn--lg">
-                See my work
+              <a href="/blog" class="c-btn c-btn--primary c-btn--lg">
+                Read the writing
               </a>
-              <a href="/contact" class="c-btn c-btn--secondary c-btn--lg">
-                Get in touch
+              <a href="/about" class="c-btn c-btn--secondary c-btn--lg">
+                About me
               </a>
             </div>
             <a
@@ -115,219 +121,49 @@ const services = [
           </div>
         </div>
 
-        <!-- One real result, attributed, with its limits stated -->
-        <aside class="c-hero__feature" aria-labelledby="hero-feature-title">
-          <p class="c-hero__feature-label">Most recent test</p>
-          <p class="c-hero__feature-client" id="hero-feature-title">EchoLogyx — UK fashion retailer, suiting pages</p>
-
-          <p class="c-hero__feature-metric">
-            <span class="c-hero__feature-value">+50%</span>
-            <span class="c-hero__feature-unit">revenue per visitor</span>
-          </p>
-
-          <p class="c-hero__feature-copy">
-            29 days, 14,115 visitors, one change: the first photo on the listing went from a jacket on a hanger to the same jacket on a person. Average order value went up 24% as well.
-          </p>
-
-          <p class="c-hero__feature-caveat">
-            Purchase rate moved the same way but stopped at 92.6% confidence, so I don't count that part as proven.
-          </p>
-
-          <a href="/work/suiting-model-vs-product" class="c-hero__feature-link">
-            Read the full test →
-          </a>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- Work -->
-  <section class="l-section l-section--alt" id="work">
-    <div class="l-container">
-      <div class="l-section__header l-section__header--split">
-        <div>
-          <h2 class="l-section__title">What I've been working on</h2>
-        </div>
-        <a href="/work" class="c-btn c-btn--ghost">All case studies →</a>
-      </div>
-
-      {featuredHighlight && (
-        <article class="c-card c-card--glass c-card--hoverable c-card--work c-card--work-metric u-mb-32">
-          <div class="c-card__metric-main">
-            <div class="c-card__header">
-              <span class="c-tag c-tag--accent">{featuredHighlight.data.type || 'Project'}</span>
-              {(featuredHighlight.data.dateRange || featuredHighlight.data.createdAt) && (
-                <span class="c-card__date">{formatWorkDate(featuredHighlight.data.dateRange, featuredHighlight.data.createdAt)}</span>
-              )}
-            </div>
-            {featuredHighlight.data.metric && (
-              <>
-                <div class="c-card__metric-value">{featuredHighlight.data.metric}</div>
-                <div class="c-card__metric-label">{featuredHighlight.data.metricLabel}</div>
-              </>
-            )}
-            <h3 class="c-card__title">
-              <a href={`/work/${featuredHighlight.slug}`}>{featuredHighlight.data.title}</a>
-            </h3>
-            <p class="c-card__body">
-              {featuredHighlight.data.highlight || featuredHighlight.data.description}
-            </p>
-            <span class="c-btn c-btn--ghost">Read the case study →</span>
-          </div>
-          {featuredHighlight.data.metrics?.length > 0 && (
-            <div class="c-card__metric-aside">
-              {featuredHighlight.data.metrics.map((item) => (
-                <div class="c-card__metric-row">
-                  <div class="c-card__metric-row-value">{item.value}</div>
-                  <div class="c-card__metric-row-label">{item.label}</div>
-                </div>
-              ))}
-            </div>
-          )}
-        </article>
-      )}
-
-      <div class="l-grid l-grid--2col">
-        {featuredRest.map((item) => (
-          <article class="c-card c-card--glass c-card--hoverable c-card--work c-card--work-stack">
-            {workThumb(item.data.imgFolderName) && (
-              <img
-                class="c-card__media"
-                src={workThumb(item.data.imgFolderName)!}
-                alt=""
-                width="414"
-                height="310"
-                loading="lazy"
-                decoding="async"
-              />
-            )}
-            <div class="c-card__content">
-              <div class="c-card__header">
-                <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
-                {(item.data.dateRange || item.data.createdAt) && (
-                  <span class="c-card__date">{formatWorkDate(item.data.dateRange, item.data.createdAt)}</span>
+        {featuredArticle && (
+          <aside class="c-hero__feature" aria-labelledby="hero-feature-title">
+            <p class="c-hero__feature-label">Latest writing</p>
+            <p class="c-hero__feature-post" id="hero-feature-title">{featuredArticle.data.title}</p>
+            {featuredArticle.data.createdAt && (
+              <p class="c-hero__feature-meta">
+                <time datetime={toIsoDate(featuredArticle.data.createdAt)}>
+                  {formatDisplayDate(featuredArticle.data.createdAt)}
+                </time>
+                {isExternalArticle(featuredArticle) && (
+                  <>
+                    <span aria-hidden="true"> · </span>
+                    <span>{featuredArticle.data.externalSource || 'External'}</span>
+                  </>
                 )}
-              </div>
-
-              <h3 class="c-card__title">
-                <a href={`/work/${item.slug}`}>{item.data.title}</a>
-              </h3>
-
-              {item.data.highlight && (
-                <p class="c-card__highlight">{item.data.highlight}</p>
-              )}
-
-              <div class="c-card__body">
-                {item.data.description}
-              </div>
-
-              <div class="c-card__footer">
-                <div class="c-card__tags">
-                  {item.data.tools?.slice(0, 4).map((tool) => (
-                    <span class="c-tag">{tool}</span>
-                  ))}
-                </div>
-                <span class="c-btn c-btn--ghost c-btn--sm">
-                  Read it →
-                </span>
-              </div>
-            </div>
-          </article>
-        ))}
+              </p>
+            )}
+            {featuredArticle.data.description && (
+              <p class="c-hero__feature-copy">{featuredArticle.data.description}</p>
+            )}
+            <a
+              href={articleHref(featuredArticle)}
+              class="c-hero__feature-link"
+              {...articleLinkRel(featuredArticle)}
+            >
+              {isExternalArticle(featuredArticle)
+                ? `Read on ${featuredArticle.data.externalSource || 'EchoLogyx'} →`
+                : 'Read it →'}
+            </a>
+          </aside>
+        )}
       </div>
     </div>
   </section>
 
-  <!-- Agency -->
-  <section class="l-section l-section--brands" aria-labelledby="agency-title">
-    <div class="l-container">
-      <div class="c-clients">
-        <a
-          class="c-clients__brand"
-          href="https://echologyx.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/images/clients/echologyx.svg" alt="EchoLogyx" width="162" height="13" />
-        </a>
-        <div class="c-clients__body">
-          <h2 class="c-clients__label" id="agency-title">Where I work</h2>
-          <p class="c-clients__copy">
-            I've been at EchoLogyx since 2021. I lead the Shopify frontend team —
-            themes, A/B tests, and the speed work that comes after. Client names
-            on this site are withheld.
-          </p>
-          <a
-            class="c-btn c-btn--primary"
-            href="https://echologyx.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visit EchoLogyx
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- What I work on -->
-  <section class="l-section">
-    <div class="l-container">
-      <div class="l-section__header">
-        <h2 class="l-section__title">What I work on</h2>
-        <p class="u-text-muted l-section__lede">
-          Four things, mostly. They overlap more than you'd think — a slow product page and a failed test are often the same problem.
-        </p>
-      </div>
-
-      <div class="l-grid l-grid--2col">
-        {services.map((service) => (
-          <article class="c-card c-card--glass c-service-card">
-            <h3 class="c-card__title">{service.title}</h3>
-            <p class="c-card__body">{service.description}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
   <section class="l-section l-section--alt">
     <div class="l-container">
-      <div class="l-section__header">
-        <h2 class="l-section__title">What people I've worked with said</h2>
-      </div>
-
-      <div class="l-grid l-grid--2col">
-        {testimonials.map((t) => (
-          <div class="c-card c-card--glass c-testimonial">
-            <div class="c-testimonial__rating" role="img" aria-label={`${t.rating} out of 5`}>
-              {Array.from({ length: t.rating }).map(() => (
-                <span aria-hidden="true">★</span>
-              ))}
-            </div>
-            <p class="c-testimonial__quote">{t.quote}</p>
-
-            <div class="c-testimonial__author">
-              <div class="c-testimonial__author-avatar" aria-hidden="true">{t.initials}</div>
-              <div class="c-testimonial__author-info">
-                <div class="c-testimonial__author-name">{t.name}</div>
-                <div class="c-testimonial__author-role">{t.role}</div>
-                <div class="c-testimonial__author-date">{t.date}</div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Writing -->
-  <section class="l-section">
-    <div class="l-container">
       <div class="l-section__header l-section__header--split">
         <div>
-          <h2 class="l-section__title">Recent writing</h2>
+          <h2 class="l-section__title">Writing</h2>
+          <p class="u-text-muted l-section__lede">
+            Posts about Shopify, A/B testing, analytics, and CSS — written down after I had to work it out.
+          </p>
         </div>
         <a href="/blog" class="c-btn c-btn--ghost">Everything I've written →</a>
       </div>
@@ -369,13 +205,144 @@ const services = [
     </div>
   </section>
 
-  <!-- Contact -->
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header l-section__header--split">
+        <div>
+          <h2 class="l-section__title">Snippets</h2>
+          <p class="u-text-muted l-section__lede">
+            Short bits of code I look up when the same problem comes back.
+          </p>
+        </div>
+        <a href="/snippets" class="c-btn c-btn--ghost">All snippets →</a>
+      </div>
+
+      <div class="l-grid l-grid--3col l-grid--cards">
+        {recentSnippets.map((snippet) => (
+          <article class="c-card c-card--glass c-card--hoverable c-card--article">
+            <div class="c-card__meta">
+              {snippet.data.createdAt && <span>{formatDisplayDate(snippet.data.createdAt)}</span>}
+              <span>•</span>
+              <span class="c-card__meta-source">Snippet</span>
+            </div>
+
+            <div class="c-card__main">
+              <h3 class="c-card__title">
+                <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
+              </h3>
+
+              <div class="c-card__body">
+                {snippet.data.description}
+              </div>
+            </div>
+
+            <div class="c-card__footer">
+              <div class="c-card__tags">
+                {snippet.data.tags?.slice(0, 3).map((tag) => (
+                  <span class="c-tag">#{tag}</span>
+                ))}
+              </div>
+              <a href={`/snippets/${snippet.slug}`} class="c-btn c-btn--ghost c-btn--sm">
+                View snippet →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="l-section l-section--alt">
+    <div class="l-container">
+      <div class="l-section__header">
+        <h2 class="l-section__title">What I do</h2>
+        <p class="u-text-muted l-section__lede">
+          Most of a week is Shopify themes, A/B tests, making pages faster, and getting the tracking right.
+        </p>
+      </div>
+
+      <div class="l-grid l-grid--2col">
+        {week.map((item) => (
+          <article class="c-card c-card--glass c-service-card">
+            <h3 class="c-card__title">{item.title}</h3>
+            <p class="c-card__body">{item.description}</p>
+            <div class="c-card__tags">
+              {item.tools.map((tool) => (
+                <span class="c-tag">{tool}</span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-section__header">
+        <h2 class="l-section__title">Built for myself</h2>
+        <p class="u-text-muted l-section__lede">
+          Personal projects I needed, then left on GitHub.
+        </p>
+      </div>
+
+      <div class="l-grid l-grid--3col">
+        {projects.map((repo) => (
+          <div class="c-card c-card--glass">
+            <h3 class="c-card__title">
+              <a href={repo.url} target="_blank" rel="noopener noreferrer">{repo.name}</a>
+            </h3>
+            <p class="c-card__body">{repo.desc}</p>
+            <div class="c-card__footer">
+              <a href={repo.github} target="_blank" rel="noopener noreferrer" class="c-btn c-btn--ghost c-btn--sm">
+                Code ↗
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="l-section l-section--alt">
+    <div class="l-container">
+      <div class="l-section__header">
+        <h2 class="l-section__title">From people I worked with</h2>
+        <p class="u-text-muted l-section__lede">
+          It's nice to see good feedback on the work.
+        </p>
+      </div>
+
+      <div class="l-grid l-grid--2col">
+        {testimonials.map((t) => (
+          <div class="c-card c-card--glass c-testimonial">
+            <div class="c-testimonial__rating" role="img" aria-label={`${t.rating} out of 5`}>
+              {Array.from({ length: t.rating }).map(() => (
+                <span aria-hidden="true">★</span>
+              ))}
+            </div>
+            <p class="c-testimonial__quote">{t.quote}</p>
+
+            <div class="c-testimonial__author">
+              <div class="c-testimonial__author-avatar" aria-hidden="true">{t.initials}</div>
+              <div class="c-testimonial__author-info">
+                <div class="c-testimonial__author-name">{t.name}</div>
+                <div class="c-testimonial__author-role">{t.role}</div>
+                <div class="c-testimonial__author-date">{t.date}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="l-section">
     <div class="l-container l-container--narrow">
       <div class="u-mb-32">
-        <h2 class="l-section__title">Want to talk?</h2>
+        <h2 class="l-section__title">Get in touch</h2>
         <p class="u-text-muted">
-          I work at EchoLogyx. Questions about a write-up can come to me. For project work, <a class="u-text-accent" href="https://echologyx.com/contact-us" target="_blank" rel="noopener noreferrer">contact EchoLogyx</a>. I reply within a day or two.
+          A question about a post, or a hello. I usually reply within a day or two.
         </p>
       </div>
 

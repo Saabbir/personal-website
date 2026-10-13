@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { formatDisplayDate } from '../../../utils/seo';
+import { contentDateValue, formatDisplayDate } from '../../../utils/seo';
 import { articleHref, articleLinkRel, isExternalArticle, slugifyTag } from '../../../utils/article';
 
 export async function getStaticPaths() {
@@ -22,7 +22,12 @@ export async function getStaticPaths() {
 
   return Array.from(tagMap.entries()).map(([slug, { originalTag, articles }]) => ({
     params: { tag: slug },
-    props: { tag: originalTag, articles },
+    props: {
+      tag: originalTag,
+      articles: [...articles].sort(
+        (a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt),
+      ),
+    },
   }));
 }
 

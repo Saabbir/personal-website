@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { formatDisplayDate } from '../../utils/seo';
+import { contentDateValue, formatDisplayDate } from '../../utils/seo';
 
 const allSnippets = await getCollection('snippets');
-const publishedSnippets = allSnippets.filter((s) => s.data.publish !== false);
+const publishedSnippets = allSnippets
+  .filter((s) => s.data.publish !== false)
+  .sort((a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt));
 ---
 
 <BaseLayout

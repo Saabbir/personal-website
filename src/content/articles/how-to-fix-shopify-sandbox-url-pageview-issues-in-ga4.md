@@ -1,7 +1,7 @@
 ---
 title: How to fix Shopify Sandbox URL Pageview Issues in GA4
 description: Custom Shopify pixels run in a sandbox, so GA4 can record iframe URLs instead of real landing pages. This guide covers the GTM and pixel setup that sends the correct page_view.
-createdAt: 12 January 2026
+createdAt: 26/09/2024
 publish: true
 external: true
 externalUrl: https://www.echologyx.com/blog/how-to-fix-shopify-sandbox-url-pageview-issues-in-ga4

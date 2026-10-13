@@ -4,7 +4,8 @@ Generates 1200x630 Open Graph cards into public/images/og/.
 
 Before this existed every page shared one 600x600 headshot, so every link
 preview was a cropped square face with no context. Re-run after adding or
-retitling a case study:
+retitling a public page. Work cards do not belong here — they live in
+held/work-assets/images/og/.
 
     python3 scripts/generate-og-images.py
 """
@@ -98,19 +99,12 @@ def card(filename, eyebrow, title, metric=None):
     print("wrote", OUT / filename)
 
 
+# Work cards live in held/work-assets/images/og/, not public/. Don't add
+# them here — this script writes straight into public/images/og/.
 CARDS = [
-    ("default.png", "Shopify · Performance · Testing", "I build Shopify storefronts, and I test what actually works.", None),
-    ("work.png", "Case studies", "Shopify builds, A/B tests and speed work — including what the numbers don't prove.", None),
-    ("writing.png", "Writing", "Notes on Shopify, performance and testing. Mostly things that broke.", None),
-    ("about.png", "About", "Frontend engineer in Dhaka. Shopify, performance, experiments.", None),
-    ("suiting-model-vs-product.png", "A/B test · EchoLogyx",
-     "Does seeing the model sell the suit?", "+50%"),
-    ("fashion-homepage-performance.png", "Performance · EchoLogyx",
-     "How I got a fashion homepage on screen sooner", "-27%"),
-    ("fashion-pdp-performance.png", "Performance · EchoLogyx",
-     "How I made a fashion product page feel ready sooner", "-17%"),
-    ("homepage-bestsellers-carousel.png", "A/B test · EchoLogyx",
-     "Putting bestsellers on the homepage", "+35%"),
+    ("default.png", "Frontend · Dhaka", "I write about frontend work, and the things that break.", None),
+    ("writing.png", "Writing", "Notes on frontend work, JavaScript, and browser quirks. Mostly things that broke.", None),
+    ("about.png", "About", "Frontend engineer in Dhaka. I work at EchoLogyx.", None),
 ]
 
 for name, eyebrow, title, metric in CARDS:

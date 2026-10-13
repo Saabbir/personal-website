@@ -1,7 +1,7 @@
 ---
 title: How to Integrate Convert A/B Testing with Shopify (Using the Convert Shopify App)
 description: A complete setup guide for running Convert A/B tests on Shopify with the official app — goals, API keys, tracking, and checkout-safe purchase measurement.
-createdAt: 12 January 2026
+createdAt: 09/01/2026
 publish: true
 external: true
 externalUrl: https://www.echologyx.com/blog/how-to-integrate-convert-a-b-testing-with-shopify-using-the-convert-shopify-app

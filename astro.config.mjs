@@ -54,6 +54,7 @@ function frontmatterDateToIso(value) {
 function isIndexablePathname(pathname) {
   const normalized = pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
   if (normalized === '404' || normalized === '404.html') return false;
+  if (normalized === 'work' || normalized.startsWith('work/')) return false;
   if (normalized.endsWith('.xml')) return false;
   return true;
 }

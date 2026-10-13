@@ -1,6 +1,6 @@
-# Claude Instructions - Saabbir Portfolio & Blog
+# Claude Instructions - Saabbir Personal Site & Blog
 
-This is an Astro 4+ portfolio and blog project using SCSS (BEM) and MDX Content Collections.
+This is an Astro 4+ personal site and blog using SCSS (BEM) and MDX Content Collections. The public site has no client case studies while Saabbir is at EchoLogyx.
 
 - Read `AGENTS.md` before making any code modifications.
 - Read `docs/content-guide.md` before writing or editing any user-facing copy.

@@ -11,7 +11,7 @@ tool: WebPageTest
 scope: Product page
 dateRange: Apr - May 2025
 featured: true
-publish: true
+publish: false
 imgFolderName: fashion-pdp-performance
 caseLayout: performance
 category:

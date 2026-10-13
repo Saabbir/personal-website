@@ -1,6 +1,6 @@
 # Saabbir Hossain — Personal Website
 
-Astro 4 portfolio and engineering blog. Live at [https://saabbir.com](https://saabbir.com).
+Astro 4 personal site and engineering blog. Live at [https://saabbir.com](https://saabbir.com).
 
 The previous Nuxt 3 site is archived at [https://v1.saabbir.com](https://v1.saabbir.com).
 

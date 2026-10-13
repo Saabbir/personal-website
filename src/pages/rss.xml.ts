@@ -9,8 +9,8 @@ export async function GET(context: { site: string }) {
     .sort((a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt));
 
   return rss({
-    title: 'Saabbir Hossain — Blog & Articles',
-    description: 'Articles on JavaScript, Web Performance, Shopify Plus, and A/B Testing by Saabbir Hossain.',
+    title: 'Saabbir Hossain — Writing',
+    description: 'Notes on frontend work, JavaScript, and the browser quirks I keep running into.',
     site: context.site || 'https://saabbir.com',
     items: publishedArticles.map((post) => ({
       title: post.data.title,

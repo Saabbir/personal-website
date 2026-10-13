@@ -1,91 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import { contentDateValue, formatWorkDate } from '../../utils/seo';
-import { workThumb } from '../../utils/work';
-
-const allWork = await getCollection('work');
-const publishedWork = allWork
-  .filter((w) => w.data.publish !== false)
-  .sort((a, b) => {
-    const featuredDiff = Number(b.data.featured) - Number(a.data.featured);
-    if (featuredDiff !== 0) return featuredDiff;
-    return contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt);
-  });
+import { SITE_ORIGIN } from '../../utils/seo';
 ---
 
 <BaseLayout
-  title="Work"
-  description="Shopify builds, A/B tests and speed work. Each case study shows the problem, what I changed, what the numbers did, and what they don't prove."
-  image="/images/og/work.png"
+  title="This page moved"
+  description="This page is no longer published. Writing and notes live on the home page."
+  robots="noindex, nofollow"
+  canonicalUrl={`${SITE_ORIGIN}/`}
 >
+  <meta slot="head" http-equiv="refresh" content="0;url=/" />
   <section class="l-section">
-    <div class="l-container">
-      <div class="l-section__header u-text-center" style="max-width:700px; margin-left:auto; margin-right:auto;">
-        <h1 class="l-section__title">Work</h1>
-        <p class="u-text-muted u-mt-16">
-          Shopify builds, A/B tests and speed work. Each one shows the problem,
-          exactly what I changed, what the numbers did — and what the numbers
-          don't prove. That last part matters: most tests don't win, and a
-          write-up that never says so isn't worth much.
-        </p>
-      </div>
-
-      <!-- Work Grid -->
-      <div class="l-grid l-grid--2col">
-        {publishedWork.map((item) => (
-          <article class="c-card c-card--glass c-card--hoverable c-card--work">
-            {workThumb(item.data.imgFolderName) && (
-              <img
-                class="c-card__media"
-                src={workThumb(item.data.imgFolderName)!}
-                alt=""
-                width="414"
-                height="310"
-                loading="lazy"
-                decoding="async"
-              />
-            )}
-            {!workThumb(item.data.imgFolderName) && item.data.metric && (
-              <div class="c-card__metric-banner">
-                <div class="c-card__metric-value">{item.data.metric}</div>
-                <div class="c-card__metric-label">{item.data.metricLabel}</div>
-              </div>
-            )}
-            <div class="c-card__content">
-              <div class="c-card__header">
-                <span class="c-tag c-tag--accent">{item.data.type || 'Project'}</span>
-                {(item.data.dateRange || item.data.createdAt) && (
-                  <span class="c-card__date">{formatWorkDate(item.data.dateRange, item.data.createdAt)}</span>
-                )}
-              </div>
-
-              <h2 class="c-card__title">
-                <a href={`/work/${item.slug}`}>{item.data.title}</a>
-              </h2>
-
-              {item.data.highlight && (
-                <p class="c-card__highlight">{item.data.highlight}</p>
-              )}
-
-              <div class="c-card__body">
-                {item.data.description}
-              </div>
-
-              <div class="c-card__footer">
-                <div class="c-card__tags">
-                  {item.data.tools?.map((tool) => (
-                    <span class="c-tag">{tool}</span>
-                  ))}
-                </div>
-                <span class="c-btn c-btn--ghost c-btn--sm">
-                  View Case Study →
-                </span>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
+    <div class="l-container l-container--narrow u-text-center">
+      <h1 class="l-section__title">This page moved</h1>
+      <p class="u-text-muted u-mt-16">
+        Head to the <a href="/">home page</a> or <a href="/blog">Writing</a>.
+      </p>
     </div>
   </section>
+  <script is:inline>
+    window.location.replace('/');
+  </script>
 </BaseLayout>

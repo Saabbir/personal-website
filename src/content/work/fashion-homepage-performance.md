@@ -11,7 +11,7 @@ tool: WebPageTest
 scope: Homepage
 dateRange: Mar - May 2025
 featured: true
-publish: true
+publish: false
 imgFolderName: fashion-homepage-performance
 caseLayout: performance
 category:

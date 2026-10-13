@@ -57,17 +57,22 @@
 
       @media (min-width: 768px) {
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         gap: 1.5rem;
 
         > .c-btn {
-          align-self: center;
+          align-self: flex-start;
+          margin-top: 0.35rem;
         }
       }
 
       .l-section__title {
         margin-bottom: 0;
+      }
+
+      .l-section__lede {
+        margin-top: 0.5rem;
       }
 
       > .c-btn {

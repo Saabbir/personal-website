@@ -1,6 +1,6 @@
 # Project Rules & Architecture Guidelines
 
-This repository (`Saabbir/personal-website`) is the personal portfolio and engineering blog for **Saabbir Hossain** (Sr. Software Engineer at EchoLogyx Ltd, CRO-driven Shopify Plus Developer & Optimizely Certified A/B Testing Expert).
+This repository (`Saabbir/personal-website`) is the personal site and engineering blog for **Saabbir Hossain** (Senior Software Engineer at EchoLogyx Ltd). The public site is a blog — Writing, Snippets, About, Contact — not a client portfolio.
 
 All AI assistants (Antigravity, Cursor, GitHub Copilot, Claude, Windsurf) working on this codebase MUST follow the strict rules below to maintain code quality, design consistency, and performance.
 
@@ -25,8 +25,11 @@ Non-negotiables:
   wrong, what he's learning) must come from him. If it isn't in the repo and he
   hasn't said it, leave a `TODO(saabbir)` comment with a specific question
   rather than writing plausible filler.
-- **Case studies follow the suiting-study shape**, including the
-  "What this does not prove" section. Don't drop the caveats.
+- **Case studies stay unpublished** while he is at EchoLogyx (`publish: false`,
+  assets in `held/work-assets/` not `public/`). If you edit one, keep the
+  suiting-study shape, including "What this does not prove". Don't publish
+  them, restore held files into `public/`, or add Work back to the nav unless
+  he asks.
 
 Outstanding work: [`docs/backlog.md`](docs/backlog.md).
 Why non-obvious things are the way they are — read before "fixing" something

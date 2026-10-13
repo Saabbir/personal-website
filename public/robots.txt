@@ -1,6 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+Disallow: /work/
+Disallow: /downloads/suiting-model-vs-product.pdf
+Disallow: /images/work/
 
 # Sitemap (used by search engines to discover URLs)
 Sitemap: https://saabbir.com/sitemap-index.xml

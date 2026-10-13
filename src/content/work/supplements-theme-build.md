@@ -123,7 +123,7 @@ TODO(saabbir): what shipped, and how it's held up since.
 <h2 id="screens"><span class="c-case-kicker">Screens</span> Before and after</h2>
 
 {/*
-TODO(saabbir): screenshots go in public/images/work/supplements-theme-build/.
+TODO(saabbir): screenshots go in held/work-assets/images/work/supplements-theme-build/.
   - thumbnail.jpg (414x310) — used on the work grid and homepage
   - cover.jpg (1600x1200) — shown at the top of this page for shopify layout
   - plus whatever design/build comparisons you want inline

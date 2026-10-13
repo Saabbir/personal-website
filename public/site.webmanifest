@@ -1,11 +1,11 @@
 {
-  "name": "Saabbir Hossain — Portfolio & Blog",
+  "name": "Saabbir Hossain",
   "short_name": "Saabbir",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0f1d",
   "theme_color": "#0a0f1d",
-  "description": "CRO-driven Shopify Plus Developer and Optimizely Certified A/B Testing Expert.",
+  "description": "Frontend engineer in Dhaka. I write about the work.",
   "icons": [
     {
       "src": "/favicon.svg",

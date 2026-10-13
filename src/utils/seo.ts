@@ -81,11 +81,6 @@ export function ogImageFor(slug: string, explicit?: string | null): string {
 
 // Kept as a list so a missing card degrades to the default instead of 404ing.
 const OG_SLUGS = new Set([
-  'work',
   'writing',
   'about',
-  'suiting-model-vs-product',
-  'fashion-homepage-performance',
-  'fashion-pdp-performance',
-  'homepage-bestsellers-carousel',
 ]);

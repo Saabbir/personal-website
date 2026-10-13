@@ -5,7 +5,10 @@ import { articleHref, articleLinkRel, isExternalArticle, slugifyTag } from '../.
 import { contentDateValue, formatDisplayDate } from '../../utils/seo';
 
 const allSnippets = await getCollection('snippets');
-const recentSnippets = allSnippets.filter((s) => s.data.publish !== false).slice(0, 3);
+const recentSnippets = allSnippets
+  .filter((s) => s.data.publish !== false)
+  .sort((a, b) => contentDateValue(b.data.createdAt) - contentDateValue(a.data.createdAt))
+  .slice(0, 3);
 
 const allArticles = await getCollection('articles');
 const publishedArticles = allArticles

@@ -12,7 +12,7 @@ dateRange: 17 Apr - 15 May 2026
 visitors: 14115
 trafficSplit: 50/50
 featured: true
-publish: true
+publish: false
 imgFolderName: suiting-model-vs-product
 category:
   - A/B Testing

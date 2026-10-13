@@ -20,8 +20,8 @@ interface Props {
 }
 
 const {
-  title = "Saabbir Hossain — Shopify developer, performance and A/B testing",
-  description = "I'm Saabbir, a frontend engineer in Dhaka. I build Shopify storefronts, make them faster, and run A/B tests to find out what actually helps people buy.",
+  title = "Saabbir Hossain — frontend engineer in Dhaka",
+  description = "I'm Saabbir, a frontend engineer in Dhaka. I work at EchoLogyx. I write about frontend work, JavaScript, and the browser quirks I keep running into.",
   // 1200x630 card. The old default was a 600x600 headshot, which every
   // summary_large_image share cropped into a square face.
   image = "/images/og/default.png",
@@ -138,6 +138,7 @@ const pageSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
     {pageSchemas.map((entry) => (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
     ))}
+    <slot name="head" />
   </head>
   <body>
     <a class="u-skip-link" href="#main-content">Skip to content</a>

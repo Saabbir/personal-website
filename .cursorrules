@@ -1,4 +1,4 @@
-# Cursor Project Rules - Saabbir Portfolio & Blog
+# Cursor Project Rules - Saabbir Personal Site & Blog
 
 Use Astro 4+, SCSS with strict BEM methodology (`.c-block__element--modifier`), and MDX Content Collections.
 

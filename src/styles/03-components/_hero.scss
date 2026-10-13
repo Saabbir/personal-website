@@ -115,11 +115,25 @@
       color: var(--color-accent);
     }
 
-    &-client {
+    &-client,
+    &-post {
       font-family: $font-family-heading;
       font-size: 1.15rem;
       font-weight: 700;
       color: var(--color-text-main);
+      margin-top: -0.35rem;
+    }
+
+    &-post {
+      font-size: clamp(1.25rem, 2vw, 1.7rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    &-meta {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
       margin-top: -0.35rem;
     }
 

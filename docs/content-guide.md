@@ -10,6 +10,16 @@ articles, snippets, meta descriptions, button labels.
 
 Not: corporate, salesy, inspirational, academic, or overly polished.
 
+## What is public right now
+
+While Saabbir is at EchoLogyx, this site is a **personal blog**, not a client
+portfolio. Nav is Writing · Snippets · About · Contact. Case studies stay in
+`src/content/work/` at `publish: false`. Their images and PDFs live in
+`held/work-assets/`, not `public/`. Don't publish a work entry, restore those
+assets under `public/`, or add Work back to the nav unless he asks.
+
+EchoLogyx is a job title. No agency sales CTA. No client names.
+
 ## Three rules everything else follows from
 
 **1. Show, don't claim.** Never "I'm an expert in experimentation." Instead:

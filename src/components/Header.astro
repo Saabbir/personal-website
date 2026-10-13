@@ -2,11 +2,9 @@
 import ThemeToggle from './ThemeToggle.astro';
 
 const currentPath = Astro.url.pathname;
-// Work first: someone deciding whether to hire me wants proof before
-// biography. Snippets live under /blog rather than taking a nav slot.
 const navItems = [
-  { name: 'Work', href: '/work' },
   { name: 'Writing', href: '/blog' },
+  { name: 'Snippets', href: '/snippets' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -14,7 +12,7 @@ const navItems = [
 <header class="l-header" transition:name="site-header">
   <div class="l-container">
     <nav class="c-nav" aria-label="Main Navigation">
-      <a href="/" class="c-nav__brand" aria-label="Saabbir Hossain Portfolio">
+      <a href="/" class="c-nav__brand" aria-label="Saabbir Hossain">
         Saabbir<span class="c-nav__brand-accent">.</span>
       </a>
 
